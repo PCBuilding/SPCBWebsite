@@ -1,0 +1,38 @@
+.box1, .box2, .box3 {
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+  }
+  
+  .box1 {
+    background-color: red;
+  }
+  
+  .box2 {
+    background-color: green;
+  }
+  
+  .box3 {
+    background-color: blue;
+  }
+
+  .container {
+    height: 200px;
+    width: 100px;
+    background-color: lightgray;
+  }
+  
+  .static-box {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .absolute-box {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    background-color: green;
+    width: 100px;
+    height: 100px;
+  }
