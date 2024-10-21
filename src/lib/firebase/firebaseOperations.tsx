@@ -2,6 +2,7 @@ import { db } from '@/lib/firebase/firebase';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 
 export interface Project {
+  id: string; //ID of the project NOT A COLUMN IN THE DATABASE
   Youtube: string;
   Description: string;
   Parts: {
@@ -24,30 +25,30 @@ export interface Project {
 // READ Operation
 export const getAllProjects = async () => {
   const querySnapshot = await getDocs(collection(db, "Projects"));
-  querySnapshot.forEach((doc) => {
-    console.log(doc.data()); // This should now only log once
-  });
-  return querySnapshot.docs.map(doc => doc.data());
+  return querySnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as Project[];
 };
 
-// // CREATE Operation
-// export const addProject = async (projectData: Project) => {
-//   await addDoc(collection(db, "Projects"), projectData);
-// };
+// CREATE Operation
+export const addProject = async (projectData: Project) => {
+  await addDoc(collection(db, "Projects"), projectData);
+};
 
-// //ADD entry to the users database
-// async function addData() {
-//   try {
-//     const docRef = await addDoc(collection(db, "users"), {
-//       name: "Claudio Sciotto",
-//       email: "claudio@example.com",
-//       age: 22
-//     });
-//     console.log("Document written with ID: ", docRef.id);
-//   } catch (e) {
-//     console.error("Error adding document: ", e);
-//   }
-// }
+//ADD entry to the users database
+async function addData() {
+  try {
+    const docRef = await addDoc(collection(db, "Projects"), {
+      name: "Claudio Sciotto",
+      email: "claudio@example.com",
+      age: 22
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
 
 // // UPDATE Operation
 // export const updateProject = async (id, updatedData) => {
