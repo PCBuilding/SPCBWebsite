@@ -1,6 +1,6 @@
-import Image from "next/image";
+'use client';
 
-export default function Admin() {
+export default function Events() {
   return (
     <>ADMIN PAGE</>
   );
