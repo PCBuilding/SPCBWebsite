@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getAllProjects, Project } from '@/lib/firebase/firebaseOperations';
+import  ProjectForm  from '@/components/AddForm/AddForm';
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -21,6 +22,7 @@ export default function Projects() {
 
   return (
     <>Projects page
+    <ProjectForm />
     <pre>{JSON.stringify(projects, null, 4)}</pre></>
   );
 }
