@@ -2,27 +2,7 @@ import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '@/lib/firebase/firebase';
-
-interface Parts {
-  RAM: string;
-  Cooling: string;
-  Case: string;
-  Motherboard: string;
-  PSU: string;
-  GPU: string;
-  Storage: string;
-  CPU: string;
-}
-
-interface ProjectFormData {
-  Youtube: string;
-  Description: string;
-  Parts: Parts;
-  Title: string;
-  Photos: string;
-  Image: string;
-  Builders: string[];
-}
+import { ProjectFormData, Parts } from '@/types/project';
 
 const initialFormState: ProjectFormData = {
   Youtube: '',
@@ -43,7 +23,7 @@ const initialFormState: ProjectFormData = {
   Builders: ['']
 };
 
-export default function ProjectForm() {
+export default function AddForm() {
   const [formData, setFormData] = useState<ProjectFormData>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -138,8 +118,8 @@ export default function ProjectForm() {
         return;
       }
 
-      if (file.size > 30 * 1024 * 1024){
-        setError('Image must be less than 30MB');
+      if (file.size > 5 * 1024 * 1024){
+        setError('Image must be less than 5MB');
         return;
       }
 
@@ -155,9 +135,9 @@ export default function ProjectForm() {
   };
 
   const uploadImage = async (file: File): Promise<string> => {
-    const fileName = '${Date.now()}-${file.name}}';
-    const storageRef = ref(storage, 'project-images/${fileName}');
-
+    const fileName = `${Date.now()}-${file.name}`;
+    const storageRef = ref(storage, `project-images/${fileName}`);
+    
     try {
       const snapshot = await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(snapshot.ref);
@@ -174,125 +154,132 @@ export default function ProjectForm() {
         {/* Basic Information */}
         <div className="space-y-4">
           <h2 className="text-xl font-bold">Basic Information</h2>
-          
-          <div>
-            <label htmlFor="Title" className="block text-sm font-medium">
-              Title
-            </label>
-            <input
-              type="text"
-              id="Title"
-              name="Title"
-              value={formData.Title}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
-            />
-          </div>
 
-          <div>
-            <label htmlFor="Description" className="block text-sm font-medium">
-              Description
-            </label>
-            <textarea
-              id="Description"
-              name="Description"
-              value={formData.Description}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              rows={4}
-              required
-            />
-          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="Title" className="block text-sm font-medium">
+                Title
+              </label>
+              <input
+                type="text"
+                id="Title"
+                name="Title"
+                value={formData.Title}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border rounded-md"
+                required
+              />
+            </div>
 
-          <div>
-            <label htmlFor="Youtube" className="block text-sm font-medium">
-              YouTube Link
-            </label>
-            <input
-              type="url"
-              id="Youtube"
-              name="Youtube"
-              value={formData.Youtube}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
-            />
-          </div>
+            <div>
+              <label htmlFor="Description" className="block text-sm font-medium">
+                Description
+              </label>
+              <textarea
+                id="Description"
+                name="Description"
+                value={formData.Description}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border rounded-md"
+                rows={4}
+                required
+              />
+            </div>
 
-        <div>
-          <label htmlFor="Image" className="block text-sm font-medium">
-            Main Image
-          </label>
-          <div className="mt-1 space-y-2">
-            <input
-              type="file"
-              id="Image"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="block w-full text-sm text-slate-500
-                file:mr-4 file:py-2 file:px-4
-                file:rounded-full file:border-0
-                file:text-sm file:font-semibold
-                file:bg-violet-50 file:text-violet-700
-                hover:file:bg-violet-100"
-            />
-            {imagePreview && (
-              <div className="mt-2">
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                  className="max-w-xs h-auto rounded"
+            <div>
+              <label htmlFor="Youtube" className="block text-sm font-medium">
+                YouTube Link
+              </label>
+              <input
+                type="url"
+                id="Youtube"
+                name="Youtube"
+                value={formData.Youtube}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border rounded-md"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="Photos" className="block text-sm font-medium">
+                Additional Photos URLs
+              </label>
+              <input
+                type="text"
+                id="Photos"
+                name="Photos"
+                value={formData.Photos}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border rounded-md"
+                placeholder="Url to photo folder"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="Image" className="block text-sm font-medium">
+                Main Image
+              </label>
+              <div className="mt-1 space-y-2">
+                <input
+                  type="file"
+                  id="Image"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="block w-full text-sm text-slate-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-violet-50 file:text-violet-700
+                    hover:file:bg-violet-100"
                 />
+                {imagePreview && (
+                  <div className="mt-2">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="max-w-xs h-auto rounded"
+                    />
+                  </div>
+                )}
+                {uploadProgress > 0 && uploadProgress < 100 && (
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div
+                      className="bg-blue-600 h-2.5 rounded-full"
+                      style={{ width: `${uploadProgress}%` }}
+                    ></div>
+                  </div>
+                )}
               </div>
-            )}
-            {uploadProgress > 0 && uploadProgress < 100 && (
-              <div className="w-full bg-gray-200 rounded-full h-2.5">
-                <div
-                  className="bg-blue-600 h-2.5 rounded-full"
-                  style={{ width: `${uploadProgress}%` }}
-                ></div>
-              </div>
-            )}
-          </div>
-        </div>
-
-          <div>
-            <label htmlFor="Photos" className="block text-sm font-medium">
-              Additional Photos URLs
-            </label>
-            <input
-              type="text"
-              id="Photos"
-              name="Photos"
-              value={formData.Photos}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              placeholder="Comma-separated URLs"
-              required
-            />
+            </div>
           </div>
         </div>
 
         {/* Parts Section */}
         <div className="space-y-4">
           <h2 className="text-xl font-bold">PC Parts</h2>
-          {Object.keys(formData.Parts).map((part) => (
-            <div key={part}>
-              <label htmlFor={part} className="block text-sm font-medium">
-                {part}
-              </label>
-              <input
-                type="text"
-                id={part}
-                name={`Parts.${part}`}
-                value={formData.Parts[part as keyof Parts]}
-                onChange={handleChange}
-                className="mt-1 p-2 w-full border rounded-md"
-                required
-              />
-            </div>
-          ))}
+          <div className="grid grid-cols-2 gap-4">
+            {Object.keys(formData.Parts).map((part) => (
+              <div key={part} className="block text-m font-medium">
+                <div>
+                  <label htmlFor={part} className="block text-sm font-medium">
+                    {part}
+                  </label>
+                  <input
+                    type="text"
+                    id={part}
+                    name={`Parts.${part}`}
+                    value={formData.Parts[part as keyof Parts]}
+                    onChange={handleChange}
+                    className="mt-1 p-2 w-full border rounded-md"
+                    required
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          
         </div>
 
         {/* Builders Section */}
@@ -346,5 +333,6 @@ export default function ProjectForm() {
         )}
       </form>
     </div>
+
   );
 }
