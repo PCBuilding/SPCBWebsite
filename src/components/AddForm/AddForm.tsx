@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
-import { db } from '@/lib/firebase/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, storage } from '@/lib/firebase/firebase';
 
 interface Parts {
   RAM: string;
@@ -47,6 +48,10 @@ export default function ProjectForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -98,9 +103,16 @@ export default function ProjectForm() {
     setSuccess(false);
 
     try {
+      let imageUrl = formData.Image;
+
+      if (selectedImage) {
+        imageUrl = await uploadImage(selectedImage);
+      }
+
       // Filter out empty builders
       const cleanedData = {
         ...formData,
+        Image: imageUrl,
         Builders: formData.Builders.filter(builder => builder.trim() !== '')
       };
 
@@ -108,6 +120,8 @@ export default function ProjectForm() {
       console.log("Document written with ID: ", docRef.id);
       setSuccess(true);
       setFormData(initialFormState);
+      setSelectedImage(null);
+      setImagePreview('');
     } catch (e) {
       setError(e instanceof Error ? e.message : 'An error occurred');
       console.error("Error adding document: ", e);
@@ -116,6 +130,44 @@ export default function ProjectForm() {
     }
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file){
+      if(!file.type.startsWith('image/')){
+        setError('Please upload an image file');
+        return;
+      }
+
+      if (file.size > 30 * 1024 * 1024){
+        setError('Image must be less than 30MB');
+        return;
+      }
+
+      setSelectedImage(file);
+      console.log(file); //REMOVE
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      }
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const uploadImage = async (file: File): Promise<string> => {
+    const fileName = '${Date.now()}-${file.name}}';
+    const storageRef = ref(storage, 'project-images/${fileName}');
+
+    try {
+      const snapshot = await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      return downloadURL;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      throw new Error('Failed to upload image');
+    }
+  };
+  
   return (
     <div className="max-w-4xl mx-auto p-6">
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -168,20 +220,42 @@ export default function ProjectForm() {
             />
           </div>
 
-          <div>
-            <label htmlFor="Image" className="block text-sm font-medium">
-              Main Image URL
-            </label>
+        <div>
+          <label htmlFor="Image" className="block text-sm font-medium">
+            Main Image
+          </label>
+          <div className="mt-1 space-y-2">
             <input
-              type="url"
+              type="file"
               id="Image"
-              name="Image"
-              value={formData.Image}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
+              accept="image/*"
+              onChange={handleImageChange}
+              className="block w-full text-sm text-slate-500
+                file:mr-4 file:py-2 file:px-4
+                file:rounded-full file:border-0
+                file:text-sm file:font-semibold
+                file:bg-violet-50 file:text-violet-700
+                hover:file:bg-violet-100"
             />
+            {imagePreview && (
+              <div className="mt-2">
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="max-w-xs h-auto rounded"
+                />
+              </div>
+            )}
+            {uploadProgress > 0 && uploadProgress < 100 && (
+              <div className="w-full bg-gray-200 rounded-full h-2.5">
+                <div
+                  className="bg-blue-600 h-2.5 rounded-full"
+                  style={{ width: `${uploadProgress}%` }}
+                ></div>
+              </div>
+            )}
           </div>
+        </div>
 
           <div>
             <label htmlFor="Photos" className="block text-sm font-medium">
