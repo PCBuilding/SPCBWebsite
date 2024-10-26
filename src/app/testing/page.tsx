@@ -8,7 +8,8 @@ import EditForm from '@/components/Forms/EditForm';
 export default function Projects() {
   return (
     <>TESTING PAGE
-    
+    <AddForm/>
+    <EditForm/>
     </>
   );
 }
