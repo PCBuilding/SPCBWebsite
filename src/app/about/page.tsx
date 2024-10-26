@@ -1,7 +1,7 @@
-import Image from "next/image";
+'use client';
 
-export default function Admin() {
+export default function About() {
   return (
-    <>ADMIN PAGE</>
+    <>ABOUT PAGE</>
   );
 }
