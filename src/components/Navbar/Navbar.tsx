@@ -1,5 +1,5 @@
 'use client';
-
+import Link from "next/link";
 import { useState } from 'react';
 
 export default function Navbar() {
@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-600 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <a href="/" className="font-semibold text-2xl tracking-tight">The Society of PC Building</a>
+        <Link href="/" className="font-semibold text-2xl tracking-tight">The Society of PC Building</Link>
       </div>
       
       {/* Hamburger menu button for small screens */}
@@ -28,15 +28,15 @@ export default function Navbar() {
       {/* Menu items - hidden by default on small screens, shown if toggled */}
       <div className={`w-full block lg:flex lg:items-center lg:w-auto ${isOpen ? 'block' : 'hidden'}`}>
         <div className="text-base lg:flex-grow">
-          <a href="/projects" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-6">
+          <Link href="/projects" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-6">
             Projects
-          </a>
-          <a href="/events" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-6">
+          </Link>
+          <Link href="/events" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-6">
             Events
-          </a>
-          <a href="/about" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300">
+          </Link>
+          <Link href="/about" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300">
             About
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
