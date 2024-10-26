@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '@/lib/firebase/firebase';
-import { ProjectFormData, Parts } from '@/types/project';
+import { ProjectFormData, Parts, Project } from '@/types/project';
 
-const initialFormState: ProjectFormData = {
+interface AddFormProps {
+  initialData?: ProjectFormData;
+  onSubmit?: (data: ProjectFormData) => Promise<void>;
+  isEditing?: boolean;
+}
+
+const emptyFormState: ProjectFormData = {
   Youtube: '',
   Description: '',
   Parts: {
@@ -23,14 +29,14 @@ const initialFormState: ProjectFormData = {
   Builders: ['']
 };
 
-export default function AddForm() {
-  const [formData, setFormData] = useState<ProjectFormData>(initialFormState);
+export default function AddForm({initialData, onSubmit, isEditing = false}: AddFormProps) {
+  const [formData, setFormData] = useState<ProjectFormData>(initialData || emptyFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>('');
+  const [imagePreview, setImagePreview] = useState<string>(formData.Image || '');
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -96,12 +102,20 @@ export default function AddForm() {
         Builders: formData.Builders.filter(builder => builder.trim() !== '')
       };
 
-      const docRef = await addDoc(collection(db, "Projects"), cleanedData);
-      console.log("Document written with ID: ", docRef.id);
+      if (onSubmit) {
+        await onSubmit(cleanedData);
+
+      } else {
+        const docRef = await addDoc(collection(db, "Projects"), cleanedData);
+        console.log("Document written with ID: ", docRef.id);
+      }
+
       setSuccess(true);
-      setFormData(initialFormState);
-      setSelectedImage(null);
-      setImagePreview('');
+      if (!isEditing) {
+        setFormData(emptyFormState);
+        setSelectedImage(null);
+        setImagePreview('');
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : 'An error occurred');
       console.error("Error adding document: ", e);
@@ -321,7 +335,7 @@ export default function AddForm() {
           disabled={isSubmitting}
           className="w-full p-3 bg-blue-500 text-white rounded-md disabled:bg-blue-300"
         >
-          {isSubmitting ? 'Submitting...' : 'Submit Project'}
+          {isSubmitting ? 'Submitting...' : isEditing ? 'Update Project' : 'Submit Project'}
         </button>
 
         {error && (
@@ -329,10 +343,11 @@ export default function AddForm() {
         )}
 
         {success && (
-          <div className="text-green-500 mt-2">Project added successfully!</div>
+          <div className="text-green-500 mt-2">
+            {isEditing ? 'Project updated successfully!' : 'Project added successfully!'}
+          </div>
         )}
       </form>
     </div>
-
   );
 }
