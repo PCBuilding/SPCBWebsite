@@ -4,19 +4,26 @@ import { FaCalendarAlt, FaBoxOpen } from "react-icons/fa";
 import { BsPcDisplay } from "react-icons/bs";
 import Link from "next/link";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import SignOutButton from "@/components/auth/SingOut";
+
 
 export default function Dashboard() {
+
+
   return (
     <ProtectedRoute>
       <div className="mx-auto max-w-7xl px-10 pt-16">
-        <h1 className="pb-4 text-3xl">Dashboard</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="pb-4 text-3xl">Dashboard</h1>
+          <SignOutButton />
+        </div>
         <hr className="border-gray-200" />
         <ul className="flex gap-8 pt-8">
           <Link
-            href={"/projects"}
+            href={"/dashboard/events"}
             className="flex w-full max-w-96 cursor-pointer flex-col items-center gap-6 rounded-md border border-gray-200 bg-[#fafafa] p-6 transition-all hover:bg-gray-200"
           >
-            <p className="text-2xl">Edit Events</p>
+            <p className="text-2xl">Events</p>
             <span className="text-[120px] text-blue-500">
               <FaCalendarAlt />
             </span>
@@ -28,7 +35,7 @@ export default function Dashboard() {
             href={"/dashboard/projects"}
             className="flex w-full max-w-96 cursor-pointer flex-col items-center gap-6 rounded-md border border-gray-200 bg-[#fafafa] p-6 transition-all hover:bg-gray-200"
           >
-            <p className="text-2xl">Edit Projects</p>
+            <p className="text-2xl">Projects</p>
             <span className="text-[120px] text-blue-500">
               <BsPcDisplay />
             </span>
@@ -37,10 +44,10 @@ export default function Dashboard() {
             </p>
           </Link>
           <Link
-            href={"/projects"}
+            href={"/dashboard/inventory"}
             className="flex w-full max-w-96 cursor-pointer flex-col items-center gap-6 rounded-md border border-gray-200 bg-[#fafafa] p-6 transition-all hover:bg-gray-200"
           >
-            <p className="text-2xl">Edit Inventory</p>
+            <p className="text-2xl">Inventory</p>
             <span className="text-[120px] text-blue-500">
               <FaBoxOpen />
             </span>
