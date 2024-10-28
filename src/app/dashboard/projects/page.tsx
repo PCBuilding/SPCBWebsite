@@ -8,7 +8,7 @@ export default function projects() {
   return (
     <ProtectedRoute>
       <div className="mx-auto max-w-7xl px-10 pt-16">
-        <h1 className="pb-4 text-3xl">Dashboard</h1>
+        <h1 className="pb-4 text-3xl">Projects</h1>
         <hr className="border-gray-200" />
         <ul className="flex gap-8 pt-8">
           <Link
