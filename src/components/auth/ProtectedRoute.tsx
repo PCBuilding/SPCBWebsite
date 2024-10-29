@@ -25,7 +25,7 @@ export default function ProtectedRoute({
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-[calc(100vh-80px)] items-center justify-center">
         <span className="animate-spin text-5xl text-gray-800">
           <LuLoader2 />
         </span>
