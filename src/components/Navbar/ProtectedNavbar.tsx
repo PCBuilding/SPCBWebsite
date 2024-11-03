@@ -21,7 +21,7 @@ export default function ProtectedNavbar() {
             <>
               <Link href="/dashboard">Dashboard</Link>
               <Link href="/dashboard/projects">Projects</Link>
-              <Link href="/edit-events">Events</Link>
+              <Link href="/dashboard/events">Events</Link>
               <Link href="/edit-events">Inventory</Link>
             </>
           )}
