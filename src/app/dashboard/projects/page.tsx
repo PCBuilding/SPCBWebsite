@@ -11,7 +11,7 @@ export default function projects() {
       <div className="mx-auto max-w-7xl px-10 pt-16">
         <div className="flex items-end justify-between pb-4">
           <h1 className="text-3xl">Projects</h1>
-          <Link href={"/dashboard"} className="underline flex gap-2 items-center">
+          <Link href={"/dashboard"} className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all" >
             Back To Dashboard <span className="text-lg"><FaLongArrowAltRight /></span>
           </Link>
         </div>
