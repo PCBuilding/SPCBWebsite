@@ -149,7 +149,7 @@ export default function EditForm() {
 
   return (
     <>
-      <div className="p-4">
+      <div className="mt-4">
         {/* Search input */}
         <div className="relative mb-4">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400" />

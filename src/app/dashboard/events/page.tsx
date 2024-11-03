@@ -1,5 +1,5 @@
 "use client";
-import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
 import Link from "next/link";
 import { BsFillGearFill, BsFillPlusSquareFill } from "react-icons/bs";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -10,7 +10,7 @@ export default function events() {
     <ProtectedRoute>
       <div className="mx-auto max-w-7xl px-10 pt-16">
         <div className="flex items-end justify-between pb-4">
-          <h1 className="text-3xl">Projects</h1>
+          <h1 className="text-3xl">Events</h1>
           <Link href={"/dashboard"} className="underline flex gap-2 items-center">
             Back To Dashboard <span className="text-lg"><FaLongArrowAltRight /></span>
           </Link>

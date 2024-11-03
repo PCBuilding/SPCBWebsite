@@ -1,18 +1,17 @@
 "use client";
+
 import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
-import AddEventForm from "@/components/admin/events/AddEvent";
+import EditEventsForm from "@/components/admin/events/EditEventsForm";
 import Link from "next/link";
 import React from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
-export default function AddEvent() {
-
-
+export default function EditEvents() {
   return (
     <ProtectedRoute>
-      <div className="mx-auto w-full max-w-3xl p-6 pt-8">
-        <div className="flex items-end justify-between">
-          <h1 className="text-2xl font-semibold">Create Event</h1>
+      <div className="mx-auto max-w-6xl px-8 pt-10">
+        <div className="flex justify-between">
+          <h1 className="text-2xl font-medium">Edit Events</h1>
           <Link
             href={"/dashboard"}
             className="flex items-center gap-2 underline"
@@ -23,7 +22,7 @@ export default function AddEvent() {
             </span>
           </Link>
         </div>
-        <AddEventForm />
+        <EditEventsForm />
       </div>
     </ProtectedRoute>
   );

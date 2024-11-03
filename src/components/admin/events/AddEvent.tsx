@@ -1,6 +1,6 @@
 "use client";
 import { db } from "@/lib/firebase/firebase";
-import { EventFormData, FirebaseEvent } from "@/types/events";
+import { EventFormData, FirebaseEvent, FormattedEvent } from "@/types/events";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -18,6 +18,7 @@ const initialFormState: EventFormData = {
 export default function AddEventForm() {
   const [formData, setFormData] = useState<EventFormData>(initialFormState);
   const [tagsInputValue, setTagsInputValue] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false)
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     if (e.target.showPicker) {
@@ -59,7 +60,7 @@ export default function AddEventForm() {
     return Timestamp.fromDate(dateObject);
   };
 
-  const convertToFirebaseEvent = (formData: EventFormData): FirebaseEvent => {
+  const convertToFirebaseEvent = (formData: EventFormData): FormattedEvent => {
     return {
       title: formData.title.trim(),
       description: formData.description.trim(),
@@ -106,6 +107,8 @@ export default function AddEventForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if(loading) return
+    setLoading(true)
 
     try {
       await submitEventToFirebase(formData);
@@ -115,6 +118,9 @@ export default function AddEventForm() {
       toast.error("Failed to create event. Please contact web dev team.", {
         duration: 4000,
       });
+    }
+    finally {
+      setLoading(false)
     }
   };
 
@@ -165,7 +171,7 @@ export default function AddEventForm() {
           <input
             type="date"
             name="date"
-            className="mt-2 block w-full rounded-md border p-2"
+            className="mt-2 block w-full cursor-pointer rounded-md border p-2"
             onFocus={handleFocus}
             onChange={handleChange}
             value={formData.date}
@@ -178,7 +184,7 @@ export default function AddEventForm() {
           <input
             type="time"
             name="time"
-            className="mt-2 block w-full rounded-md border p-2"
+            className="mt-2 block w-full cursor-pointer rounded-md border p-2"
             onFocus={handleFocus}
             onChange={handleChange}
             value={formData.time}

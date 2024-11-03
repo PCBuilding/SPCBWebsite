@@ -3,8 +3,8 @@
 import { FaCalendarAlt, FaBoxOpen } from "react-icons/fa";
 import { BsPcDisplay } from "react-icons/bs";
 import Link from "next/link";
-import ProtectedRoute from "@/components/auth/ProtectedRoute";
-import SignOutButton from "@/components/auth/SingOut";
+import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
+import SignOutButton from "@/components/admin/auth/SingOut";
 
 
 export default function Dashboard() {

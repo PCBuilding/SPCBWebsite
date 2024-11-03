@@ -9,10 +9,19 @@ export interface EventFormData {
   tags: string[];
 }
 
-export interface FirebaseEvent{
-    title: string;
-    description: string;
-    location: string;
-    time: Timestamp;
-    tags: string[]
+export interface FormattedEvent {
+  title: string;
+  description: string;
+  location: string;
+  time: Timestamp;
+  tags: string[];
+}
+
+export interface FirebaseEvent {
+  id: string;
+  title: string;
+  description: string;
+  location: string;
+  time: Timestamp;
+  tags: string[];
 }
