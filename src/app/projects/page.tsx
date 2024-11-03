@@ -1,7 +1,5 @@
-'use client';
+"use client";
 
 export default function Projects() {
-  return (
-    <>Projects page</>
-  );
+  return <>Projects page</>;
 }

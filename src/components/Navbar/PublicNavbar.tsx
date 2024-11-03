@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from 'react';
 
-export default function Navbar() {
+export default function PublicNavbar() {
   // State to manage dropdown visibility
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { BsFillGearFill, BsFillPlusSquareFill } from "react-icons/bs";
+import { FaLongArrowAltRight } from "react-icons/fa";
 import Link from "next/link";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
@@ -8,7 +9,12 @@ export default function projects() {
   return (
     <ProtectedRoute>
       <div className="mx-auto max-w-7xl px-10 pt-16">
-        <h1 className="pb-4 text-3xl">Dashboard</h1>
+        <div className="flex items-end justify-between pb-4">
+          <h1 className="text-3xl">Projects</h1>
+          <Link href={"/dashboard"} className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all" >
+            Back To Dashboard <span className="text-lg"><FaLongArrowAltRight /></span>
+          </Link>
+        </div>
         <hr className="border-gray-200" />
         <ul className="flex gap-8 pt-8">
           <Link
@@ -19,9 +25,7 @@ export default function projects() {
             <span className="text-[120px] text-blue-500">
               <BsFillPlusSquareFill />
             </span>
-            <p className="text-center">
-              Add new club projects
-            </p>
+            <p className="text-center">Add new club projects</p>
           </Link>
           <Link
             href={"/dashboard/projects/edit"}
@@ -31,11 +35,8 @@ export default function projects() {
             <span className="text-[120px] text-blue-500">
               <BsFillGearFill />
             </span>
-            <p className="text-center">
-              Update and Delete club projects.
-            </p>
+            <p className="text-center">Update and Delete club projects.</p>
           </Link>
-          
         </ul>
       </div>
     </ProtectedRoute>
