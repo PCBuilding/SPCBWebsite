@@ -1,6 +1,7 @@
 "use client";
 import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
-import AddEventForm from "@/components/admin/events/AddEvent";
+import EventForm from "@/components/admin/events/EventForm";
+import AddEventForm from "@/components/admin/events/EventForm";
 import Link from "next/link";
 import React from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -23,7 +24,7 @@ export default function AddEvent() {
             </span>
           </Link>
         </div>
-        <AddEventForm />
+        <EventForm mode="create"/>
       </div>
     </ProtectedRoute>
   );

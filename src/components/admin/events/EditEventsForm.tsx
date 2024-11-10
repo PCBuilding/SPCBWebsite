@@ -7,7 +7,8 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { queryClient } from "@/lib/react-query/queryClient";
 import { db } from "@/lib/firebase/firebase";
 import toast from "react-hot-toast";
-import { LuLoader2 } from "react-icons/lu";
+import { LuLoader2, LuX } from "react-icons/lu";
+import EventForm from "./EventForm";
 
 export default function EditEventsForm() {
   const { data: events, isLoading, isError, error } = useCachedEvents();
@@ -17,11 +18,26 @@ export default function EditEventsForm() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false);
   const [showEditForm, setShowEditForm] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const [editFormData,setEditFormData] = useState<EventFormData | null>(null)
+  const [editFormData, setEditFormData] = useState<EventFormData | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const filteredEvents = events?.filter((events) => {
+    return events.title.toLowerCase().includes(searchQuery.toLowerCase());
+  });
 
   const handleDeleteClick = (event: FirebaseEvent) => {
     setShowDeleteConfirm(true);
     setSelectedEvent(event);
+  };
+
+  const handleEditClick = (
+    event: FirebaseEvent,
+    date: string,
+    time: string,
+  ) => {
+    setShowEditForm(true);
+    setSelectedEvent(event);
+    populateForm(event, date, time);
   };
 
   async function deleteEvent(eventId: string): Promise<void> {
@@ -35,6 +51,7 @@ export default function EditEventsForm() {
 
   const handleDelete = async () => {
     if (!selectedEvent) return;
+    setIsDeleting(true)
     try {
       await deleteEvent(selectedEvent.id);
       queryClient.invalidateQueries({ queryKey: ["events"] });
@@ -42,11 +59,12 @@ export default function EditEventsForm() {
       toast.error("Unable to delete event");
     } finally {
       setShowDeleteConfirm(false);
+      setIsDeleting(false)
     }
   };
 
-  const populateForm = (event: FirebaseEvent, date:string, time:string) => {
-    const initialData = {
+  const populateForm = (event: FirebaseEvent, date: string, time: string) => {
+    const initialData: EventFormData = {
       title: event.title,
       location: event.location,
       description: event.description,
@@ -54,7 +72,7 @@ export default function EditEventsForm() {
       time: time,
       tags: event.tags,
     };
-    setEditFormData(initialData)
+    setEditFormData(initialData);
   };
 
   if (isError) {
@@ -79,14 +97,16 @@ export default function EditEventsForm() {
           type="text"
           placeholder="Search events..."
           className="w-full rounded border p-2 pl-10"
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
       <ul className="grid gap-4">
-        {events?.map((event_) => (
+        {filteredEvents?.map((event_) => (
           <Event
             event={event_}
             key={event_.title}
             onDeleteClick={handleDeleteClick}
+            onEditClick={handleEditClick}
           />
         ))}
       </ul>
@@ -124,7 +144,26 @@ export default function EditEventsForm() {
           </div>
         </div>
       )}
-      {showEditForm && <></>}
+      {showEditForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="max-h-[80vh] w-full max-w-2xl overflow-auto rounded-lg bg-white p-6">
+            <div className="flex justify-between">
+              <p className="text-2xl font-medium">Edit Event</p>
+              <span
+                className="cursor-pointer text-3xl"
+                onClick={() => setShowEditForm(false)}
+              >
+                <LuX />
+              </span>
+            </div>
+            <EventForm
+              initialData={editFormData}
+              mode="edit"
+              id={selectedEvent?.id}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

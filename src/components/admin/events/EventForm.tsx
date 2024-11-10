@@ -1,12 +1,19 @@
 "use client";
 import { db } from "@/lib/firebase/firebase";
+import { queryClient } from "@/lib/react-query/queryClient";
 import { EventFormData, FirebaseEvent, FormattedEvent } from "@/types/events";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { BsX } from "react-icons/bs";
 
-const initialFormState: EventFormData = {
+const emptyFormState: EventFormData = {
   title: "",
   location: "",
   description: "",
@@ -15,10 +22,22 @@ const initialFormState: EventFormData = {
   tags: [],
 };
 
-export default function AddEventForm() {
-  const [formData, setFormData] = useState<EventFormData>(initialFormState);
+interface EventFormProps {
+  initialData?: EventFormData | null;
+  mode: "edit" | "create";
+  id?: string;
+}
+
+export default function EventForm({
+  initialData,
+  mode,
+  id,
+}: EventFormProps) {
+  const [formData, setFormData] = useState<EventFormData>(
+    initialData || emptyFormState,
+  );
   const [tagsInputValue, setTagsInputValue] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     if (e.target.showPicker) {
@@ -70,6 +89,45 @@ export default function AddEventForm() {
     };
   };
 
+  const updateEventInFirebase = async (
+    formData: EventFormData,
+  ): Promise<string | void> => {
+    if (!id) return;
+    const loadingToast = toast.loading("Updating event...");
+
+    try {
+      if (!formData.title) {
+        toast.dismiss(loadingToast);
+        return toast.error("Please enter an event title");
+      }
+
+      if (!formData.date || !formData.time) {
+        toast.dismiss(loadingToast);
+
+        return toast.error("Please select both date and time");
+      }
+
+      const eventData: any = convertToFirebaseEvent(formData);
+
+      const eventRef = doc(db, "events", id);
+      await updateDoc(eventRef, eventData);
+
+      toast.dismiss(loadingToast);
+     
+      toast.success("Event updated successfully!", {
+        duration: 3000,
+        icon: "🎉",
+      });
+    } catch (error) {
+      toast.dismiss(loadingToast);
+      if (error instanceof Error) {
+        toast.error("Failed to update event. Please contact web dev team.", {
+          duration: 4000,
+        });
+      }
+    }
+  };
+
   const submitEventToFirebase = async (
     formData: EventFormData,
   ): Promise<string | void> => {
@@ -107,20 +165,24 @@ export default function AddEventForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(loading) return
-    setLoading(true)
+    if (loading) return;
+    setLoading(true);
 
     try {
-      await submitEventToFirebase(formData);
-      setFormData(initialFormState);
-      setTagsInputValue("");
+      if (mode === "create") {
+        await submitEventToFirebase(formData);
+        setFormData(emptyFormState);
+        setTagsInputValue("");
+      } else {
+        await updateEventInFirebase(formData);
+      }
     } catch (error) {
       toast.error("Failed to create event. Please contact web dev team.", {
         duration: 4000,
       });
-    }
-    finally {
-      setLoading(false)
+    } finally {
+      setLoading(false);
+      queryClient.invalidateQueries({ queryKey: ["events"] });
     }
   };
 
@@ -222,7 +284,7 @@ export default function AddEventForm() {
         type="submit"
         className="mt-2 rounded-md bg-blue-500 p-2 text-white"
       >
-        Create Event
+        {mode === "create" ? "Create" : "Edit"} Event
       </button>
     </form>
   );

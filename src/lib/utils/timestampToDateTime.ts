@@ -5,12 +5,11 @@ export default function formatTimestampToDateTime(timestamp: Timestamp): {
   time: string;
 } {
   const date = timestamp.toDate();
-  const formattedDate = date.toISOString().split("T")[0];
-  const formattedTime = date.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  });
+  const formattedDate = date.toISOString().split('T')[0];
+  
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const formattedTime = `${hours}:${minutes}`;
 
   return {
     date: formattedDate,
