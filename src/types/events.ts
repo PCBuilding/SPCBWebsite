@@ -17,11 +17,6 @@ export interface FormattedEvent {
   tags: string[];
 }
 
-export interface FirebaseEvent {
+export interface FirebaseEvent extends FormattedEvent {
   id: string;
-  title: string;
-  description: string;
-  location: string;
-  time: Timestamp;
-  tags: string[];
 }
