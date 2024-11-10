@@ -51,7 +51,7 @@ export default function EditEventsForm() {
 
   const handleDelete = async () => {
     if (!selectedEvent) return;
-    setIsDeleting(true)
+    setIsDeleting(true);
     try {
       await deleteEvent(selectedEvent.id);
       queryClient.invalidateQueries({ queryKey: ["events"] });
@@ -59,7 +59,7 @@ export default function EditEventsForm() {
       toast.error("Unable to delete event");
     } finally {
       setShowDeleteConfirm(false);
-      setIsDeleting(false)
+      setIsDeleting(false);
     }
   };
 

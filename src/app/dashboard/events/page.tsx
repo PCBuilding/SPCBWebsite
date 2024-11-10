@@ -2,18 +2,15 @@
 import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
 import Link from "next/link";
 import { BsFillGearFill, BsFillPlusSquareFill } from "react-icons/bs";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import BackButton from "@/components/Buttons/BackButton";
 
 export default function events() {
-
   return (
     <ProtectedRoute>
       <div className="mx-auto max-w-7xl px-10 pt-16">
         <div className="flex items-end justify-between pb-4">
           <h1 className="text-3xl">Events</h1>
-          <Link href={"/dashboard"} className="underline flex gap-2 items-center">
-            Back To Dashboard <span className="text-lg"><FaLongArrowAltRight /></span>
-          </Link>
+          <BackButton />
         </div>
         <hr className="border-gray-200" />
         <ul className="flex gap-8 pt-8">

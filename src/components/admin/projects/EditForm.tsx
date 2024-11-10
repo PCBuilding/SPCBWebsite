@@ -10,7 +10,7 @@ import { db } from "@/lib/firebase/firebase";
 import { Search, Trash2 } from "lucide-react";
 import { Project, ProjectFormData, Parts } from "@/types/project";
 import AddForm from "./AddForm";
-import { LuLoader2 } from "react-icons/lu";
+import { LuLoader2, LuX } from "react-icons/lu";
 
 export default function EditForm() {
   const [projects, setProjects] = useState<Project[]>([]); // Store all projects
@@ -97,7 +97,7 @@ export default function EditForm() {
 
       setIsModalOpen(false);
       setSelectedProject(null);
-      //   alert('Project updated successfully');
+      //alert('Project updated successfully');
     } catch (err) {
       console.error("Error updating project:", err);
       setError("Failed to update project");
@@ -197,20 +197,20 @@ export default function EditForm() {
         {isModalOpen && selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div className="max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded bg-white p-4">
-              <h2 className="mb-4 text-xl font-bold">Edit Project</h2>
+              <div className="flex justify-between">
+                <p className="text-2xl font-medium">Edit Project</p>
+                <span
+                  className="cursor-pointer text-3xl"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  <LuX />
+                </span>
+              </div>
               <AddForm
                 initialData={selectedProject}
                 onSubmit={handleUpdate}
                 isEditing={true}
               />
-              <div className="mt-4 flex justify-end">
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="mr-2 rounded bg-gray-500 px-4 py-2 text-white transition-colors hover:bg-gray-600"
-                >
-                  Cancel
-                </button>
-              </div>
             </div>
           </div>
         )}
