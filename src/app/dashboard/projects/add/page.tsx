@@ -1,7 +1,7 @@
 "use client";
 
-import ProtectedRoute from "@/components/auth/ProtectedRoute";
-import AddForm from "@/components/Forms/AddForm";
+import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
+import AddForm from "@/components/admin/projects/AddForm";
 import Link from "next/link";
 import { FaLongArrowAltRight } from "react-icons/fa";
 

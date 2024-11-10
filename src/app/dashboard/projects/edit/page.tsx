@@ -1,14 +1,14 @@
 "use client";
 
-import ProtectedRoute from "@/components/auth/ProtectedRoute";
-import EditForm from "@/components/Forms/EditForm";
+import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
+import EditForm from "@/components/admin/projects/EditForm";
 import Link from "next/link";
-
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default function projects() {
   return (
     <ProtectedRoute>
+      <div className="mx-auto max-w-6xl px-10 mt-10">
       <div className="flex justify-between px-4 pt-6">
         <h1 className="text-2xl font-medium">Edit Projects</h1>
         <Link href={"/dashboard/projects"} className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all" >
@@ -17,8 +17,9 @@ export default function projects() {
             <FaLongArrowAltRight />
           </span>
         </Link>
+        </div>
+        <EditForm />
       </div>
-      <EditForm />
     </ProtectedRoute>
   );
 }

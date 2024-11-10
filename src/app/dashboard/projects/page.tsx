@@ -3,7 +3,7 @@
 import { BsFillGearFill, BsFillPlusSquareFill } from "react-icons/bs";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import Link from "next/link";
-import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
 
 export default function projects() {
   return (
