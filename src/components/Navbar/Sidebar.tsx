@@ -5,27 +5,33 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Menu,
-  X,
   LayoutDashboard,
   FileText,
-  Users,
   Settings,
   ChevronLeft,
+  Calendar,
+  PackageOpen,
 } from "lucide-react";
 
 interface SidebarProps {
   className?: string;
+  isCollapsed: boolean;
+  onCollapse: (collapsed: boolean) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+const Sidebar: React.FC<SidebarProps> = ({
+  className = "",
+  isCollapsed,
+  onCollapse,
+}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Events", href: "/dashboard/events", icon: Calendar },
     { name: "Projects", href: "/dashboard/projects", icon: FileText },
-    { name: "Team", href: "/dashboard/team", icon: Users },
+    { name: "Inventory", href: "/dashboard/inventory", icon: PackageOpen },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
 
@@ -33,35 +39,38 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => {
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <button
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="fixed left-4 top-4 z-50 rounded-md bg-gray-800 p-2 text-white lg:hidden"
-      >
-        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      {/* Mobile Menu Button - Only show when menu is closed */}
+      {!isMobileMenuOpen && (
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="fixed left-4 top-24 z-50 rounded-md bg-gray-700 p-2 text-white hover:bg-gray-600 lg:hidden"
+        >
+          <Menu size={20} />
+        </button>
+      )}
 
       {/* Sidebar */}
-      <div
-        className={`fixed left-0 top-0 h-full bg-gray-800 text-white transition-all duration-300 ${isCollapsed ? "w-16" : "w-64"} ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 ${className} `}
+      <aside
+        className={`fixed left-0 top-0 z-40 h-full bg-gray-700 text-white transition-all duration-300 ${
+          isCollapsed ? "w-16" : "w-48"
+        } ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 ${className}`}
       >
-        {/* Collapse Button (Desktop only) */}
-        <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute -right-3 top-10 hidden rounded-full border border-gray-600 bg-gray-800 p-1 text-white lg:flex"
-        >
-          <ChevronLeft
-            className={`transform transition-transform ${isCollapsed ? "rotate-180" : ""}`}
-          />
-        </button>
-
         {/* Logo Area */}
-        <div className="flex h-16 items-center justify-center border-b border-gray-700">
+        <div className="flex h-20 items-center justify-between border-b border-gray-600 px-4">
           {isCollapsed ? (
-            <span className="text-xl font-bold">L</span>
+            <span className="text-xl font-bold"></span>
           ) : (
-            <span className="text-xl font-bold">Logo</span>
+            <span className="ml-9 text-xl font-bold">Admin</span>
           )}
+          {/* Collapse Button (Desktop only) */}
+          <button
+            onClick={() => onCollapse(!isCollapsed)}
+            className="hidden rounded-full border border-gray-600 bg-gray-700 p-1 text-white hover:bg-gray-600 lg:flex"
+          >
+            <ChevronLeft
+              className={`transform transition-transform ${isCollapsed ? "rotate-180" : ""}`}
+            />
+          </button>
         </div>
 
         {/* Navigation Links */}
@@ -74,7 +83,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => {
                   className={`flex items-center rounded-md px-3 py-2 transition-colors ${
                     isLinkActive(item.href)
                       ? "bg-blue-600 text-white"
-                      : "hover:bg-gray-700"
+                      : "hover:bg-gray-600"
                   } `}
                 >
                   <item.icon size={20} />
@@ -84,12 +93,12 @@ const Sidebar: React.FC<SidebarProps> = ({ className = "" }) => {
             ))}
           </ul>
         </nav>
-      </div>
+      </aside>
 
       {/* Overlay for mobile */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+          className="fixed inset-0 z-30 bg-black bg-opacity-50 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
