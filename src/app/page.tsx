@@ -14,9 +14,6 @@ export default function Home() {
         </h1>
         <p className="text-center text-2xl">Coming Soon!</p>
       </div>
-      <div>
-        <h1>Firebase Data:</h1>
-      </div>
     </>
   );
 }
