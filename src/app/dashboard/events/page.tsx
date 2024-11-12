@@ -10,7 +10,7 @@ export default function EditEvents() {
     <ProtectedRoute>
       <div className="mx-auto max-w-6xl px-8 pt-10">
         <div className="flex justify-between">
-          <h1 className="text-3xl font-bold">Edit Events</h1>
+          <h1 className="text-3xl font-bold">Events</h1>
           <div className="flex gap-2">
             <BackButton />
             <button className="rounded bg-green-600 px-4 py-2 text-white transition-colors hover:bg-green-700">

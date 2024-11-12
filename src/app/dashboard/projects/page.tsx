@@ -7,8 +7,8 @@ import BackButton from "@/components/Buttons/BackButton";
 export default function projects() {
   return (
     <ProtectedRoute>
-      <div className="mx-auto mt-10 max-w-6xl px-10">
-        <div className="flex justify-between px-4 pt-6">
+      <div className="mx-auto max-w-6xl px-8 pt-10">
+        <div className="flex justify-between">
           <h1 className="text-3xl font-bold">Projects</h1>
           <div className="flex gap-2">
             <BackButton />
