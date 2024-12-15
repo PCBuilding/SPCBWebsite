@@ -65,7 +65,7 @@ export default function Login() {
         className="fixed inset-0 z-0 h-screen w-full object-cover"
       />
 
-      <div className="font-body relative z-10 mx-auto flex max-w-2xl flex-col items-center justify-center min-h-[600px] text-white h-[calc(100vh-83px)] pb-40">
+      <div className="font-body relative z-10 mx-auto flex max-w-2xl flex-col items-center justify-center min-h-[600px] text-white h-[calc(100vh-83px)] pb-36">
         <div className="px-10 text-center">
           <h1 className="text-3xl font-medium">Admin Login</h1>
           <h2 className="mt-3">Use the admin email and password to login.</h2>

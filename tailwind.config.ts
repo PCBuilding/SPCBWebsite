@@ -19,17 +19,14 @@ const config = {
     },
     extend: {
       colors: {
-        'accent-dark': "#000000",
+        'accent-dark': "#1a1a1a",
         'accent-orange': "#FA4616",
         'accent-blue': "#0021A5",
         'light-orange': "#FA4616",
         'light-blue': "#8BC5F7",
-        'gradient-stop-1': "#000000",
-        'gradient-stop-2': "#B0B8FF",
       },
       fontFamily: {
         title: ["Michroma", "sans-serif"],
-        body: ["Krub", "sans-serif"]
       },
     },
   },

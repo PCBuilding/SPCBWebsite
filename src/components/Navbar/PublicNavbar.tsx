@@ -15,7 +15,7 @@ export default function Navbar() {
       <div className="mr-6 flex flex-shrink-0 items-center text-white">
         <Link href="/" className="">
           <Image
-            src={"/iconography/SPCB.svg"}
+            src={"/iconography/spcb-color.png"}
             width={66}
             height={66}
             alt=""

@@ -10,8 +10,12 @@ import toast from "react-hot-toast";
 import { LuLoader2, LuX } from "react-icons/lu";
 import EventForm from "./EventForm";
 
-export default function EditEventsForm() {
-  const { data: events, isLoading, isError, error } = useCachedEvents();
+type EditEventFormProps  = {
+  month: Date
+}
+
+export default function EditEventsForm({month} : EditEventFormProps) {
+  const { data: events, isLoading, isError, error } = useCachedEvents(month);
   const [selectedEvent, setSelectedEvent] = useState<FirebaseEvent | null>(
     null,
   );
@@ -81,7 +85,7 @@ export default function EditEventsForm() {
 
   if (isLoading) {
     return (
-      <div className="flex h-[calc(100vh-80px)] items-center justify-center">
+      <div className="flex pt-20 items-center justify-center">
         <span className="animate-spin text-5xl text-gray-800">
           <LuLoader2 />
         </span>
@@ -100,7 +104,7 @@ export default function EditEventsForm() {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <ul className="grid gap-4">
+      <ul className="grid gap-2">
         {filteredEvents?.map((event_) => (
           <Event
             event={event_}
