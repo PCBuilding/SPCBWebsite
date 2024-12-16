@@ -2,7 +2,6 @@
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/firebase";
-import ProtectedNavbar from "@/components/Navbar/ProtectedNavbar";
 import Navbar from "@/components/Navbar/PublicNavbar";
 import Sidebar from "@/components/Navbar/Sidebar";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -29,7 +28,7 @@ export default function ClientLayout({
           }`}
         >
           <Navbar />
-          <main className="p-4">{children}</main>
+          <main>{children}</main>
         </div>
       </div>
     </QueryClientProvider>
