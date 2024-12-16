@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -10,10 +11,16 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="flex flex-wrap items-center justify-between bg-gray-600 p-6">
+    <nav className="border-accent-orange relative z-10 flex flex-wrap items-center justify-between border-b bg-black bg-opacity-60 px-6 py-2">
       <div className="mr-6 flex flex-shrink-0 items-center text-white">
-        <Link href="/" className="text-2xl font-semibold tracking-tight">
-          The Society of PC Building
+        <Link href="/" className="">
+          <Image
+            src={"/iconography/spcb-color.png"}
+            width={66}
+            height={66}
+            alt=""
+            className="scale-90"
+          />
         </Link>
       </div>
 
@@ -21,7 +28,7 @@ export default function Navbar() {
       <div className="block lg:hidden">
         <button
           onClick={toggleMenu}
-          className="flex items-center rounded border border-teal-400 px-3 py-2 text-teal-200 hover:border-white hover:text-white"
+          className="flex items-center rounded border border-light-blue px-3 py-2 text-light-blue hover:border-white hover:text-white"
         >
           <svg
             className="h-3 w-3 fill-current"
@@ -38,16 +45,16 @@ export default function Navbar() {
       <div
         className={`block w-full lg:flex lg:w-auto lg:items-center ${isOpen ? "block" : "hidden"}`}
       >
-        <div className="text-base lg:flex-grow">
+        <div className="font-title text-base lg:flex-grow">
           <Link
             href="/projects"
-            className="mr-6 mt-4 block text-white hover:text-gray-300 lg:mt-0 lg:inline-block"
+            className="mr-8 mt-4 block text-white hover:text-gray-300 lg:mt-0 lg:inline-block"
           >
             Projects
           </Link>
           <Link
             href="/events"
-            className="mr-6 mt-4 block text-white hover:text-gray-300 lg:mt-0 lg:inline-block"
+            className="mr-8 mt-4 block text-white hover:text-gray-300 lg:mt-0 lg:inline-block"
           >
             Events
           </Link>
