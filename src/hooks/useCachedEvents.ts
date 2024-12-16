@@ -1,15 +1,21 @@
 import { db } from "@/lib/firebase/firebase";
 import { FirebaseEvent, FormattedEvent } from "@/types/events";
 import { useQuery } from "@tanstack/react-query";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, where, Timestamp } from "firebase/firestore";
 
-export function useCachedEvents() {
+export function useCachedEvents(month?: Date) {
   return useQuery({
-    queryKey: ["events"],
+    queryKey: ["events", month],
     queryFn: async (): Promise<FirebaseEvent[]> => {
+      const now = month || new Date();
+      const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+      const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
       const eventsQuery = query(
         collection(db, "events"),
-        orderBy("time", "desc"),
+        where("time", ">=", Timestamp.fromDate(startOfMonth)),
+        where("time", "<=", Timestamp.fromDate(endOfMonth)),
+        orderBy("time", "asc")
       );
 
       const snapshot = await getDocs(eventsQuery);

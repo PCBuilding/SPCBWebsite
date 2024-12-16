@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { LuLoader2 } from "react-icons/lu";
-import ProtectedNavbar from "../../Navbar/ProtectedNavbar";
+
 
 export default function ProtectedRoute({
   children,

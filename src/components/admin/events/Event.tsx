@@ -1,6 +1,5 @@
 import formatTimestampToDateTime from "@/lib/utils/timestampToDateTime";
 import { FirebaseEvent } from "@/types/events";
-import { Timestamp } from "firebase/firestore";
 import { Trash2 } from "lucide-react";
 import React from "react";
 
@@ -14,7 +13,7 @@ const Event: React.FC<EventProps> = ({ event, onDeleteClick, onEditClick }) => {
   const { date, time } = formatTimestampToDateTime(event.time);
 
   return (
-    <div className="flex items-center justify-between rounded-md border p-4">
+    <div className="flex items-center justify-between rounded-md border p-4 bg-white">
       <div className="flex items-end gap-4">
         <p className="font-bold">{event.title}</p>
         <p className="text-sm">{date}</p>
