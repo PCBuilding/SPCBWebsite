@@ -13,7 +13,7 @@ export default function SignOutButton() {
     try {
       await signOut(auth);
       toast.success("Successfully logged out");
-      router.push("/login");
+      router.push("/admin");
     } catch (error) {
       toast.error("Error signing out");
       console.error(error);
@@ -23,7 +23,7 @@ export default function SignOutButton() {
   return (
     <button
       onClick={handleSignOut}
-      className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all"
+      className="rounded-md bg-red-500 px-4 py-2 text-white transition-all hover:bg-red-600"
     >
       Log Out
     </button>

@@ -19,7 +19,7 @@ export default function ProtectedRoute({
   useEffect(() => {
     if (!loading && (!user || error)) {
       toast.error("Please login to access this page.");
-      router.push("/login");
+      router.push("/admin");
     }
   }, [user, loading, error, router]);
 

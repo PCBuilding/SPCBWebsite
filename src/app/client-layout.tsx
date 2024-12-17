@@ -28,7 +28,7 @@ export default function ClientLayout({
           }`}
         >
           <Navbar />
-          <main className="">{children}</main>
+          <main>{children}</main>
         </div>
       </div>
     </QueryClientProvider>
