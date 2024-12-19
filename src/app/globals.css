@@ -1,26 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Michroma&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Michroma&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 html {
-    color-scheme: dark;
-    color: #1a1a1a;
+  color-scheme: dark;
+  color: #1a1a1a;
 }
 
 /* Overwrite dark mode default styling */
-input, textarea {
-    background-color: white; 
+input,
+textarea {
+  background-color: white;
 }
 
 body {
-    font-family: "Krub", sans-serif;
+  font-family: "Krub", sans-serif;
 }
 
 .bg {
-    background: linear-gradient(60deg,#000000, #3C4175);
-    inset: 0;
-    position: fixed;
-    z-index: 0;
+  background: linear-gradient(60deg, #000000, #3c4175);
+  inset: 0;
+  position: fixed;
+  z-index: 0;
 }

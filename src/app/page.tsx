@@ -27,27 +27,27 @@ const Website = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-black">
+    <div className="min-h-screen w-full bg-black">
       {/* Add Michroma font */}
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
       `}</style>
       {/* Hero Section with Background Image */}
       <div
-        className="relative w-full overflow-x-hidden"
+        className="relative w-full"
         style={{
           backgroundImage:
             'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1)), url("/landing/mainBackground.jpg")',
-          backgroundSize: "cover", // Changed to cover
+          backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           minHeight: "100vh",
         }}
       >
         {/* Hero Content */}
-        <div className="relative flex min-h-screen items-center px-4">
+        <div className="flex min-h-screen items-center px-4">
           {/* Content Container with Grid */}
-          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 pt-0 md:grid-cols-2">
+          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 pt-20 md:grid-cols-2">
             {/* Logo Section */}
             <div className="relative flex items-center justify-center">
               {/* Outer Glow */}
@@ -508,7 +508,7 @@ const Website = () => {
                 {/* Social Media Icons */}
                 <div className="flex gap-3 md:gap-4">
                   <Link
-                    href="https://www.linkedin.com"
+                    href="https://www.linkedin.com/company/the-society-of-pc-building"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-transform hover:scale-110"
@@ -522,7 +522,7 @@ const Website = () => {
                     />
                   </Link>
                   <Link
-                    href="https://www.instagram.com"
+                    href="https://www.instagram.com/pcbuildinguf/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-transform hover:scale-110"
@@ -536,21 +536,7 @@ const Website = () => {
                     />
                   </Link>
                   <Link
-                    href="https://www.facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transition-transform hover:scale-110"
-                  >
-                    <Image
-                      src="/landing/facebook.png"
-                      alt="Facebook"
-                      width={30}
-                      height={30}
-                      className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-                    />
-                  </Link>
-                  <Link
-                    href="https://discord.gg"
+                    href="https://discord.com/invite/jfq9phWqTF"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-transform hover:scale-110"
@@ -558,6 +544,20 @@ const Website = () => {
                     <Image
                       src="/landing/discord.png"
                       alt="Discord"
+                      width={30}
+                      height={30}
+                      className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
+                    />
+                  </Link>
+                  <Link
+                    href="https://linktr.ee/pcbuildinguf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-transform hover:scale-110"
+                  >
+                    <Image
+                      src="/landing/linktree.png"
+                      alt="Linktree"
                       width={30}
                       height={30}
                       className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
@@ -582,7 +582,9 @@ const Website = () => {
                     />
                   </div>
                   <Link
-                    href="#"
+                    href="https://www.instagram.com/gatoruserdesign/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center text-white hover:underline md:text-black"
                   >
                     Check us out
