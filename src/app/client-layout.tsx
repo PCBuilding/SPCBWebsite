@@ -18,12 +18,12 @@ export default function ClientLayout({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen">
         {user && (
           <Sidebar isCollapsed={isCollapsed} onCollapse={setIsCollapsed} />
         )}
         <div
-          className={`min-h-screen transition-all duration-300 ${
+          className={`transition-all duration-300 ${
             user ? (isCollapsed ? "lg:ml-16" : "lg:ml-48") : ""
           }`}
         >

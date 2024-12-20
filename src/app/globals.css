@@ -22,5 +22,5 @@ body {
   background: linear-gradient(60deg, #000000, #3c4175);
   inset: 0;
   position: fixed;
-  z-index: 0;
+  z-index: -1;
 }
