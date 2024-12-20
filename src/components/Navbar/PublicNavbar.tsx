@@ -15,7 +15,7 @@ export default function Navbar() {
         @import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
       `}</style>
 
-      <nav className="fixed left-0 right-0 top-0 z-50 bg-black">
+      <nav className="z-50 bg-black">
         {/* Main navbar */}
         <div className="mx-auto px-12">
           <div className="flex h-20 items-center justify-between">
@@ -113,7 +113,7 @@ export default function Navbar() {
         </div>
 
         {/* Red and blue lines at bottom */}
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="relative">
           <div className="h-[4px] w-full bg-orange-600"></div>
         </div>
       </nav>

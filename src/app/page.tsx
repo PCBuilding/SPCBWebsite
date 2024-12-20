@@ -47,7 +47,7 @@ const Website = () => {
         {/* Hero Content */}
         <div className="flex min-h-screen items-center px-4">
           {/* Content Container with Grid */}
-          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 pt-20 md:grid-cols-2">
+          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 md:grid-cols-2">
             {/* Logo Section */}
             <div className="relative flex items-center justify-center">
               {/* Outer Glow */}
