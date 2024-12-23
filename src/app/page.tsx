@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 import GlowingLine from "@/components/decorations/GlowingLine";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import DiscordMemberCount from "@/components/MemberCounts/DiscordMemberCount";
 
 const Website = () => {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -111,9 +112,7 @@ const Website = () => {
 
               {/* Social Stats */}
               <div className="space-y-3 text-gray-300">
-                <p className="font-['Michroma'] text-base md:text-xl">
-                  Discord count: 1000 members
-                </p>
+                <DiscordMemberCount />
                 <p className="font-['Michroma'] text-base md:text-xl">
                   Instagram count: 900 followers
                 </p>
