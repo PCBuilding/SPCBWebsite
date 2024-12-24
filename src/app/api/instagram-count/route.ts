@@ -42,6 +42,6 @@ export async function GET() {
 
     // Return a fallback count if scraping fails
     // You can store this in an environment variable or database
-    return NextResponse.json({ followerCount: 909 });
+    return NextResponse.json({ followerCount: 908 });
   }
 }
