@@ -17,8 +17,6 @@ export async function GET() {
 
     const data = await response.json();
 
-    console.log("Discord data:", data);
-
     return NextResponse.json({ memberCount: data.approximate_member_count });
   } catch (error) {
     console.error("Error fetching Discord count:", error);
