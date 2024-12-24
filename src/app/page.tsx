@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 import GlowingLine from "@/components/decorations/GlowingLine";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import SocialStats from "@/components/MemberCounts/SocialStats";
 
 const Website = () => {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -111,12 +112,7 @@ const Website = () => {
 
               {/* Social Stats */}
               <div className="space-y-3 text-gray-300">
-                <p className="font-['Michroma'] text-base md:text-xl">
-                  Discord count: 1000 members
-                </p>
-                <p className="font-['Michroma'] text-base md:text-xl">
-                  Instagram count: 900 followers
-                </p>
+                <SocialStats />
               </div>
 
               {/* Join Button */}
@@ -133,8 +129,10 @@ const Website = () => {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-            <ChevronDown size={64} color="White" />
+          <div className="absolute inset-x-0 bottom-0 mb-4 flex justify-center md:mb-10">
+            <div className="pointer-events-none animate-bounce">
+              <ChevronDown className="h-10 w-10 text-white md:h-16 md:w-16" />
+            </div>
           </div>
         </div>
       </div>
