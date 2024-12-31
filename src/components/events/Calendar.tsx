@@ -12,6 +12,7 @@ import {
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useCachedEvents } from "@/hooks/useCachedEvents";
 import CalendarDays from "./CalendarDays";
+import CalendarSkeleton from "./CalendarSkeleton";
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -40,7 +41,7 @@ export default function Calendar() {
   return (
     <div className="pt-32 text-white">
       <div className="flex items-end justify-between">
-        <p className="font-title text-3xl">
+        <p className="font-Michroma text-3xl">
           {currentMonthName} {currentYear}
         </p>
         <div className="flex gap-2">
@@ -64,7 +65,7 @@ export default function Calendar() {
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div
             key={day}
-            className="border border-b-0 border-gray-500 p-3 text-xl"
+            className="border border-b-0 border-gray-800 bg-[#0A0E14] p-3 text-xl"
           >
             {day}
           </div>
@@ -73,6 +74,7 @@ export default function Calendar() {
 
       {/* Calendar Days */}
       {events && <CalendarDays daysToDisplay={daysToDisplay} currentDate={currentDate} events={events}/>}
+      {isLoading && <CalendarSkeleton daysToDisplay={daysToDisplay} currentDate={currentDate}/>}
     </div>
   );
 }

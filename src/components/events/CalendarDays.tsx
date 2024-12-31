@@ -25,7 +25,7 @@ const CalendarDays: React.FC<CalendarDaysProps> = ({
         if (isCurrentMonth) {
           return (
             <div
-              className={`h-32 border-l border-t border-gray-500 p-2 ${daysToDisplay.length % 7 === 0 ? "border-r" : ""} ${daysToDisplay.length - i <= 7 ? "border-b" : ""}`}
+              className={`h-32 border-l border-t border-gray-800 bg-[#0F1319] p-2 ${daysToDisplay.length % 7 === 0 ? "border-r" : ""} ${daysToDisplay.length - i <= 7 ? "border-b" : ""}`}
               key={i}
             >
               <div className="flex justify-end">{format(day, "dd")}</div>
@@ -39,7 +39,7 @@ const CalendarDays: React.FC<CalendarDaysProps> = ({
         } else {
           return (
             <div
-              className={`border-l border-t border-gray-500 ${daysToDisplay.length % 7 === 0 ? "border-r" : ""} ${daysToDisplay.length - i <= 7 ? "border-b" : ""}`}
+              className={`border-l border-t border-gray-800 bg-[#0F1319] ${daysToDisplay.length % 7 === 0 ? "border-r" : ""} ${daysToDisplay.length - i <= 7 ? "border-b" : ""}`}
               key={i}
             ></div>
           );

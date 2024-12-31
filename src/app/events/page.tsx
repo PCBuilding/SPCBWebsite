@@ -1,13 +1,13 @@
 "use client";
-import Calendar from "@/components/client-events/Calendar";
-import MonthlyEvents from "@/components/client-events/MonthlyEvents";
+import Calendar from "@/components/events/Calendar";
+import MonthlyEvents from "@/components/events/MonthlyEvents";
 
 export default function Events() {
   return (
     <>
-      <div className="bg" />
-      <section className="relative min-h-screen">
-        <div className="mx-auto max-w-7xl px-10 py-8 text-white">
+      <section className="relative min-h-screen bg-[#04080d]">
+        <div className="noise-bg"/>
+        <div className="mx-auto max-w-7xl px-10 pt-24 pb-12 text-white">
           <MonthlyEvents />
           <Calendar />
         </div>

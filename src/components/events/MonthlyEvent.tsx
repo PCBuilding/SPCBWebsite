@@ -35,19 +35,19 @@ const MonthlyEvent: React.FC<MonthlyEventProps> = ({ event }) => {
 
   return (
     <div className="grid grid-cols-10">
-      <div className="col-span-2 flex flex-col justify-center gap-2 font-title text-4xl">
+      <div className="col-span-2 flex flex-col justify-center gap-2 font-Michroma text-4xl">
         <p>{dayOfWeek}</p>
         <p>{dayOfMonth}</p>
       </div>
-      <div className="col-span-8 w-full rounded-md bg-black bg-opacity-60 p-5 px-7">
-        <p className="text-2xl font-semibold">{event.title}</p>
+      <div className="monthly-event col-span-8 w-full rounded-md p-5 px-7">
+        <p className="text-xl font-semibold">{event.title}</p>
         <div className="flex gap-3 pt-2">
           <p>
             Location:{" "}
-            <span className="text-lg font-semibold">{event.location}</span>
+            <span className=" font-semibold">{event.location}</span>
           </p>
           <p>
-            Time: <span className="text-lg font-semibold">{time}</span>
+            Time: <span className="font-semibold">{time}</span>
           </p>
         </div>
         <p className="mt-2">{event.description}</p>
