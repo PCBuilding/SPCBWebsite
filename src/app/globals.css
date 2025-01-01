@@ -20,14 +20,14 @@ body {
 }
 
 
-.hero{
-  width: 100%; 
-  height: max(100svh,840px);
+.hero {
   background-image: url('/landing/bg.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
+
 
 
 .noise-bg {
@@ -42,6 +42,13 @@ body {
   background-blend-mode: difference;
 }
 
+@media (max-width: 768px) {
+  .noise-bg {
+    background: 
+      repeating-radial-gradient(#fff 0 1%, #000 0 0.02%) 50% 0/500px 500px,
+      repeating-conic-gradient(#fff 0 1%, #000 0 0.02%) 50% 50%/500px 500px;
+  }
+}
 
 
 .monthly-event {

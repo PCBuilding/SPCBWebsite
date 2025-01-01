@@ -20,7 +20,7 @@ const LogoCarousel: React.FC = () => {
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="sm:hidden w-full overflow-hidden -mt-5 scale-90">
+    <div className="md:hidden w-full overflow-hidden -mt-5 scale-90">
       <motion.div
         className="flex items-center gap-6"
         animate={{

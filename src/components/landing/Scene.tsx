@@ -8,7 +8,7 @@ function Scene() {
     <Canvas
       shadows
       camera={{ position: [3, 3, 11.2], fov: 50 }}
-      style={{ height: "240px" }}
+      style={{ height: "180px" }}
     >
       <ambientLight intensity={0.3} />
       <directionalLight
