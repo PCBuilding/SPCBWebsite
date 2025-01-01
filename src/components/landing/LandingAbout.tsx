@@ -74,7 +74,7 @@ export default function LandingAbout() {
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.3 }}
             className="overflow-hidden rounded-lg p-8"
             style={{
               background:
@@ -199,7 +199,7 @@ export default function LandingAbout() {
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.25 }}
           >
             <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1">
               <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
@@ -224,7 +224,7 @@ export default function LandingAbout() {
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
             <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1">
               <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
@@ -249,7 +249,7 @@ export default function LandingAbout() {
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
             <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1">
               <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">

@@ -51,7 +51,7 @@ const MonthlyEvent: React.FC<MonthlyEventProps> = ({ event }) => {
           </p>
         </div>
         <p className="mt-2">{event.description}</p>
-        <div className="flex justify-end gap-1.5 pt-1">
+        <div className="flex justify-end gap-1.5 pt-2">
           {event.tags.map((tag, i) => (
             <div
               className={`flex items-center gap-1 rounded-md px-2 py-1 text-sm text-accent-dark ${i % 2 === 0 ? "bg-light-blue" : "bg-light-orange"}`}
