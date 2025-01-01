@@ -1,24 +1,28 @@
 import React from "react";
 import Scene from "./Scene";
 import LogoCarousel from "./LogoCarousel";
+import Image from "next/image";
+import {motion} from "framer-motion"
 
 export default function Hero() {
   return (
-    <div className="sm:hero sm:h-[max(100svh,840px)] relative pb-28 pt-24 text-[#eaeaea]">
-      <div className="mx-auto flex-col-reverse lg:flex-row flex h-full max-w-7xl items-center px-6 pb-6 sm:px-10 mt-6 lg:mt-0">
-        <div className="w-full lg:w-3/4 text-center lg:text-left flex flex-col items-center lg:items-start pt-8 lg:pt-0">
-          <span className="hidden lg:inline rounded-full border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-50 px-4 py-1.5 text-xs">
+    <div className="hero relative pb-12 sm:pb-28 pt-28 sm:pt-24 text-[#eaeaea] sm:h-[max(100svh,840px)]">
+      <div className="mx-auto flex h-full max-w-7xl flex-col-reverse items-center px-6 pb-6 sm:px-10 lg:mt-0 lg:flex-row">
+        <div className="flex w-full flex-col items-center  text-center lg:w-3/4 lg:items-start lg:text-left">
+          <span className="hidden rounded-full border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-50 px-4 py-1.5 text-xs lg:inline">
             1000+ Active Members!
           </span>
-          <h1 className="pt-6 font-Michroma text-3xl sm:text-4xl lg:text-[44px] font-semibold">
-            The Society of PC Building
+          <h1 className="font-Michroma leading-normal lg:leading-normal pt-4 text-[26px] font-semibold sm:text-4xl lg:text-[44px]">
+            The Society <br className="inline sm:hidden"/>of PC Building
           </h1>
-          <p className="max-w-[620px] pt-4 sm:pt-6  sm:text-lg font-medium leading-relaxed ">
-            <span className="hidden sm:inline">Join the Society of PC Building at UF—where</span><span className="sm:hidden">Where</span> students passionate
-            about hardware and tech connect, innovate, and build custom PCs
-            together.
+          <p className="max-w-[620px] pt-4 sm:pt-3 font-medium leading-relaxed text-[17px] sm:text-lg">
+            <span className="hidden sm:inline">
+              Join the Society of PC Building at UF—where
+            </span>
+            <span className="sm:hidden">Where</span> students passionate about
+            hardware and tech connect, innovate, and build custom PCs together.
           </p>
-          <button className="mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-80 px-8 py-2 font-medium text-white">
+          <button className="mt-4 sm:mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-80 py-2 px-8 font-medium text-white sm:text-base">
             Join the Club!
           </button>
 
@@ -38,10 +42,26 @@ export default function Hero() {
             <LogoCarousel />
           </div>
         </div>
-        <div className="flex lg:w-1/4 cursor-grab items-center max-h-[220px]">
+        {/* <div className="hidden max-h-[220px] cursor-grab items-center sm:flex lg:w-1/4">
           <Scene />
-        </div>
-      </div>\
+        </div> */}
+        <motion.div className="relative h-[240px] w-[240px] md:h-[460px] md:w-[460px]  -mr-6 lg:-mr-12"  initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}>
+          <Image
+            src="/landing/logo.png"
+            alt="SPCB Logo"
+            fill
+            className="object-contain"
+            style={{
+              filter: "drop-shadow(0 0 10px rgba(255,255,255,1))",
+            }}
+            priority
+          />
+        </motion.div>
+      </div>
+
     </div>
   );
 }
