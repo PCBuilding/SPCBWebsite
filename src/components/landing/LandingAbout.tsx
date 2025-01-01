@@ -78,7 +78,7 @@ export default function LandingAbout() {
             className="overflow-hidden rounded-lg p-8"
             style={{
               background:
-                "linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.9) 50%, rgba(28,42,106,0.9) 100%)",
+                "linear-gradient(90deg, #0F1319 0%, #0F1319 50%, rgba(28,42,106,0.7) 100%)",
               boxShadow: `
                 0 0 100px 0px rgba(255, 255, 255, 0.1),
                 0 0 30px 0px rgba(28, 42, 106, 0.5),

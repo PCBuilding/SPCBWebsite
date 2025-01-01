@@ -28,7 +28,7 @@ export default function MonthlyEvents() {
 
   return (
     <div className="mt-16">
-      <h1 className="font-Michroma text-3xl">December Events</h1>
+      <h1 className="font-Michroma text-4xl">December Events</h1>
       <div className="mt-16 grid gap-12">
         {events?.map((_event) => <MonthlyEvent key={_event.id} event={_event} />)}
       </div>
