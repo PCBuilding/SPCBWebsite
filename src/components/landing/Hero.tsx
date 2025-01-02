@@ -5,7 +5,7 @@ import {motion} from "framer-motion"
 
 export default function Hero() {
   return (
-    <div className="hero relative pb-12 sm:pb-28 pt-28 sm:pt-24 text-[#eaeaea] sm:h-[max(100svh,840px)]">
+    <div className="hero relative pb-12 sm:pb-28 pt-24 sm:pt-24 text-[#eaeaea] sm:h-[max(100svh,840px)]">
       <div className="mx-auto flex h-full max-w-7xl flex-col-reverse items-center px-6 pb-6 sm:px-10 lg:mt-0 lg:flex-row">
         <div className="flex w-full flex-col items-center  text-center lg:w-3/4 lg:items-start lg:text-left">
           <span className="hidden rounded-full border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-50 px-4 py-1.5 text-xs lg:inline">
@@ -21,7 +21,7 @@ export default function Hero() {
             <span className="sm:hidden">Where</span> students passionate about
             hardware and tech connect, innovate, and build custom PCs together.
           </p>
-          <button className="mt-4 sm:mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-80 py-2 px-8 font-medium text-white sm:text-base">
+          <button className="mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-80 py-2 px-8 font-medium text-white sm:text-base">
             Join the Club!
           </button>
 

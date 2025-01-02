@@ -11,11 +11,13 @@ export default function Nav() {
       <div className="border-b border-[#B0B8FF] border-opacity-30 bg-[#000] bg-opacity-40 py-3 backdrop-blur-lg md:rounded-full md:border md:py-1.5">
         <div className="flex justify-between px-6 md:pl-6 md:pr-4">
           <figure>
-            <img
-              src="/iconography/spcb-color.png"
-              alt=""
-              className="w-11 md:h-10 md:w-10"
-            />
+            <a href="/">
+              <img
+                src="/iconography/spcb-color.png"
+                alt=""
+                className="w-11 md:h-10 md:w-10"
+              />
+            </a>
           </figure>
           <div className="hidden items-center gap-6 text-sm md:flex">
             <Link href={"/"}>Home</Link>
@@ -37,47 +39,57 @@ export default function Nav() {
             {showMobileNav ? <FaXmark /> : <FaBars />}
           </div>
         </div>
-    
+
         <AnimatePresence>
           {showMobileNav && (
-            <motion.ul
-              className="mt-3 flex flex-col overflow-hidden text-lg"
+            <motion.div
+              className="mt-3 flex flex-col overflow-hidden text-lg md:hidden"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <li
-                className="border-t border-gray-800 px-6 py-3"
+              <Link
+                href={"/"}
                 onClick={() => setShowMobileNav(false)}
-              >
-                <Link href={"/"}>Home</Link>
-              </li>
-              <li
                 className="border-t border-gray-800 px-6 py-3"
-                onClick={() => setShowMobileNav(false)}
               >
-                <Link href={"/about"}>About</Link>
-              </li>
-              <li
+                Home
+              </Link>
+
+              <Link
+                href={"/about"}
+                onClick={() => setShowMobileNav(false)}
                 className="border-t border-gray-800 px-6 py-3"
-                onClick={() => setShowMobileNav(false)}
               >
-                <Link href={"/events"}>Events</Link>
-              </li>
-              <li
+                About
+              </Link>
+
+              <Link
+                href={"/events"}
+                onClick={() => setShowMobileNav(false)}
                 className="border-t border-gray-800 px-6 py-3"
-                onClick={() => setShowMobileNav(false)}
               >
-                <Link href={"/projects"}>Projects</Link>
-              </li>
-              <li
+                Events
+              </Link>
+
+              <Link
+                href={"/projects"}
+                onClick={() => setShowMobileNav(false)}
+                className="border-t border-gray-800 px-6 py-3"
+              >
+                Projects
+              </Link>
+
+              <a
+                href={"https://discord.gg/CmqKbnBDBG"}
+                target="_blank"
+                onClick={() => setShowMobileNav(false)}
                 className="border-t border-gray-800 px-6 pt-3"
-                onClick={() => setShowMobileNav(false)}
               >
-                <a href={"https://discord.gg/CmqKbnBDBG"} target="_blank">SPCB Discord</a>
-              </li>
-            </motion.ul>
+                SPCB Discord
+              </a>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>

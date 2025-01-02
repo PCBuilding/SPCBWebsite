@@ -39,20 +39,20 @@ export default function Calendar() {
   };
 
   return (
-    <div className="pt-32 text-white">
-      <div className="flex items-end justify-between">
-        <p className="font-Michroma text-3xl">
+    <div className="pt-24 md:pt-32 text-white">
+      <div className="flex items-end justify-between gap-5">
+        <p className="font-Michroma text-lg md:text-3xl">
           {currentMonthName} {currentYear}
         </p>
         <div className="flex gap-2">
           <button
-            className="rounded-full p-2 hover:bg-light-blue"
+            className="rounded-full p-2 md:hover:bg-light-blue"
             onClick={handlePrevMonth}
           >
             <FaChevronLeft />
           </button>
           <button
-            className="rounded-full p-2 hover:bg-light-blue"
+            className="rounded-full p-2 md:hover:bg-light-blue"
             onClick={handleNextMonth}
           >
             <FaChevronRight />
