@@ -1,4 +1,4 @@
-import { format, isSameDay } from "date-fns";
+import { format } from "date-fns";
 import CalendarDay from "./CalendarDay";
 
 type CalendarSkeletonProps = {
@@ -14,7 +14,7 @@ const CalendarSkeleton: React.FC<CalendarSkeletonProps> = ({
     <div className="grid w-full grid-cols-7">
       {daysToDisplay.map((day, i) => {
         const isCurrentMonth = format(day, "MM") === format(currentDate, "MM");
-        return <CalendarDay daysInMonth={daysToDisplay.length} index={i} isCurrentMonth={isCurrentMonth} day={day}/> 
+        return <CalendarDay daysInMonth={daysToDisplay.length} index={i} isCurrentMonth={isCurrentMonth} day={day} key={i}/> 
       })}
     </div>
   );

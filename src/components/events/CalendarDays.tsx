@@ -24,7 +24,7 @@ const CalendarDays: React.FC<CalendarDaysProps> = ({
           return isCurrentMonth && isSameDay(eventDate, day);
         });
 
-        return <CalendarDay index={i} day={day} daysInMonth={daysToDisplay.length} dayEvents={dayEvents} isCurrentMonth={isCurrentMonth}/>
+        return <CalendarDay index={i} day={day} daysInMonth={daysToDisplay.length} dayEvents={dayEvents} isCurrentMonth={isCurrentMonth} key={i}/>
       })}
     </div>
   );
