@@ -1,5 +1,4 @@
 import React from "react";
-import Scene from "./Scene";
 import LogoCarousel from "./LogoCarousel";
 import Image from "next/image";
 import {motion} from "framer-motion"
