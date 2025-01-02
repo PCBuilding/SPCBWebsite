@@ -75,7 +75,7 @@ export default function Nav() {
                 className="border-t border-gray-800 px-6 pt-3"
                 onClick={() => setShowMobileNav(false)}
               >
-                <a href={"/https://discord.gg/CmqKbnBDBG"} target="_blank">SPCB Discord</a>
+                <a href={"https://discord.gg/CmqKbnBDBG"} target="_blank">SPCB Discord</a>
               </li>
             </motion.ul>
           )}
