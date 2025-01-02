@@ -1,4 +1,5 @@
 import { format, isSameDay } from "date-fns";
+import CalendarDay from "./CalendarDay";
 
 type CalendarSkeletonProps = {
   daysToDisplay: Date[];
@@ -13,24 +14,7 @@ const CalendarSkeleton: React.FC<CalendarSkeletonProps> = ({
     <div className="grid w-full grid-cols-7">
       {daysToDisplay.map((day, i) => {
         const isCurrentMonth = format(day, "MM") === format(currentDate, "MM");
-
-        if (isCurrentMonth) {
-          return (
-            <div
-              className={`h-32 border-l border-t border-gray-800 bg-[#0F1319] p-2 ${daysToDisplay.length % 7 === 0 ? "border-r" : ""} ${daysToDisplay.length - i <= 7 ? "border-b" : ""}`}
-              key={i}
-            >
-              <div className="flex justify-end">{format(day, "dd")}</div>
-            </div>
-          );
-        } else {
-          return (
-            <div
-              className={`border-l border-t border-gray-800 bg-[#0F1319] ${daysToDisplay.length % 7 === 0 ? "border-r" : ""} ${daysToDisplay.length - i <= 7 ? "border-b" : ""}`}
-              key={i}
-            ></div>
-          );
-        }
+        return <CalendarDay daysInMonth={daysToDisplay.length} index={i} isCurrentMonth={isCurrentMonth} day={day}/> 
       })}
     </div>
   );

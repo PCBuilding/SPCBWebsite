@@ -60,8 +60,8 @@ export default function Calendar() {
         </div>
       </div>
 
-      {/* Days of the Week */}
-      <div className="mt-4 grid grid-cols-7 text-center font-semibold">
+      {/* Desktop Days of the Week */}
+      <div className="mt-4 hidden md:grid grid-cols-7 text-center font-semibold">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div
             key={day}
@@ -72,9 +72,22 @@ export default function Calendar() {
         ))}
       </div>
 
-      {/* Calendar Days */}
+      {/* Mobile Days of the Week */}
+      <div className="mt-4 md:hidden grid grid-cols-7 text-center font-semibold">
+        {["Su", "M", "T", "W", "Th", "F", "Sa"].map((day) => (
+          <div
+            key={day}
+            className="bg-[#0A0E14] p-3 sm:text-xl"
+          >
+            {day}
+          </div>
+        ))}
+      </div>
+
+      {/* While fetching show the calendar skeleton */}
       {events && <CalendarDays daysToDisplay={daysToDisplay} currentDate={currentDate} events={events}/>}
       {isLoading && <CalendarSkeleton daysToDisplay={daysToDisplay} currentDate={currentDate}/>}
+      
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default function Events() {
     <>
       <section className="relative min-h-screen bg-[#050a10]">
         <div className="noise-bg"/>
-        <div className="mx-auto max-w-7xl px-6 md:px-10 pt-24 pb-12 text-white">
+        <div className="mx-auto max-w-7xl px-4 md:px-10 pt-24 pb-12 text-white">
           <MonthlyEvents />
           <Calendar />
         </div>

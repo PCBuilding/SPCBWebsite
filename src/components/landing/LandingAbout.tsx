@@ -198,7 +198,7 @@ export default function LandingAbout() {
             className="relative left-[10%] mb-32 mt-32 w-[35%]"
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.25 }}
           >
             <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1">
@@ -223,7 +223,7 @@ export default function LandingAbout() {
             className="relative left-[55%] mb-32 w-[35%]"
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
             <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1">
@@ -248,7 +248,7 @@ export default function LandingAbout() {
             className="relative left-[10%] w-[35%]"
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
             <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1">
