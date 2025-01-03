@@ -26,7 +26,7 @@ const config = {
         'light-blue': "#8BC5F7",
       },
       fontFamily: {
-        title: ["Michroma", "sans-serif"],
+        Michroma: ["Michroma", "sans-serif"],
       },
     },
   },

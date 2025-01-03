@@ -37,5 +37,5 @@ export default function ProtectedRoute({
     return null;
   }
 
-  return <main>{children}</main>;
+  return <main className="">{children}</main>;
 }

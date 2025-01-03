@@ -12,6 +12,7 @@ import {
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useCachedEvents } from "@/hooks/useCachedEvents";
 import CalendarDays from "./CalendarDays";
+import CalendarSkeleton from "./CalendarSkeleton";
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -38,20 +39,20 @@ export default function Calendar() {
   };
 
   return (
-    <div className="pt-32 text-white">
-      <div className="flex items-end justify-between">
-        <p className="font-title text-3xl">
+    <div className="pt-24 md:pt-32 text-white">
+      <div className="flex items-end justify-between gap-5">
+        <p className="font-Michroma text-lg md:text-3xl">
           {currentMonthName} {currentYear}
         </p>
         <div className="flex gap-2">
           <button
-            className="rounded-full p-2 hover:bg-light-blue"
+            className="rounded-full p-2 md:hover:bg-light-blue"
             onClick={handlePrevMonth}
           >
             <FaChevronLeft />
           </button>
           <button
-            className="rounded-full p-2 hover:bg-light-blue"
+            className="rounded-full p-2 md:hover:bg-light-blue"
             onClick={handleNextMonth}
           >
             <FaChevronRight />
@@ -59,20 +60,34 @@ export default function Calendar() {
         </div>
       </div>
 
-      {/* Days of the Week */}
-      <div className="mt-4 grid grid-cols-7 text-center font-semibold">
+      {/* Desktop Days of the Week */}
+      <div className="mt-4 hidden md:grid grid-cols-7 text-center font-semibold">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div
             key={day}
-            className="border border-b-0 border-gray-500 p-3 text-xl"
+            className="border border-b-0 border-gray-800 bg-[#0A0E14] p-3 text-xl"
           >
             {day}
           </div>
         ))}
       </div>
 
-      {/* Calendar Days */}
+      {/* Mobile Days of the Week */}
+      <div className="mt-4 md:hidden grid grid-cols-7 text-center font-semibold">
+        {["Su", "M", "T", "W", "Th", "F", "Sa"].map((day) => (
+          <div
+            key={day}
+            className="bg-[#0A0E14] p-3 sm:text-xl"
+          >
+            {day}
+          </div>
+        ))}
+      </div>
+
+      {/* While fetching show the calendar skeleton */}
       {events && <CalendarDays daysToDisplay={daysToDisplay} currentDate={currentDate} events={events}/>}
+      {isLoading && <CalendarSkeleton daysToDisplay={daysToDisplay} currentDate={currentDate}/>}
+      
     </div>
   );
 }
