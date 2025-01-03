@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <div
-      className="relative pb-12 pt-24 text-[#eaeaea] lg:h-[max(100svh,840px)] lg:pt-24"
+      className="relative pb-12 md:pb-32 pt-24 md:pt-52 text-[#eaeaea]"
       id="hero"
     >
       {/* Flex-row on desktop devices but flex-col-reverse for devices lg and smaller */}
@@ -21,7 +21,7 @@ export default function Hero() {
           </h1>
 
           {/* On mobile devices shorten the description to limit text-length */}
-          <p className="max-w-[620px] pt-3 text-[17px] font-medium leading-relaxed sm:pt-3 sm:text-lg px-1">
+          <p className="max-w-[620px] pt-3 text-[17px] font-medium leading-relaxed sm:pt-3 sm:text-lg px-1 sm:px-0">
             <span className="hidden sm:inline">
               Join the Society of PC Building at UF—where
             </span>
