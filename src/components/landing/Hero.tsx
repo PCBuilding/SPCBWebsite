@@ -5,9 +5,9 @@ import {motion} from "framer-motion"
 
 export default function Hero() {
   return (
-    <div className="hero relative pb-12 sm:pb-28 pt-24 sm:pt-24 text-[#eaeaea] sm:h-[max(100svh,840px)]">
+    <div className="hero relative pb-12 lg:pt-24 pt-24 text-[#eaeaea] lg:h-[max(100svh,840px)]">
       <div className="mx-auto flex h-full max-w-7xl flex-col-reverse items-center px-6 pb-6 sm:px-10 lg:mt-0 lg:flex-row">
-        <div className="flex w-full flex-col items-center  text-center lg:w-3/4 lg:items-start lg:text-left">
+        <div className="flex w-full flex-col items-center text-center lg:w-3/4 lg:items-start lg:text-left">
           <span className="hidden rounded-full border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-50 px-4 py-1.5 text-xs lg:inline">
             1000+ Active Members!
           </span>
@@ -44,7 +44,7 @@ export default function Hero() {
         {/* <div className="hidden max-h-[220px] cursor-grab items-center sm:flex lg:w-1/4">
           <Scene />
         </div> */}
-        <motion.div className="relative h-[240px] w-[240px] md:h-[460px] md:w-[460px]  -mr-6 lg:-mr-12"  initial={{ opacity: 0, y: 60 }}
+        <motion.div className="relative h-[240px] w-[240px] md:h-[300px] md:w-[300px] lg:h-[460px] lg:w-[460px]  -mr-6 lg:-mr-12"  initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}>

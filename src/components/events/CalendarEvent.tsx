@@ -11,8 +11,8 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({ _event }) => {
 
   const handleEventClick = () => {
     setShowEventModal((prev) => !prev);
-    document.body.style.overflow =
-      document.body.style.overflow === "hidden" ? "auto" : "hidden";
+    document.body.style.overflowY =
+      document.body.style.overflowY === "hidden" ? "auto" : "hidden";
   };
 
   const time = _event.time.toDate().toLocaleString("en-US", {
@@ -35,8 +35,8 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({ _event }) => {
 
   useEffect(() => {
     return () => {
-      if (document.body.style.overflow === "hidden") {
-        document.body.style.overflow = "auto";
+      if (document.body.style.overflowY === "hidden") {
+        document.body.style.overflowY = "auto";
       }
     };
   }, []);

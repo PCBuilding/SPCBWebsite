@@ -18,13 +18,13 @@ const MobileCalendarEvent: React.FC<MobileCalendarEventProps> = ({
   const handleEventClick = () => {
     setShowEventModal((prev) => !prev);
     document.body.style.overflow =
-      document.body.style.overflow === "hidden" ? "auto" : "hidden";
+      document.body.style.overflowY === "hidden" ? "auto" : "hidden";
   };
 
   useEffect(() => {
     return () => {
       if (document.body.style.overflow === "hidden") {
-        document.body.style.overflow = "auto";
+        document.body.style.overflowY = "auto";
       }
     };
   }, []);

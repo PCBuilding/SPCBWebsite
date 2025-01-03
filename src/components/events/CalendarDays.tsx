@@ -1,6 +1,5 @@
 import { FirebaseEvent } from "@/types/events";
 import { format, isSameDay } from "date-fns";
-import CalendarEvent from "./CalendarEvent";
 import CalendarDay from "./CalendarDay";
 
 type CalendarDaysProps = {
