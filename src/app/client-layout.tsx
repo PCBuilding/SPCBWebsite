@@ -2,11 +2,12 @@
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/firebase";
-import Navbar from "@/components/Navbar/PublicNavbar";
+import Navbar from "@/components/Navbar/Navbar";
 import Sidebar from "@/components/Navbar/Sidebar";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/react-query/queryClient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function ClientLayout({
   children,
@@ -16,9 +17,22 @@ export default function ClientLayout({
   const [user] = useAuthState(auth);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
+  // Set the body's background on client-view components. (Improves aesthetics on mobile browsers)
+  const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith("/dashboard");
+
+  useEffect(() => {
+      if(isAdminRoute) {
+        document.body.style.backgroundColor = "#fff"
+      }
+      else {
+        document.body.style.backgroundColor = "#080d14"
+      }
+  },[isAdminRoute])
+
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen">
+      <div>
         {user && (
           <Sidebar isCollapsed={isCollapsed} onCollapse={setIsCollapsed} />
         )}

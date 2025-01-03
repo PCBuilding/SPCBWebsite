@@ -51,7 +51,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({ _event }) => {
 
       {showEventModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-10 px-6 backdrop-blur-sm">
-          <div className="relative w-full max-w-[400px] rounded-md border border-[#242424] bg-[#050a10] px-6 py-10">
+          <div className="relative w-full max-w-[400px] rounded-md border border-[#242424] bg-[#070c13] px-6 py-10">
             <button
               onClick={handleEventClick}
               className="absolute right-4 top-4 text-2xl"

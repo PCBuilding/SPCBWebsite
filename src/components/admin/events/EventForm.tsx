@@ -187,7 +187,7 @@ export default function EventForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 flex w-full flex-col gap-4">
+    <form onSubmit={handleSubmit} className="mt-6 sm:mt-8 flex w-full flex-col gap-4">
       <div>
         <label htmlFor="" className="text-sm font-medium">
           Title
@@ -233,7 +233,7 @@ export default function EventForm({
           <input
             type="date"
             name="date"
-            className="mt-2 block w-full cursor-pointer rounded-md border p-2"
+            className="mt-2 block w-full cursor-pointer rounded-md border p-2 min-h-11"
             onFocus={handleFocus}
             onChange={handleChange}
             value={formData.date}
@@ -246,7 +246,7 @@ export default function EventForm({
           <input
             type="time"
             name="time"
-            className="mt-2 block w-full cursor-pointer rounded-md border p-2"
+            className="mt-2 block w-full cursor-pointer rounded-md border p-2 "
             onFocus={handleFocus}
             onChange={handleChange}
             value={formData.time}
@@ -263,7 +263,7 @@ export default function EventForm({
             name="tags"
             value={tagsInputValue}
             onChange={(e) => setTagsInputValue(e.target.value)}
-            className="block w-full rounded-md border p-2"
+            className="block w-full rounded-md border p-1.5 sm:p-2"
           />
           <button
             className="whitespace-nowrap rounded-md bg-green-500 px-4 text-sm text-white"

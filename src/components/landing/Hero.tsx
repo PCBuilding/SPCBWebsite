@@ -5,21 +5,23 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <div className="relative pb-12 pt-24 text-[#eaeaea] lg:h-[max(100svh,840px)] lg:pt-24" id="hero">
+    <div
+      className="relative pb-12 pt-28 text-[#eaeaea] lg:h-[max(100svh,840px)] lg:pt-24"
+      id="hero"
+    >
       {/* Flex-row on desktop devices but flex-col-reverse for devices lg and smaller */}
       <div className="mx-auto flex h-full max-w-7xl flex-col-reverse items-center px-6 pb-6 sm:px-10 lg:mt-0 lg:flex-row">
         <div className="flex w-full flex-col items-center text-center lg:w-3/4 lg:items-start lg:text-left">
-        {/* Hidden on mobile */}
+          {/* Hidden on mobile */}
           <span className="hidden rounded-full border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-50 px-4 py-1.5 text-xs lg:inline">
             1000+ Active Members!
           </span>
-          <h1 className="pt-4 font-Michroma text-[26px] font-semibold leading-normal sm:text-4xl lg:text-[44px] lg:leading-normal">
-            The Society <br className="inline sm:hidden" />
-            of PC Building
+          <h1 className="font-Michroma text-[22px] font-semibold leading-normal sm:text-4xl md:pt-4 lg:text-[44px] lg:leading-normal">
+            <span className="hidden sm:inline">The</span> Society of PC Building
           </h1>
 
           {/* On mobile devices shorten the description to limit text-length */}
-          <p className="max-w-[620px] pt-4 text-[17px] font-medium leading-relaxed sm:pt-3 sm:text-lg">
+          <p className="max-w-[620px] pt-3 text-[17px] font-medium leading-relaxed sm:pt-3 sm:text-lg px-1">
             <span className="hidden sm:inline">
               Join the Society of PC Building at UF—where
             </span>
@@ -27,15 +29,18 @@ export default function Hero() {
             hardware and tech connect, innovate, and build custom PCs together.
           </p>
 
-
-          <button className="mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-80 px-8 py-2 font-medium text-white sm:text-base">
+          <a
+            href="https://discord.gg/CmqKbnBDBG"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-80 px-8 py-2 font-medium text-white text-base"
+          >
             Join the Club!
-          </button>
-
+          </a>
 
           {/* On mobile devices show the infinite carousel but on desktop static list */}
-          <div className="mt-20 lg:mt-32">
-            <p className="text-sm opacity-80">
+          <div className="mt-16 lg:mt-32">
+            <p className="text-xs sm:text-sm opacity-80">
               Led by a team of officers with experience at:
             </p>
             <div className="-mt-5 hidden h-[103px] items-center gap-6 md:flex">
@@ -53,7 +58,7 @@ export default function Hero() {
 
         {/* Animate SPCB logo upwards. Applied negative margin to center logo better */}
         <motion.div
-          className="relative -mr-6 h-[240px] w-[240px] md:h-[300px] md:w-[300px] lg:-mr-12 lg:h-[460px] lg:w-[460px]"
+          className="relative -mr-6 h-[220px] w-[220px] md:h-[300px] md:w-[300px] lg:-mr-12 lg:h-[460px] lg:w-[460px]"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
@@ -71,7 +76,6 @@ export default function Hero() {
             priority
           />
         </motion.div>
-
       </div>
     </div>
   );
