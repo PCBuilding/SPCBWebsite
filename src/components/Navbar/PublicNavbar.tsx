@@ -4,6 +4,9 @@ import { FaBars } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";
 
+
+// TODO: Fix the navbar apperance when viewing admin dashboard
+
 export default function Nav() {
   const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
   return (
@@ -40,6 +43,7 @@ export default function Nav() {
           </div>
         </div>
 
+        {/* Animate the mobile nav-links downward when clicked */}
         <AnimatePresence>
           {showMobileNav && (
             <motion.div
