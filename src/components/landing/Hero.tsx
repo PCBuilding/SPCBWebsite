@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <div
-      className="relative pb-12 pt-28 text-[#eaeaea] lg:h-[max(100svh,840px)] lg:pt-24"
+      className="relative pb-12 pt-24 text-[#eaeaea] lg:h-[max(100svh,840px)] lg:pt-24"
       id="hero"
     >
       {/* Flex-row on desktop devices but flex-col-reverse for devices lg and smaller */}
@@ -16,7 +16,7 @@ export default function Hero() {
           <span className="hidden rounded-full border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-50 px-4 py-1.5 text-xs lg:inline">
             1000+ Active Members!
           </span>
-          <h1 className="font-Michroma text-[22px] font-semibold leading-normal sm:text-4xl md:pt-4 lg:text-[44px] lg:leading-normal">
+          <h1 className="font-Michroma text-[22px] font-semibold leading-normal sm:text-4xl pt-1 md:pt-4 lg:text-[44px] lg:leading-normal">
             <span className="hidden sm:inline">The</span> Society of PC Building
           </h1>
 

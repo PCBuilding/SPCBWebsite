@@ -58,7 +58,7 @@ export default function Nav() {
       <div className="border-b border-[#B0B8FF] border-opacity-30 bg-[#03080e] bg-opacity-40 py-3 backdrop-blur-lg md:rounded-full md:border md:py-1.5">
         <div className="flex justify-between px-6 md:pl-6 md:pr-4">
           <figure>
-            <Link href="/admin">
+            <Link href="/">
               <img
                 src="/iconography/spcb-color.png"
                 alt=""
