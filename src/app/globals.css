@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Michroma&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Michroma&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,12 +15,40 @@ textarea {
 }
 
 body {
-  font-family: "Krub", sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: #ffffff;
+  overflow-x: hidden;
 }
 
-.bg {
-  background: linear-gradient(60deg, #000000, #3c4175);
-  inset: 0;
+#hero {
+  background-image: url("/landing/bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.noise-bg {
   position: fixed;
-  z-index: -1;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.02;
+  background:
+    repeating-radial-gradient(#fff 0 0.0001%, #000 0 0.0002%) 50% 0/2500px
+      2500px,
+    repeating-conic-gradient(#fff 0 0.0001%, #000 0 0.0002%) 50% 50%/2500px
+      2500px;
+  background-blend-mode: difference;
+}
+
+.monthly-event {
+  background: radial-gradient(
+      138.71% 110.11% at 93.15% -36.58%,
+      #4255f922 25%,
+      #0f1319 100%
+    ),
+    radial-gradient(61.66% 37.6% at 6.63% 95.08%, #4255f922 25%, #0f1319 100%),
+    rgba(26, 26, 26, 0.43);
+  box-shadow: 0px 0.5px 16px 0px rgba(200, 200, 255, 0.1);
+  border: 1px solid #4255f911;
 }
