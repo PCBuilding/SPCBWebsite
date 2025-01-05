@@ -134,7 +134,7 @@ export default function EditForm() {
   // Render loading state
   if (loading) {
     return (
-      <div className="flex h-[calc(100vh-80px)] items-center justify-center">
+      <div className="flex h-[calc(100vh-160px)] items-center justify-center">
         <span className="animate-spin text-5xl text-gray-800">
           <LuLoader2 />
         </span>
@@ -158,7 +158,7 @@ export default function EditForm() {
             placeholder="Search projects..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded border p-2 pl-10"
+            className="w-full rounded border p-2 pl-11 text-sm sm:text-base"
           />
         </div>
 
@@ -171,7 +171,7 @@ export default function EditForm() {
             .map((project) => (
               <div
                 key={project.id}
-                className="flex items-center justify-between rounded border p-4"
+                className="flex items-center justify-between rounded border p-4 text-sm sm:text-base"
               >
                 <h3 className="font-bold">{project.Title}</h3>
                 <div className="flex gap-2">
@@ -195,9 +195,9 @@ export default function EditForm() {
 
         {/* Edit Modal */}
         {isModalOpen && selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded bg-white p-4">
-              <div className="flex justify-between">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-3">
+            <div className="max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded bg-white py-4">
+              <div className="flex justify-between px-4">
                 <p className="text-2xl font-medium">Edit Project</p>
                 <span
                   className="cursor-pointer text-3xl"

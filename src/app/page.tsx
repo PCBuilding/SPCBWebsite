@@ -4,7 +4,7 @@ import LandingAbout from "@/components/landing/LandingAbout";
 
 const Website = () => {
   return (
-    <div className="min-h-screen w-full bg-[#050a10]">
+    <div className="min-h-screen w-full bg-[#080d14]">
       {/* Applied a noise bg to the page for added depth */}
       <div className="noise-bg" />
       <Hero />

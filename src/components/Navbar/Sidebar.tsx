@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Menu,
   LayoutDashboard,
   FileText,
   Settings,
@@ -24,7 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   isCollapsed,
   onCollapse,
 }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const pathname = usePathname();
 
   const navigation = [
@@ -43,9 +42,9 @@ const Sidebar: React.FC<SidebarProps> = ({
       {!isMobileMenuOpen && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="fixed left-4 top-24 z-50 rounded-md bg-gray-700 p-2 text-white hover:bg-gray-600 lg:hidden"
+          className="fixed -left-1 top-2.5 z-50 rounded-md bg-gray-700 p-2 text-white hover:bg-gray-600 lg:hidden text-sm"
         >
-          <Menu size={20} />
+          <span>Admin</span>
         </button>
       )}
 
@@ -80,6 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               <li key={item.name}>
                 <Link
                   href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className={`flex items-center rounded-md px-3 py-2 transition-colors ${
                     isLinkActive(item.href)
                       ? "bg-blue-600 text-white"
