@@ -7,12 +7,12 @@ import BackButton from "@/components/Buttons/BackButton";
 export default function projects() {
   return (
     <ProtectedRoute>
-      <div className="mx-auto max-w-6xl px-8 pt-10">
-        <div className="flex justify-between">
-          <h1 className="text-3xl font-bold">Projects</h1>
+      <div className="mx-auto max-w-6xl px-4 sm:px-8 pt-10">
+        <div className="flex justify-between items-center">
+          <h1 className="text-xl sm:text-3xl font-bold">Projects</h1>
           <div className="flex gap-2">
             <BackButton />
-            <button className="rounded bg-green-600 px-4 py-2 text-white transition-colors hover:bg-green-700">
+            <button className="text-sm sm:text-base rounded bg-green-600 px-4 py-2 text-white transition-colors hover:bg-green-700">
               <a href="/dashboard/projects/add">New Project</a>
             </button>
           </div>

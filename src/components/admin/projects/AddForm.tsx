@@ -174,11 +174,11 @@ export default function AddForm({
   };
 
   return (
-    <div className="mx-auto max-w-4xl p-6">
+    <div className="mx-auto max-w-4xl sm:p-6 py-5 px-4">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Information */}
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="Title" className="block text-sm font-medium">
                 Title
@@ -260,7 +260,7 @@ export default function AddForm({
                     <img
                       src={imagePreview}
                       alt="Preview"
-                      className="h-auto max-w-xs rounded"
+                      className="max-w-[320px] w-full rounded"
                     />
                   </div>
                 )}
@@ -329,7 +329,7 @@ export default function AddForm({
           <button
             type="button"
             onClick={addBuilder}
-            className="rounded-md bg-green-500 px-4 py-2 text-white"
+            className="rounded-md bg-green-500 px-4 py-2 text-white text-sm sm:text-base"
           >
             Add Builder
           </button>
@@ -339,7 +339,7 @@ export default function AddForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-md bg-blue-500 p-3 text-white disabled:bg-blue-300"
+          className="w-full rounded-md bg-blue-500 p-3 text-white disabled:bg-blue-300 text-sm sm:text-base"
         >
           {isSubmitting
             ? "Submitting..."

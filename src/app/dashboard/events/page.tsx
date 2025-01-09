@@ -35,22 +35,22 @@ export default function EditEvents() {
 
   return (
     <ProtectedRoute>
-      <div className="mx-auto max-w-6xl px-8 pt-10">
-        <div className="flex justify-between">
-          <h1 className="text-3xl font-bold">Events</h1>
-          <div className="flex gap-2">
+      <div className="mx-auto max-w-6xl px-4 md:px-8 pt-6 sm:pt-10">
+        <div className="flex justify-between items-center">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">Events</h1>
+          <div className="flex gap-2 text-sm md:text-base">
             <BackButton />
             <button className="rounded bg-green-600 px-4 py-2 text-white transition-colors hover:bg-green-700">
               <a href="/dashboard/events/add">New Event</a>
             </button>
           </div>
         </div>
-        <div className="mt-5 flex items-center justify-between text-lg">
-          <p>
+        <div className="mt-4 flex items-center justify-between ">
+          <p className=" sm:text-lg">
             Showing events for:{" "}
             <span className="font-semibold">{currentMonth} {currentYear}</span>
           </p>
-          <div className="flex gap-2">
+          <div className="flex gap-2 text-lg">
             <button className="rounded-full p-1 hover:bg-gray-300" onClick={() => changeMonth("prev")}>
               <FaChevronLeft />
             </button>

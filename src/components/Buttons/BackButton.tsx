@@ -15,10 +15,10 @@ const BackButton: React.FC = () => {
       onClick={handleBack}
       className="flex items-center gap-2 rounded-md bg-blue-500 px-4 py-2 text-white transition-all hover:bg-blue-600 active:bg-blue-800"
     >
-      <span className="text-lg">
+      <span className="sm:text-lg">
         <FaLongArrowAltLeft />
       </span>
-      Back
+     <span className="text-sm sm:text-base">Back</span>
     </button>
   );
 };

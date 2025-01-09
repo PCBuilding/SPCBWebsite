@@ -149,8 +149,8 @@ export default function EditEventsForm({month} : EditEventFormProps) {
         </div>
       )}
       {showEditForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="max-h-[80vh] w-full max-w-2xl overflow-auto rounded-lg bg-white p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-3 backdrop-blur-sm">
+          <div className="max-h-[80vh] w-full max-w-2xl overflow-auto rounded-lg bg-white py-6 px-5">
             <div className="flex justify-between">
               <p className="text-2xl font-medium">Edit Event</p>
               <span
