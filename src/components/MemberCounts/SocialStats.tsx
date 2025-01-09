@@ -29,7 +29,7 @@ const StatCard: React.FC<StatCardProps> = ({
     rel="noopener noreferrer"
     className="block transition-transform duration-300 hover:scale-105"
   >
-    <div className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-black/80 to-black/60 p-4 shadow-[0_0_15px_rgba(0,0,0,0.5)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+    <div className="group relative mt-6 overflow-hidden rounded-lg border border-[#B0B8FF] border-opacity-40 bg-gradient-to-r from-black/80 to-black/60 p-4 shadow-[0_0_15px_rgba(0,0,0,0.5)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
       {/* Glow effect on hover */}
       <div
         className="absolute inset-0 -left-40 -top-40 h-[500px] w-[500px] bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.1)] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -151,7 +151,9 @@ const SocialStats: React.FC = () => {
         glowColor="rgba(88, 101, 242, 0.5)"
         href="https://discord.com/invite/jfq9phWqTF"
       />
-      <StatCard
+
+      {/* Instagram stats are currently not working */}
+      {/* <StatCard
         iconSrc="/landing/instagram.png"
         label="Instagram Followers"
         value={instagramCount}
@@ -160,7 +162,7 @@ const SocialStats: React.FC = () => {
         bgColor="bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF]"
         glowColor="rgba(221, 42, 123, 0.5)"
         href="https://www.instagram.com/pcbuildinguf/"
-      />
+      /> */}
     </div>
   );
 };

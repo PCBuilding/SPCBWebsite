@@ -18,12 +18,21 @@ const config = {
       },
     },
     extend: {
+      keyframes: {
+        blink: {
+          "0%, 49%": { opacity: "1" },
+          "50%, 100%": { opacity: "0" },
+        },
+      },
+      animation: {
+        blink: "blink 1s infinite",
+      },
       colors: {
-        'accent-dark': "#1a1a1a",
-        'accent-orange': "#FA4616",
-        'accent-blue': "#0021A5",
-        'light-orange': "#FA4616",
-        'light-blue': "#8BC5F7",
+        "accent-dark": "#1a1a1a",
+        "accent-orange": "#FA4616",
+        "accent-blue": "#0021A5",
+        "light-orange": "#FA4616",
+        "light-blue": "#8BC5F7",
       },
       fontFamily: {
         Michroma: ["Michroma", "sans-serif"],
