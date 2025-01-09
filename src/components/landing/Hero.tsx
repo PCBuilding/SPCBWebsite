@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import LogoCarousel from "./LogoCarousel";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import SocialStats from "@/components/memberCounts/SocialStats";
+import SocialStats from "@/components/MemberCounts/SocialStats";
 
 export default function Hero() {
   const [text, setText] = useState("");
