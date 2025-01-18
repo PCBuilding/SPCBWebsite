@@ -1,6 +1,6 @@
 "use client";
 import Hero from "@/components/landing/Hero";
-import LandingAbout from "@/components/landing/LandingAbout";
+import Landing from "@/components/landing/Landing";
 
 const Website = () => {
   return (
@@ -8,7 +8,7 @@ const Website = () => {
       {/* Applied a noise bg to the page for added depth */}
       <div className="noise-bg" />
       <Hero />
-      <LandingAbout />
+      <Landing />
     </div>
   );
 };
