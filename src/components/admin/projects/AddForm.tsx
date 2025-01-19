@@ -1,8 +1,10 @@
+"use client";
+
 import React, { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/lib/firebase/firebase";
-import { ProjectFormData, Parts, Project } from "@/types/project";
+import { ProjectFormData, Parts } from "@/types/project";
 
 interface AddFormProps {
   initialData?: ProjectFormData;
@@ -27,6 +29,10 @@ const emptyFormState: ProjectFormData = {
   Photos: "",
   Image: "",
   Builders: [""],
+  semester: {
+    term: "Fall",
+    year: new Date().getFullYear(),
+  },
 };
 
 export default function AddForm({
@@ -40,7 +46,6 @@ export default function AddForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>(
     formData.Image || "",
@@ -48,23 +53,33 @@ export default function AddForm({
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     const { name, value } = e.target;
     if (name.includes(".")) {
-      // Handle nested Parts object
+      // Handle nested objects (Parts and semester)
       const [parent, child] = name.split(".");
       if (parent === "Parts") {
-        setFormData((prev: ProjectFormData) => ({
+        setFormData((prev) => ({
           ...prev,
           Parts: {
             ...prev.Parts,
             [child]: value,
           },
         }));
+      } else if (parent === "semester") {
+        setFormData((prev) => ({
+          ...prev,
+          semester: {
+            ...prev.semester,
+            [child]: child === "year" ? Number(value) : value,
+          },
+        }));
       }
     } else {
-      setFormData((prev: ProjectFormData) => ({
+      setFormData((prev) => ({
         ...prev,
         [name]: value,
       }));
@@ -103,33 +118,39 @@ export default function AddForm({
     try {
       let imageUrl = formData.Image;
 
+      // Upload new image if selected
       if (selectedImage) {
         imageUrl = await uploadImage(selectedImage);
       }
 
-      // Filter out empty builders
-      const cleanedData = {
+      // Clean the data
+      const cleanedData: ProjectFormData = {
         ...formData,
         Image: imageUrl,
         Builders: formData.Builders.filter((builder) => builder.trim() !== ""),
       };
 
       if (onSubmit) {
+        // If onSubmit prop exists (editing mode), use it
         await onSubmit(cleanedData);
       } else {
+        // Direct submission to Firebase
+        console.log("Submitting to Firebase:", cleanedData); // Debug log
         const docRef = await addDoc(collection(db, "Projects"), cleanedData);
         console.log("Document written with ID: ", docRef.id);
       }
 
       setSuccess(true);
+
+      // Only reset form if not editing
       if (!isEditing) {
         setFormData(emptyFormState);
         setSelectedImage(null);
         setImagePreview("");
       }
     } catch (e) {
+      console.error("Error in submission:", e); // Debug log
       setError(e instanceof Error ? e.message : "An error occurred");
-      console.error("Error adding document: ", e);
     } finally {
       setIsSubmitting(false);
     }
@@ -174,11 +195,11 @@ export default function AddForm({
   };
 
   return (
-    <div className="mx-auto max-w-4xl sm:p-6 py-5 px-4">
+    <div className="mx-auto max-w-4xl px-4 py-5 sm:p-6">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Information */}
         <div className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="Title" className="block text-sm font-medium">
                 Title
@@ -192,6 +213,50 @@ export default function AddForm({
                 className="mt-1 w-full rounded-md border p-2"
                 required
               />
+            </div>
+
+            {/* Add Semester Selection */}
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <label
+                  htmlFor="semesterTerm"
+                  className="block text-sm font-medium"
+                >
+                  Term
+                </label>
+                <select
+                  id="semesterTerm"
+                  name="semester.term"
+                  value={formData.semester.term}
+                  onChange={handleChange}
+                  className="mt-1 w-full rounded-md border bg-white p-2 text-gray-900"
+                  required
+                >
+                  <option value="Spring">Spring</option>
+                  <option value="Summer">Summer</option>
+                  <option value="Fall">Fall</option>
+                </select>
+              </div>
+
+              <div className="flex-1">
+                <label
+                  htmlFor="semesterYear"
+                  className="block text-sm font-medium"
+                >
+                  Year
+                </label>
+                <input
+                  type="number"
+                  id="semesterYear"
+                  name="semester.year"
+                  value={formData.semester.year}
+                  onChange={handleChange}
+                  min="2000"
+                  max="2099"
+                  className="mt-1 w-full rounded-md border bg-white p-2 text-gray-900"
+                  required
+                />
+              </div>
             </div>
 
             <div>
@@ -260,7 +325,7 @@ export default function AddForm({
                     <img
                       src={imagePreview}
                       alt="Preview"
-                      className="max-w-[320px] w-full rounded"
+                      className="w-full max-w-[320px] rounded"
                     />
                   </div>
                 )}
@@ -329,7 +394,7 @@ export default function AddForm({
           <button
             type="button"
             onClick={addBuilder}
-            className="rounded-md bg-green-500 px-4 py-2 text-white text-sm sm:text-base"
+            className="rounded-md bg-green-500 px-4 py-2 text-sm text-white sm:text-base"
           >
             Add Builder
           </button>
@@ -339,7 +404,7 @@ export default function AddForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-md bg-blue-500 p-3 text-white disabled:bg-blue-300 text-sm sm:text-base"
+          className="w-full rounded-md bg-blue-500 p-3 text-sm text-white disabled:bg-blue-300 sm:text-base"
         >
           {isSubmitting
             ? "Submitting..."
@@ -349,7 +414,6 @@ export default function AddForm({
         </button>
 
         {error && <div className="mt-2 text-red-500">{error}</div>}
-
         {success && (
           <div className="mt-2 text-green-500">
             {isEditing
