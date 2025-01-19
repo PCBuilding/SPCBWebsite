@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 "use client";
 import React from "react";
 
@@ -86,3 +87,37 @@ const About = () => {
 };
 
 export default About;
+=======
+import React from "react";
+import Image from "next/image";
+
+export default function AboutPage() {
+  return (
+    <div className="text-[#eaeaea] pt-36 flex items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl px-6">
+        {/* Left Column */}
+        <div className="space-y-4 text-left">
+          <h1 className="text-4xl font-bold">About Us</h1>
+          <p className="text-lg leading-relaxed">
+            Lorem ipsum dolor sit amet consectetur. Ut vel dolor nibh aliquet blandit. Tristique
+            amet in morbi consectetur cras.
+          </p>
+        </div>
+
+        {/* Right Column */}
+        <div className="relative flex justify-center">
+          <div className="rounded-lg overflow-hidden shadow-[0_0_20px_10px_rgba(255,255,255,0.6)]">
+            <Image
+              src="/about-images/ethan.jpg"
+              alt="Ethan holding the graphics card"
+              width={688}
+              height={411}
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+>>>>>>> Stashed changes
