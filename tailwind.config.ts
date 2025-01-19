@@ -37,6 +37,10 @@ const config = {
       fontFamily: {
         Michroma: ["Michroma", "sans-serif"],
       },
+      boxShadow: {
+        "white-glow": "0 0 15px rgba(255,255,255,0.15)",
+        "white-glow-hover": "0 0 30px rgba(255,255,255,0.3)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

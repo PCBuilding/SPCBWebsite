@@ -64,7 +64,6 @@ export default function EditForm() {
     try {
       const projectRef = doc(db, "Projects", selectedProject.id);
 
-      // Convert ProjectFormData to a plain object that Firestore can handle
       const firestoreData = {
         Youtube: updatedData.Youtube,
         Description: updatedData.Description,
@@ -72,6 +71,10 @@ export default function EditForm() {
         Photos: updatedData.Photos,
         Image: updatedData.Image,
         Builders: updatedData.Builders,
+        semester: {
+          term: updatedData.semester.term,
+          year: updatedData.semester.year,
+        },
         Parts: {
           RAM: updatedData.Parts.RAM,
           Cooling: updatedData.Parts.Cooling,
@@ -88,16 +91,13 @@ export default function EditForm() {
 
       // Update local state
       setProjects((prevProjects) =>
-        prevProjects.map((project) =>
-          project.id === selectedProject.id
-            ? { ...project, ...updatedData }
-            : project,
+        prevProjects.map((proj) =>
+          proj.id === selectedProject.id ? { ...proj, ...updatedData } : proj,
         ),
       );
 
       setIsModalOpen(false);
       setSelectedProject(null);
-      //alert('Project updated successfully');
     } catch (err) {
       console.error("Error updating project:", err);
       setError("Failed to update project");
@@ -163,26 +163,30 @@ export default function EditForm() {
         </div>
 
         {/* Projects List */}
-        <div className="space-y-4">
-          {projects
-            .filter((project) =>
-              project.Title.toLowerCase().includes(searchQuery.toLowerCase()),
-            )
-            .map((project) => (
+        {projects
+          .filter(
+            (
+              proj, // Changed from project to proj
+            ) => proj.Title.toLowerCase().includes(searchQuery.toLowerCase()),
+          )
+          .map(
+            (
+              proj, // Changed from project to proj
+            ) => (
               <div
-                key={project.id}
+                key={proj.id} // Changed from project to proj
                 className="flex items-center justify-between rounded border p-4 text-sm sm:text-base"
               >
-                <h3 className="font-bold">{project.Title}</h3>
+                <h3 className="font-bold">{proj.Title}</h3>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => handleEditClick(project)}
+                    onClick={() => handleEditClick(proj)} // Changed from project to proj
                     className="rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
                   >
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDeleteClick(project)}
+                    onClick={() => handleDeleteClick(proj)} // Changed from project to proj
                     className="flex items-center gap-2 rounded bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600"
                   >
                     <Trash2 size={18} />
@@ -190,8 +194,8 @@ export default function EditForm() {
                   </button>
                 </div>
               </div>
-            ))}
-        </div>
+            ),
+          )}
 
         {/* Edit Modal */}
         {isModalOpen && selectedProject && (
