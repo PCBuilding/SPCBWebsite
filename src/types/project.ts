@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface Parts {
   RAM: string;
   Cooling: string;
@@ -17,6 +19,7 @@ export interface ProjectFormData {
   Photos: string;
   Image: string;
   Builders: string[];
+  buildDate: Timestamp; // Added buildDate field
   semester: {
     term: "Spring" | "Summer" | "Fall";
     year: number;

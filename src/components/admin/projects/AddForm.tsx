@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/lib/firebase/firebase";
 import { ProjectFormData, Parts } from "@/types/project";
@@ -12,8 +12,11 @@ interface AddFormProps {
   isEditing?: boolean;
 }
 
+const DEFAULT_YOUTUBE = "https://www.youtube.com/@pcbuildinguf";
+const DEFAULT_PHOTOS = "https://photos.app.goo.gl/Mua121F4n2MVZ9wn8";
+
 const emptyFormState: ProjectFormData = {
-  Youtube: "",
+  Youtube: DEFAULT_YOUTUBE,
   Description: "",
   Parts: {
     RAM: "",
@@ -26,8 +29,9 @@ const emptyFormState: ProjectFormData = {
     CPU: "",
   },
   Title: "",
-  Photos: "",
+  Photos: DEFAULT_PHOTOS,
   Image: "",
+  buildDate: Timestamp.fromDate(new Date()),
   Builders: [""],
   semester: {
     term: "Fall",
@@ -58,8 +62,21 @@ export default function AddForm({
     >,
   ) => {
     const { name, value } = e.target;
+
+    if (name === "buildDate") {
+      // Create date from input value and adjust for timezone
+      const date = new Date(value);
+      const timezoneOffset = date.getTimezoneOffset() * 60000;
+      const adjustedDate = new Date(date.getTime() + timezoneOffset);
+
+      setFormData((prev) => ({
+        ...prev,
+        buildDate: Timestamp.fromDate(adjustedDate),
+      }));
+      return;
+    }
+
     if (name.includes(".")) {
-      // Handle nested objects (Parts and semester)
       const [parent, child] = name.split(".");
       if (parent === "Parts") {
         setFormData((prev) => ({
@@ -79,10 +96,22 @@ export default function AddForm({
         }));
       }
     } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+      if (name === "Youtube" && value.trim() === "") {
+        setFormData((prev) => ({
+          ...prev,
+          [name]: DEFAULT_YOUTUBE,
+        }));
+      } else if (name === "Photos" && value.trim() === "") {
+        setFormData((prev) => ({
+          ...prev,
+          [name]: DEFAULT_PHOTOS,
+        }));
+      } else {
+        setFormData((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+      }
     }
   };
 
@@ -109,53 +138,6 @@ export default function AddForm({
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
-    setSuccess(false);
-
-    try {
-      let imageUrl = formData.Image;
-
-      // Upload new image if selected
-      if (selectedImage) {
-        imageUrl = await uploadImage(selectedImage);
-      }
-
-      // Clean the data
-      const cleanedData: ProjectFormData = {
-        ...formData,
-        Image: imageUrl,
-        Builders: formData.Builders.filter((builder) => builder.trim() !== ""),
-      };
-
-      if (onSubmit) {
-        // If onSubmit prop exists (editing mode), use it
-        await onSubmit(cleanedData);
-      } else {
-        // Direct submission to Firebase
-        console.log("Submitting to Firebase:", cleanedData); // Debug log
-        const docRef = await addDoc(collection(db, "Projects"), cleanedData);
-        console.log("Document written with ID: ", docRef.id);
-      }
-
-      setSuccess(true);
-
-      // Only reset form if not editing
-      if (!isEditing) {
-        setFormData(emptyFormState);
-        setSelectedImage(null);
-        setImagePreview("");
-      }
-    } catch (e) {
-      console.error("Error in submission:", e); // Debug log
-      setError(e instanceof Error ? e.message : "An error occurred");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -170,8 +152,6 @@ export default function AddForm({
       }
 
       setSelectedImage(file);
-      console.log(file); //REMOVE
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result as string);
@@ -194,10 +174,52 @@ export default function AddForm({
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      let imageUrl = formData.Image;
+
+      if (selectedImage) {
+        imageUrl = await uploadImage(selectedImage);
+      }
+
+      const cleanedData: ProjectFormData = {
+        ...formData,
+        Image: imageUrl,
+        Youtube: formData.Youtube || DEFAULT_YOUTUBE,
+        Photos: formData.Photos || DEFAULT_PHOTOS,
+        Builders: formData.Builders.filter((builder) => builder.trim() !== ""),
+      };
+
+      if (onSubmit) {
+        await onSubmit(cleanedData);
+      } else {
+        const docRef = await addDoc(collection(db, "Projects"), cleanedData);
+        console.log("Document written with ID: ", docRef.id);
+      }
+
+      setSuccess(true);
+
+      if (!isEditing) {
+        setFormData(emptyFormState);
+        setSelectedImage(null);
+        setImagePreview("");
+      }
+    } catch (e) {
+      console.error("Error in submission:", e);
+      setError(e instanceof Error ? e.message : "An error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-5 sm:p-6">
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Basic Information */}
         <div className="space-y-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
@@ -215,7 +237,28 @@ export default function AddForm({
               />
             </div>
 
-            {/* Add Semester Selection */}
+            <div>
+              <label htmlFor="buildDate" className="block text-sm font-medium">
+                Build Date
+              </label>
+              <input
+                type="date"
+                id="buildDate"
+                name="buildDate"
+                value={
+                  new Date(
+                    formData.buildDate.toDate().getTime() -
+                      formData.buildDate.toDate().getTimezoneOffset() * 60000,
+                  )
+                    .toISOString()
+                    .split("T")[0]
+                }
+                onChange={handleChange}
+                className="mt-1 w-full rounded-md border p-2"
+                required
+              />
+            </div>
+
             <div className="flex gap-4">
               <div className="flex-1">
                 <label
@@ -288,7 +331,7 @@ export default function AddForm({
                 value={formData.Youtube}
                 onChange={handleChange}
                 className="mt-1 w-full rounded-md border p-2"
-                required
+                placeholder={DEFAULT_YOUTUBE}
               />
             </div>
 
@@ -303,8 +346,7 @@ export default function AddForm({
                 value={formData.Photos}
                 onChange={handleChange}
                 className="mt-1 w-full rounded-md border p-2"
-                placeholder="Url to photo folder"
-                required
+                placeholder={DEFAULT_PHOTOS}
               />
             </div>
 
