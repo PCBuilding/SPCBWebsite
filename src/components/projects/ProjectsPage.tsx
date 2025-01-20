@@ -15,7 +15,14 @@ const sortProjects = (projects: Project[]) => {
     }
 
     // If years are equal, compare terms
-    return termOrder[b.semester.term] - termOrder[a.semester.term];
+    const termComparison =
+      termOrder[b.semester.term] - termOrder[a.semester.term];
+    if (termComparison !== 0) {
+      return termComparison;
+    }
+
+    // If terms are equal, compare dates
+    return b.buildDate.toMillis() - a.buildDate.toMillis();
   });
 };
 
@@ -44,7 +51,7 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-[#080d14] pb-32">
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#080d14] pb-32 font-['Michroma']">
       {/* Applied noise background for consistency */}
       <div className="noise-bg" />
 
@@ -110,7 +117,7 @@ export default function ProjectsPage() {
               <div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className="shadow-white-glow group relative cursor-pointer overflow-hidden rounded-lg bg-gray-950 p-4 transition-transform hover:scale-105"
+                className="group relative cursor-pointer overflow-hidden rounded-lg bg-gray-950 p-4 shadow-white-glow transition-transform hover:scale-105"
               >
                 {/* Project Image */}
                 <div className="aspect-video overflow-hidden rounded-lg">

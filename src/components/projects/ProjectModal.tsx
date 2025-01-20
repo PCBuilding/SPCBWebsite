@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Project } from "@/types/project";
 import { X } from "lucide-react";
 
@@ -12,9 +12,33 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     "description" | "specs" | "builders"
   >("description");
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm">
-      <div className="shadow-white-glow relative max-h-[90vh] w-full max-w-6xl overflow-hidden rounded-xl bg-[#080d14] text-white">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/90 p-4 font-['Michroma'] backdrop-blur-sm"
+      onClick={() => onClose()}
+    >
+      <div
+        className="relative my-4 h-[85vh] w-full max-w-6xl overflow-y-auto overflow-x-hidden rounded-xl bg-[#080d14] text-white shadow-white-glow"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Noise background */}
         <div className="absolute inset-0 opacity-30" />
 
@@ -26,9 +50,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <X size={20} />
         </button>
 
-        <div className="flex h-[85vh] flex-col md:flex-row">
+        <div className="flex h-full flex-col md:flex-row">
           {/* Left side - Image */}
-          <div className="w-full md:w-1/2">
+          <div className="h-[300px] w-full md:h-full md:w-1/2">
             <div className="relative h-full">
               <img
                 src={project.Image}
@@ -45,9 +69,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <h2 className="text-3xl font-bold tracking-tight">
               {project.Title}
             </h2>
-            <p className="mt-2 font-medium text-blue-400">
-              {project.semester.term} {project.semester.year}
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="mt-2 font-medium text-blue-400">
+                {project.semester.term} {project.semester.year}
+              </p>
+              <p className="text-gray-400">
+                Built on{" "}
+                {new Date(
+                  project.buildDate.toDate().getTime() -
+                    project.buildDate.toDate().getTimezoneOffset() * 60000,
+                ).toLocaleDateString()}
+              </p>
+            </div>
 
             {/* Tabs */}
             <div className="mt-8 flex space-x-6">
