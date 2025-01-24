@@ -71,6 +71,6 @@ body {
 }
 
 .grad {
-  background: linear-gradient(0deg, #4255f933, #080d14);
-  filter: blur(10px);
+  background: linear-gradient(0deg, #4255f922, #080d14);
+  filter: blur(20px);
 }
