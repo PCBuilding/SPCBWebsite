@@ -1,6 +1,7 @@
 "use client";
 import Calendar from "@/components/events/Calendar";
 import MonthlyEvents from "@/components/events/MonthlyEvents";
+import Footer from "@/components/Footer";
 
 export default function Events() {
   return (
@@ -12,6 +13,7 @@ export default function Events() {
           <MonthlyEvents /> 
         </div>
       </section>
+      <Footer/>
     </>
   );
 }
