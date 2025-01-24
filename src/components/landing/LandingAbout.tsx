@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import GlowingLine from "../decorations/GlowingLine";
+import Footer from "../Footer";
 
 export default function LandingAbout() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -23,20 +24,7 @@ export default function LandingAbout() {
   }, []);
   return (
     <div className="relative">
-      <svg
-        className="absolute inset-0 h-full w-full"
-        viewBox="0 0 1440 1024"
-        fill="none"
-        preserveAspectRatio="xMidYMid slice"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Gradient overlay for radial left */}
-
-        {/* White polygon - using isDesktop state */}
-        {isDesktop && (
-          <polygon points="1440,810 1440,1024 700,1024 770,915" fill="white" />
-        )}
-      </svg>
+      
 
       <div className="relative min-h-96 w-full py-32">
         {/* Decorative Lines */}
@@ -295,133 +283,9 @@ export default function LandingAbout() {
           />
         </div>
 
-        {/* Content */}
-        <div className="relative mx-auto max-w-6xl px-4 py-0 md:py-0">
-          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            {/* Left side */}
-            <div className="pt-0 md:pb-0 md:pt-64">
-              <div className="flex items-center gap-4">
-                <Image
-                  src="/navbar/logo.png"
-                  alt="SPCB Logo"
-                  width={150}
-                  height={150}
-                  className="h-[100px] w-[100px] rounded-full md:h-[200px] md:w-[200px]"
-                />
-              </div>
-              <h2 className="my-4 text-2xl font-bold text-white md:my-6 md:text-4xl">
-                Proudly building PCs.
-              </h2>
-              {/* Social Media Icons */}
-              <div className="flex gap-3 md:gap-4">
-                <Link
-                  href="https://www.linkedin.com/company/the-society-of-pc-building"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-transform hover:scale-110"
-                >
-                  <Image
-                    src="/landing/linkedin.png"
-                    alt="LinkedIn"
-                    width={30}
-                    height={30}
-                    className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-                  />
-                </Link>
-                <Link
-                  href="https://www.instagram.com/pcbuildinguf/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-transform hover:scale-110"
-                >
-                  <Image
-                    src="/landing/instagram.png"
-                    alt="Instagram"
-                    width={30}
-                    height={30}
-                    className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-                  />
-                </Link>
-                <Link
-                  href="https://discord.com/invite/jfq9phWqTF"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-transform hover:scale-110"
-                >
-                  <Image
-                    src="/landing/discord.png"
-                    alt="Discord"
-                    width={30}
-                    height={30}
-                    className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-                  />
-                </Link>
-                <Link
-                  href="https://linktr.ee/pcbuildinguf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-transform hover:scale-110"
-                >
-                  <Image
-                    src="/landing/linktree.png"
-                    alt="Linktree"
-                    width={30}
-                    height={30}
-                    className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-                  />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right side - GUD section */}
-            <div className="w-full pt-8 md:w-auto md:pt-96">
-              <div className="flex flex-col items-start gap-4 md:items-end">
-                <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
-                  <h2 className="order-2 text-2xl font-bold text-white md:order-1 md:text-4xl md:text-black">
-                    Gator User Design
-                  </h2>
-                  <Image
-                    src="/iconography/gud-color.png"
-                    alt="GUD Logo"
-                    width={50}
-                    height={50}
-                    className="order-1 h-[40px] w-[40px] rounded-full md:order-2 md:h-[60px] md:w-[60px]"
-                  />
-                </div>
-                <Link
-                  href="https://www.instagram.com/gatoruserdesign/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-white hover:underline md:text-black"
-                >
-                  Check us out
-                  <svg
-                    className="ml-2 h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
+        <div className="pt-24">
+          <Footer />
         </div>
-        {/* Footer */}
-        <footer className="mt-0 pb-0 text-right md:mt-16">
-          <div className="mx-auto max-w-7xl px-4 pb-8">
-            <p className="text-sm text-white transition-colors md:text-black">
-              &copy; {new Date().getFullYear()} The Society of PC Building. All
-              rights reserved.
-            </p>
-          </div>
-        </footer>
       </div>
     </div>
   );
