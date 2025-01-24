@@ -40,7 +40,7 @@ const MonthlyEvent: React.FC<MonthlyEventProps> = ({ event }) => {
     <>
       {/* Desktop version */}
       <div className="hidden grid-cols-10 md:grid">
-        <div className="col-span-2 flex flex-col justify-center gap-2 font-Michroma text-4xl">
+        <div className="col-span-2 flex flex-col justify-center gap-2 font-Michroma text-3xl">
           <p>{dayOfWeek}</p>
           <p>{dayOfMonth}</p>
         </div>

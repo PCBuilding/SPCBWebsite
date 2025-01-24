@@ -1,5 +1,5 @@
 import { FirebaseEvent } from "@/types/events";
-import { format } from "date-fns";
+import { format, isToday } from "date-fns";
 import CalendarEvent from "./CalendarEvent";
 import MobileCalendarEvent from "./MobileCalendarEvent";
 
@@ -18,6 +18,10 @@ const CalendarDay: React.FC<CalendarDayProps> = ({
   index,
   day,
 }) => {
+
+  const today = isToday(day);
+
+
   if (!isCurrentMonth) {
     return (
       <>
@@ -39,9 +43,9 @@ const CalendarDay: React.FC<CalendarDayProps> = ({
     <>
       {/* Desktop Calendar day in current month */}
       <div
-        className={`hidden h-32 border-l border-t border-gray-800 bg-[#0F1319] p-2 md:block ${daysInMonth % 7 === 0 ? "border-r" : ""} ${daysInMonth - index <= 7 ? "border-b" : ""}`}
+        className={`hidden h-32 border-l border-t border-gray-800 bg-[#0F1319] p-2 md:block  ${daysInMonth % 7 === 0 ? "border-r" : ""} ${daysInMonth - index <= 7 ? "border-b" : ""}`}
       >
-        <div className="flex justify-end">{format(day, "dd")}</div>
+        <div className={`flex justify-end `}><span className={`${today ? "bg-light-blue text-black rounded-full px-2" : ""}`}>{format(day, "dd")}</span></div>
         {dayEvents && (
           <div className="pt-2">
             {dayEvents.map((_event, i) => (

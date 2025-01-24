@@ -22,7 +22,7 @@ export default function MonthlyEvents() {
   }
   if (isLoading) {
     return (
-      <div className="mt-10 md:mt-16">
+      <div className="mt-10 md:mt-24">
         <h1 className="font-Michroma text-2xl md:text-3xl">{format(currentDate, 'MMMM')} Events</h1>
         <p className="md:hidden pt-3 text-[#cacaca] text-sm">Click an event for more details.</p>
         <div className="h-52 w-full flex items-center justify-center">
@@ -35,7 +35,7 @@ export default function MonthlyEvents() {
  
 
   return (
-    <div className="mt-10 md:mt-16">
+    <div className="mt-10 md:mt-24">
       
       <h1 className="font-Michroma text-2xl md:text-3xl">{format(currentDate, 'MMMM')} Events</h1>
       
