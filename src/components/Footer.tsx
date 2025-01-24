@@ -3,13 +3,21 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 mt-28 flex justify-end ">
-      <div className="grid min-h-[420px] w-full max-w-[1600px]  grid-cols-1 lg:grid-cols-3 items-center">
-        <div className="flex flex-col gap-6 text-white pl-10">
+    <footer className="relative z-20 mt-28 flex justify-end">
+      <div className="grid min-h-[420px] w-full max-w-[1600px] grid-cols-1 items-center lg:grid-cols-3">
+        <div className="flex flex-col gap-6 pl-10 text-white">
           <figure>
-            <Image src={"/navbar/logo.png"} width={160} height={160} alt="" className="w-24 h-24 sm:w-40 sm:h-40"/>
+            <Image
+              src={"/navbar/logo.png"}
+              width={160}
+              height={160}
+              alt=""
+              className="h-32 w-32 sm:h-48 sm:w-48"
+            />
           </figure>
-          <p className="text-2xl sm:text-4xl font-semibold">Proudly Building PCs.</p>
+          <p className="text-2xl font-semibold sm:text-4xl">
+            Proudly Building PCs.
+          </p>
           <div className="flex gap-3 md:gap-4">
             <Link
               href="https://www.linkedin.com/company/the-society-of-pc-building"
@@ -68,26 +76,28 @@ export default function Footer() {
               />
             </Link>
           </div>
-          <p className="text-sm opacity-80">&copy; {new Date().getFullYear()} The Society of PC Building. All
-          rights reserved.</p>
+          <p className="text-sm opacity-80">
+            &copy; {new Date().getFullYear()} The Society of PC Building. All
+            rights reserved.
+          </p>
         </div>
-        <div className="footer-clip-path lg:col-span-2 flex h-full flex-col items-center justify-center gap-1 bg-white pl-12 sm:pl-0 xl:pl-20 pt-20 min-h-80">
-          <p className="max-w-[417px] text-2xl sm:text-4xl font-bold ">
+        <div className="footer-clip-path flex h-full min-h-80 flex-col items-center justify-center gap-1 bg-white px-20 pt-20 lg:col-span-2">
+          <p className="max-w-[417px] text-2xl font-bold sm:text-4xl">
             Gator User Design{" "}
             <Image
               src={"/iconography/gud-color.png"}
               width={80}
               height={80}
               alt=""
-              className="ml-2 inline w-14 h-14 sm:h-20 sm:w-20"
+              className="ml-2 inline h-14 w-14 sm:h-20 sm:w-20"
             />{" "}
           </p>
-          <div className="flex w-full max-w-[416px] justify-center sm:justify-start items-start">
+          <div className="flex w-full max-w-[416px] items-start justify-center sm:justify-start">
             <Link
               href="https://www.instagram.com/gatoruserdesign/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-xl sm:text-2xl  hover:underline text-black"
+              className="flex items-center text-xl text-black hover:underline sm:text-2xl"
             >
               Check us out
               <svg

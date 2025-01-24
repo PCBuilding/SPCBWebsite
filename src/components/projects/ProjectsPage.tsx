@@ -51,7 +51,7 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-[#080d14] pb-32 font-['Michroma']">
+    <div className="relative min-h-screen w-full overflow-x-hidden font-['Michroma']">
       {/* Applied noise background for consistency */}
       <div className="noise-bg" />
 

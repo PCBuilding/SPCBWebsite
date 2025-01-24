@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <div>
       <ProjectsPage />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -3,28 +3,26 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import GlowingLine from "../decorations/GlowingLine";
-import Footer from "../Footer";
 
-export default function LandingAbout() {
+export default function Landing() {
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const checkIfDesktop = () => {
       setIsDesktop(window.innerWidth >= 768);
     };
-
-    // Initial check
     checkIfDesktop();
-
-    // Add event listener
     window.addEventListener("resize", checkIfDesktop);
-
-    // Cleanup
     return () => window.removeEventListener("resize", checkIfDesktop);
   }, []);
+
   return (
     <div className="relative">
-      
+      {/* Background Gradients */}
+      <div className="absolute left-[10%] top-[20%] h-32 w-96 -rotate-45 rounded-full bg-blue-500/10 blur-3xl"></div>
+      <div className="absolute right-[30%] top-[40%] h-24 w-[32rem] -rotate-12 rounded-full bg-orange-500/10 blur-3xl"></div>
+      <div className="-rotate-30 absolute left-[20%] top-[70%] h-28 w-[28rem] rounded-full bg-blue-500/5 blur-3xl"></div>
+      <div className="absolute right-[15%] top-[55%] h-20 w-[24rem] rotate-[25deg] rounded-full bg-orange-500/10 blur-3xl"></div>
 
       <div className="relative min-h-96 w-full py-32">
         {/* Decorative Lines */}
@@ -56,6 +54,7 @@ export default function LandingAbout() {
           thickness={2}
           circleSize={6}
         />
+
         {/* Content Box */}
         <div className="relative mx-auto max-w-3xl px-4 pt-48">
           <motion.div
@@ -75,10 +74,10 @@ export default function LandingAbout() {
             }}
           >
             <div className="text-center">
-              <h2 className="mb-6 font-['Michroma'] text-4xl font-bold text-white">
+              <h2 className="mb-6 font-['Michroma'] text-2xl font-bold text-white sm:text-4xl">
                 About
               </h2>
-              <p className="mb-8 text-xl text-gray-300">
+              <p className="mb-8 text-base text-gray-300 sm:text-xl">
                 The Society of PC Building (SPCB) at the University of Florida
                 is a community for students passionate about PC hardware,
                 building, and tech. Whether you're a beginner or an expert, SPCB
@@ -89,11 +88,11 @@ export default function LandingAbout() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center rounded-full bg-white px-6 py-3 font-['Michroma'] text-sm font-medium text-black transition-all duration-200 hover:scale-105 hover:bg-orange-100"
+                className="inline-flex items-center rounded-full bg-white px-4 py-2 font-['Michroma'] text-xs font-medium text-black transition-all duration-200 hover:scale-105 hover:bg-orange-100 sm:px-6 sm:py-3 sm:text-sm"
               >
                 Learn More
                 <svg
-                  className="ml-2 h-4 w-4"
+                  className="ml-2 h-3 w-3 sm:h-4 sm:w-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -110,9 +109,10 @@ export default function LandingAbout() {
           </motion.div>
         </div>
       </div>
+
       {/* Activities Section */}
       <div className="relative min-h-screen w-full py-16 pt-32">
-        {/* Main vertical line */}
+        {/* Lines */}
         <GlowingLine
           xPoints={["30", "30", "65", "65", "30", "30"]}
           yPoints={["9", "53", "53", "85", "85", "100"]}
@@ -134,7 +134,6 @@ export default function LandingAbout() {
           thickness={3}
           circleSize={8}
         />
-        {/* Top right Blue Group */}
         <GlowingLine
           xPoints={["90", "99"]}
           yPoints={["10", "10"]}
@@ -156,7 +155,6 @@ export default function LandingAbout() {
           thickness={2}
           circleSize={6}
         />
-        {/* Middle Left Blue Group */}
         <GlowingLine
           xPoints={["1", "9"]}
           yPoints={["59", "59"]}
@@ -181,7 +179,7 @@ export default function LandingAbout() {
 
         {/* Content Cards */}
         <div className="relative mx-auto max-w-7xl px-4">
-          {/* Socials Card - Left */}
+          {/* Socials Card */}
           <motion.div
             className="relative left-[10%] mb-32 mt-32 w-[35%]"
             initial={{ opacity: 0, y: 80 }}
@@ -199,14 +197,14 @@ export default function LandingAbout() {
                 />
               </div>
               <div className="bg-[#020B24] p-4">
-                <h3 className="font-['Michroma'] text-2xl font-bold text-white">
+                <h3 className="font-['Michroma'] text-lg font-bold text-white sm:text-2xl">
                   Socials
                 </h3>
               </div>
             </div>
           </motion.div>
 
-          {/* GBMs Card - Right */}
+          {/* GBMs Card */}
           <motion.div
             className="relative left-[55%] mb-32 w-[35%]"
             initial={{ opacity: 0, y: 80 }}
@@ -214,24 +212,26 @@ export default function LandingAbout() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1">
-              <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
-                <Image
-                  src="/landing/images/gbms.png"
-                  alt="GBMs"
-                  fill
-                  className="object-cover"
-                />
+            <Link href="/events">
+              <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1 transition-transform duration-200 hover:scale-105">
+                <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/landing/images/gbms.png"
+                    alt="GBMs"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="bg-[#020B24] p-4">
+                  <h3 className="font-['Michroma'] text-lg font-bold text-white sm:text-2xl">
+                    GBMs
+                  </h3>
+                </div>
               </div>
-              <div className="bg-[#020B24] p-4">
-                <h3 className="font-['Michroma'] text-2xl font-bold text-white">
-                  GBMs
-                </h3>
-              </div>
-            </div>
+            </Link>
           </motion.div>
 
-          {/* PC Builds Card - Left */}
+          {/* PC Builds Card */}
           <motion.div
             className="relative left-[10%] w-[35%]"
             initial={{ opacity: 0, y: 80 }}
@@ -239,52 +239,24 @@ export default function LandingAbout() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1">
-              <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
-                <Image
-                  src="/landing/images/pc-builds.png"
-                  alt="PC Builds"
-                  fill
-                  className="object-cover"
-                />
+            <Link href="/projects">
+              <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black to-blue-900/50 p-1 transition-transform duration-200 hover:scale-105">
+                <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/landing/images/pc-builds.png"
+                    alt="PC Builds"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="bg-[#020B24] p-4">
+                  <h3 className="font-['Michroma'] text-lg font-bold text-white sm:text-2xl">
+                    PC Builds
+                  </h3>
+                </div>
               </div>
-              <div className="bg-[#020B24] p-4">
-                <h3 className="font-['Michroma'] text-2xl font-bold text-white">
-                  PC Builds
-                </h3>
-              </div>
-            </div>
+            </Link>
           </motion.div>
-        </div>
-      </div>
-      {/* Social Links Section */}
-      <div className="relative min-h-96 w-full">
-        <div className="hidden md:block">
-          <GlowingLine
-            xPoints={["32", "32", "73", "73"]}
-            yPoints={["0", "20", "20", "35"]}
-            color="#FFA500"
-            thickness={3}
-            circleSize={8}
-          />
-          <GlowingLine
-            xPoints={["31", "31"]}
-            yPoints={["4", "15"]}
-            color="#FFA500"
-            thickness={3}
-            circleSize={8}
-          />
-          <GlowingLine
-            xPoints={["53", "60"]}
-            yPoints={["18", "18"]}
-            color="#FFA500"
-            thickness={3}
-            circleSize={8}
-          />
-        </div>
-
-        <div className="pt-24">
-          <Footer />
         </div>
       </div>
     </div>
