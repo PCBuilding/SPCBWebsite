@@ -53,7 +53,24 @@ body {
   border: 1px solid #4255f911;
 }
 
+.about-bg {
+  background: radial-gradient(
+      138.71% 110.11% at 93.15% -36.58%,
+      #4255f988 25%,
+      #0f1319 50%,
+      #4255f901 100%
+    ),
+    radial-gradient(61.66% 37.6% at 6.63% 95.08%, #4255f988 25%, #0f1319 100%),
+    #4255f988;
+  box-shadow: 0px 0.5px 16px 0px rgba(200, 200, 255, 0.1);
+  border: 1px solid #242424;
+}
 
 .footer-clip-path {
   clip-path: polygon(15% 34%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.grad {
+  background: linear-gradient(0deg, #4255f922, #080d14);
+  filter: blur(20px);
 }

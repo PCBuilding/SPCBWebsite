@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative z-50 mt-28 flex justify-end">
-      <div className="grid min-h-[420px] w-full max-w-[1800px] grid-cols-1 items-center lg:grid-cols-3">
-        <div className="flex flex-col gap-6 px-10 text-white">
+    <footer className="relative z-20 mt-28 flex justify-end">
+      <div className="grid min-h-[420px] w-full max-w-[1600px] grid-cols-1 items-center lg:grid-cols-3">
+        <div className="flex flex-col gap-6 pl-10 text-white">
           <figure>
             <Image
               src={"/navbar/logo.png"}
