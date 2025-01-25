@@ -197,9 +197,10 @@ export default function EditForm() {
                 <h3 className="font-bold">{project.Title}</h3>
                 <p className="text-sm text-gray-500">
                   Built on:{" "}
-                  {new Date(
-                    project.buildDate.toDate().setHours(12),
-                  ).toLocaleDateString()}
+                  {project.buildDate &&
+                    new Date(
+                      project.buildDate.toDate().setHours(12),
+                    ).toLocaleDateString()}
                 </p>
               </div>
               <div className="flex gap-2">
