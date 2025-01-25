@@ -37,7 +37,7 @@ export default function Hero() {
 
   return (
     <div
-      className="relative pb-12 pt-24 font-Michroma text-[#eaeaea] md:pb-32 md:pt-52"
+      className="relative overflow-x-hidden pt-24 font-Michroma text-[#eaeaea] md:pb-20 md:pt-52"
       id="hero"
     >
       <div className="mx-auto flex h-full max-w-7xl flex-col-reverse items-center px-6 pb-6 sm:px-10 lg:mt-0 lg:flex-row">
@@ -71,7 +71,7 @@ export default function Hero() {
             href="https://linktr.ee/pcbuildinguf"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 bg-black bg-opacity-80 px-8 py-2 text-base font-medium text-white opacity-0 transition-opacity transition-transform duration-300 duration-500 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+            className="mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 px-8 py-2 text-base font-medium text-white opacity-0 transition-transform duration-500 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
             style={{ opacity: isTypingComplete ? 1 : 0 }}
           >
             Get Involved!

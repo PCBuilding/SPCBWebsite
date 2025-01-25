@@ -17,39 +17,39 @@ export default function Landing() {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative pt-12">
       {/* Background Gradients */}
       <div className="absolute left-[10%] top-[20%] h-32 w-96 -rotate-45 rounded-full bg-blue-500/10 blur-3xl"></div>
       <div className="absolute right-[30%] top-[40%] h-24 w-[32rem] -rotate-12 rounded-full bg-orange-500/10 blur-3xl"></div>
       <div className="-rotate-30 absolute left-[20%] top-[70%] h-28 w-[28rem] rounded-full bg-blue-500/5 blur-3xl"></div>
       <div className="absolute right-[15%] top-[55%] h-20 w-[24rem] rotate-[25deg] rounded-full bg-orange-500/10 blur-3xl"></div>
 
-      <div className="relative min-h-96 w-full py-32">
+      <div className="relative min-h-96 w-screen overflow-x-hidden py-32">
         {/* Decorative Lines */}
         <GlowingLine
           xPoints={["3", "20"]}
-          yPoints={["15", "15"]}
+          yPoints={["20", "20"]}
           color="#1E90FF"
           thickness={2}
           circleSize={6}
         />
         <GlowingLine
           xPoints={["5", "23"]}
-          yPoints={["18", "18"]}
+          yPoints={["23", "23"]}
           color="#1E90FF"
           thickness={2}
           circleSize={6}
         />
         <GlowingLine
           xPoints={["75", "90"]}
-          yPoints={["10", "10"]}
+          yPoints={["15", "15"]}
           color="#1E90FF"
           thickness={2}
           circleSize={6}
         />
         <GlowingLine
           xPoints={["78", "98"]}
-          yPoints={["14", "14"]}
+          yPoints={["19", "19"]}
           color="#1E90FF"
           thickness={2}
           circleSize={6}
