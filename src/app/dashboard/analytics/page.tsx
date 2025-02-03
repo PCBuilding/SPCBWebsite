@@ -20,7 +20,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import AddMockDataButton from "@/lib/firebase/addMockData";
 
 interface PageViewData {
   date: string;
@@ -99,7 +98,6 @@ export default function AnalyticsDashboard() {
           <p className="mt-2 text-2xl font-bold">{avgViews}</p>
         </div>
       </div>
-      <AddMockDataButton />
 
       <div className="rounded-lg border border-gray-200 bg-white p-6">
         <h3 className="mb-4 text-lg font-semibold">Weekly Page Views</h3>
