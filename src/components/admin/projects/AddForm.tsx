@@ -245,14 +245,12 @@ export default function AddForm({
                 type="date"
                 id="buildDate"
                 name="buildDate"
-                value={
-                  new Date(
-                    formData.buildDate.toDate().getTime() -
-                      formData.buildDate.toDate().getTimezoneOffset() * 60000,
-                  )
-                    .toISOString()
-                    .split("T")[0]
-                }
+                value={formData.buildDate.toDate().toISOString().split("T")[0]}
+                onFocus={(e) => {
+                  if (e.target.showPicker) {
+                    e.target.showPicker();
+                  }
+                }}
                 onChange={handleChange}
                 className="mt-1 w-full rounded-md border p-2"
                 required
