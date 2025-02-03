@@ -1,6 +1,6 @@
 "use client";
 
-import { FaCalendarAlt, FaBoxOpen } from "react-icons/fa";
+import { FaCalendarAlt, FaBoxOpen, FaChartLine } from "react-icons/fa";
 import { BsPcDisplay } from "react-icons/bs";
 import Link from "next/link";
 import ProtectedRoute from "@/components/admin/auth/ProtectedRoute";
@@ -15,7 +15,7 @@ export default function Dashboard() {
           <SignOutButton />
         </div>
         <hr className="my-4 border-gray-200" />
-        <ul className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 pb-12">
+        <ul className="grid grid-cols-1 gap-4 pb-12 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           <Link
             href="/dashboard/events"
             className="flex flex-col items-center gap-4 rounded-md border border-gray-200 bg-[#fafafa] p-4 transition-all hover:bg-gray-200 sm:gap-6 sm:p-6"
@@ -50,6 +50,18 @@ export default function Dashboard() {
             </span>
             <p className="text-center text-sm sm:text-base">
               Create, Update, and Delete club inventory.
+            </p>
+          </Link>
+          <Link
+            href="/dashboard/analytics"
+            className="flex flex-col items-center gap-4 rounded-md border border-gray-200 bg-[#fafafa] p-4 transition-all hover:bg-gray-200 sm:gap-6 sm:p-6"
+          >
+            <p className="text-xl sm:text-2xl">Analytics</p>
+            <span className="text-6xl text-blue-500 sm:text-[120px]">
+              <FaChartLine />
+            </span>
+            <p className="text-center text-sm sm:text-base">
+              View website analytics and metrics.
             </p>
           </Link>
         </ul>
