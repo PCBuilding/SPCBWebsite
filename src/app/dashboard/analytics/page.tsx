@@ -20,6 +20,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import AddMockDataButton from "@/lib/firebase/addMockData";
 
 interface PageViewData {
   date: string;
@@ -50,40 +51,31 @@ export default function AnalyticsDashboard() {
       const snapshot = await getDocs(q);
       const viewsByWeek: { [key: string]: number } = {};
 
+      // Get unique week-year combinations
       snapshot.forEach((doc) => {
         const data = doc.data();
-        const weekLabel = `W${data.weekNumber}-${data.year}`;
-        viewsByWeek[weekLabel] = (viewsByWeek[weekLabel] || 0) + 1;
+        const key = `${data.year}-${data.weekNumber}`;
+        viewsByWeek[key] = (viewsByWeek[key] || 0) + 1;
       });
 
-      const formattedData = Object.entries(viewsByWeek).map(
-        ([weekLabel, views]) => ({
-          weekLabel,
-          views,
-        }),
-      );
+      // Sort by year and week
+      const formattedData = Object.entries(viewsByWeek)
+        .map(([key, views]) => {
+          const [year, week] = key.split("-");
+          return {
+            weekLabel: `W${week}-${year}`,
+            views,
+            sortKey: `${year}${week.padStart(2, "0")}`,
+          };
+        })
+        .sort((a, b) => a.sortKey.localeCompare(b.sortKey))
+        .map(({ weekLabel, views }) => ({ weekLabel, views }));
 
       setWeeklyData(formattedData);
       setLoading(false);
     };
 
     fetchWeeklyViews();
-
-    // Cleanup old data
-    const cleanupOldData = async () => {
-      const yearAgo = new Date();
-      yearAgo.setFullYear(yearAgo.getFullYear() - 1);
-
-      const oldViews = query(
-        collection(db, "weeklyViews"),
-        where("timestamp", "<=", yearAgo),
-      );
-
-      const snapshot = await getDocs(oldViews);
-      snapshot.forEach((doc) => deleteDoc(doc.ref));
-    };
-
-    cleanupOldData();
   }, []);
 
   if (loading)
@@ -107,6 +99,7 @@ export default function AnalyticsDashboard() {
           <p className="mt-2 text-2xl font-bold">{avgViews}</p>
         </div>
       </div>
+      <AddMockDataButton />
 
       <div className="rounded-lg border border-gray-200 bg-white p-6">
         <h3 className="mb-4 text-lg font-semibold">Weekly Page Views</h3>
