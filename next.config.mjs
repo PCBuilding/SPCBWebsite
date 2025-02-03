@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  analytics: true,
-};
+const nextConfig = {};
 
 export default nextConfig;

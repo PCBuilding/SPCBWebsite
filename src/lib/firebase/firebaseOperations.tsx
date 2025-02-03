@@ -1,5 +1,12 @@
-import { db } from '@/lib/firebase/firebase';
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db } from "@/lib/firebase/firebase";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 export interface Project {
   id: string; //ID of the project NOT A COLUMN IN THE DATABASE
@@ -21,11 +28,10 @@ export interface Project {
   Builders: string[]; // An array of builder names or identifiers
 }
 
-
 // READ Operation
 export const getAllProjects = async () => {
   const querySnapshot = await getDocs(collection(db, "Projects"));
-  return querySnapshot.docs.map(doc => ({
+  return querySnapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
   })) as Project[];
@@ -42,7 +48,7 @@ async function addData() {
     const docRef = await addDoc(collection(db, "Projects"), {
       name: "Claudio Sciotto",
       email: "claudio@example.com",
-      age: 22
+      age: 22,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
