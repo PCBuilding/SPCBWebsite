@@ -1,15 +1,18 @@
 "use client";
 import Footer from "@/components/Footer";
+import About from "@/components/landing/About";
+import Events from "@/components/landing/Events";
+import Faq from "@/components/landing/Faq";
 import Hero from "@/components/landing/Hero";
-import Landing from "@/components/landing/Landing";
+
 
 const Website = () => {
   return (
-    <div className="min-h-screen w-full bg-[#080d14]">
-      {/* Applied a noise bg to the page for added depth */}
-      <div className="noise-bg" />
+    <div className="min-h-screen w-full bg-[#080d14] text-white">
       <Hero />
-      <Landing />
+      <About/>
+      <Events/>
+      <Faq/>
       <Footer />
     </div>
   );

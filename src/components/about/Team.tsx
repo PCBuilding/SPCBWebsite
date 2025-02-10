@@ -4,7 +4,7 @@ export default function Team() {
       <div className="grad h-32" />
       <div className="px-6 sm:px-10 py-20">
         <div className="mx-auto max-w-7xl text-white">
-          <h2 className="font-Michroma text-2xl sm:text-4xl">Meet Our Team</h2>
+          <h2 className="text-2xl sm:text-4xl">Meet Our Team</h2>
           <p className="pt-4 sm:pt-6 sm:text-lg text-balance opacity-80">
             Behind the Society of PC Building is a passionate team of
             officers who work hard to bring our community together, organize

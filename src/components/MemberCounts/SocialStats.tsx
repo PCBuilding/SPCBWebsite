@@ -54,7 +54,7 @@ const StatCard: React.FC<StatCardProps> = ({
         </div>
         <div>
           <p className="text-sm font-medium text-gray-300">{label}</p>
-          <p className="font-['Michroma'] text-xl font-bold text-white">
+          <p className="text-xl font-bold text-white">
             {isLoading
               ? "Loading..."
               : error

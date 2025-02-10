@@ -35,7 +35,7 @@ export default function AboutPage() {
         </div>
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-20 px-6 md:grid-cols-2">
           <div className="space-y-4 text-left">
-            <h1 className="font-Michroma text-3xl font-bold sm:text-4xl">
+            <h1 className="text-3xl font-bold sm:text-4xl">
               About Us
             </h1>
             <p className="text-balance pt-1 text-lg leading-relaxed">

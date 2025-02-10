@@ -81,15 +81,15 @@ export default function Footer() {
             rights reserved.
           </p>
         </div>
-        <div className="footer-clip-path flex h-full min-h-80 flex-col items-center justify-center gap-1 bg-white px-20 pt-20 lg:col-span-2">
-          <p className="max-w-[417px] text-2xl font-bold sm:text-4xl">
+        <div className="footer-clip-path flex h-full min-h-80 flex-col items-center justify-center bg-white text-black px-16 sm:px-20 pt-20 lg:col-span-2">
+          <p className="max-w-[417px] text-2xl font-bold sm:text-4xl flex flex-col-reverse sm:flex-row items-center gap-2">
             Gator User Design{" "}
             <Image
               src={"/iconography/gud-color.png"}
               width={80}
               height={80}
               alt=""
-              className="ml-2 inline h-14 w-14 sm:h-20 sm:w-20"
+              className="h-14 w-14 sm:h-20 sm:w-20"
             />{" "}
           </p>
           <div className="flex w-full max-w-[416px] items-start justify-center sm:justify-start">

@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Michroma&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,7 +16,7 @@ textarea {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Space Grotesk", serif !important;
   background-color: #ffffff;
   overflow-x: hidden;
 }
@@ -73,4 +74,27 @@ body {
 .grad {
   background: linear-gradient(0deg, #4255f922, #080d14);
   filter: blur(20px);
+}
+
+
+/*  monospace font - will update later */
+
+.m {
+  font-family: "Space Mono", serif; 
+}
+
+/* fade background of hero */
+
+
+.hero-btn:hover {
+  /* Apply a full (all-around) shadow with #79C7FD */
+  box-shadow: 0 0 20px 5px rgba(121, 199, 253, 0.7);
+}
+
+.hero-fade {
+  background: linear-gradient(180deg,#080d1400 0%, #080d14 100%);
+}
+
+.about-fade {
+    background: linear-gradient(0deg,#080d1400 0%, #080d14 100%);
 }

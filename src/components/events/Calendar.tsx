@@ -41,7 +41,7 @@ export default function Calendar() {
   return (
     <div className="pt-8 md:pt-12 text-white">
       <div className="flex items-end justify-between gap-5">
-        <p className="font-Michroma text-lg md:text-3xl">
+        <p className="text-lg md:text-3xl">
          Calendar - {currentMonthName} {currentYear}
         </p>
         <div className="flex gap-2">

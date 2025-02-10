@@ -28,15 +28,17 @@ const config = {
         blink: "blink 1s infinite",
       },
       colors: {
+        white: "#f1f1f1",
+        blue: "#79C7FD",
+        dull: "#C1C1C1",
+        orange: "#FF804E",
         "accent-dark": "#1a1a1a",
         "accent-orange": "#FA4616",
         "accent-blue": "#0021A5",
         "light-orange": "#FA4616",
         "light-blue": "#8BC5F7",
       },
-      fontFamily: {
-        Michroma: ["Michroma", "sans-serif"],
-      },
+
       boxShadow: {
         "white-glow": "0 0 15px rgba(255,255,255,0.15)",
         "white-glow-hover": "0 0 30px rgba(255,255,255,0.3)",

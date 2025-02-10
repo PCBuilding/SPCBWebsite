@@ -35,7 +35,7 @@ export default function Contact() {
     <div className="px-6 pb-10 pt-16 sm:pt-24 sm:px-10">
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
         <div className="text-white">
-          <h2 className="font-Michroma text-2xl sm:text-4xl">
+          <h2 className="text-2xl sm:text-4xl">
             Connect With Us
           </h2>
           <p className="text-balance pt-6 leading-relaxed sm:text-lg">
