@@ -62,9 +62,9 @@ export default function Hero() {
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <button className="flex items-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black justify-center hero-btn transition-all duration-300">
+                <a href="https://linktr.ee/pcbuildinguf" target="_blank" className="flex items-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black justify-center hero-btn transition-all duration-300">
                   Get Involved <FaArrowRightLong />
-                </button>
+                </a>
                 <a
                   href="https://discord.gg/CmqKbnBDBG"
                   target="_blank"
