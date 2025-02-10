@@ -74,7 +74,7 @@ export default function Landing() {
             }}
           >
             <div className="text-center">
-              <h2 className="mb-6 font-['Michroma'] text-2xl font-bold text-white sm:text-4xl">
+              <h2 className="mb-6  text-2xl font-bold text-white sm:text-4xl">
                 About
               </h2>
               <p className="mb-8 text-base text-gray-300 sm:text-xl">
@@ -88,7 +88,7 @@ export default function Landing() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center rounded-full bg-white px-4 py-2 font-['Michroma'] text-xs font-medium text-black transition-all duration-200 hover:scale-105 hover:bg-orange-100 sm:px-6 sm:py-3 sm:text-sm"
+                className="inline-flex items-center rounded-full bg-white px-4 py-2  text-xs font-medium text-black transition-all duration-200 hover:scale-105 hover:bg-orange-100 sm:px-6 sm:py-3 sm:text-sm"
               >
                 Learn More
                 <svg
@@ -197,7 +197,7 @@ export default function Landing() {
                 />
               </div>
               <div className="bg-[#020B24] p-4">
-                <h3 className="font-['Michroma'] text-lg font-bold text-white sm:text-2xl">
+                <h3 className=" text-lg font-bold text-white sm:text-2xl">
                   Socials
                 </h3>
               </div>
@@ -223,7 +223,7 @@ export default function Landing() {
                   />
                 </div>
                 <div className="bg-[#020B24] p-4">
-                  <h3 className="font-['Michroma'] text-lg font-bold text-white sm:text-2xl">
+                  <h3 className=" text-lg font-bold text-white sm:text-2xl">
                     GBMs
                   </h3>
                 </div>
@@ -250,7 +250,7 @@ export default function Landing() {
                   />
                 </div>
                 <div className="bg-[#020B24] p-4">
-                  <h3 className="font-['Michroma'] text-lg font-bold text-white sm:text-2xl">
+                  <h3 className=" text-lg font-bold text-white sm:text-2xl">
                     PC Builds
                   </h3>
                 </div>

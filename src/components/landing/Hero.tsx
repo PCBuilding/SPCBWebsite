@@ -1,124 +1,246 @@
-import React, { useState, useEffect } from "react";
-import LogoCarousel from "./LogoCarousel";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaArrowRightLong } from "react-icons/fa6";
+import AnimatedText from "./ui/TextFade";
+import { FaDiscord } from "react-icons/fa";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import SocialStats from "@/components/MemberCounts/SocialStats";
+import useDiscordCount from "@/hooks/useDiscordCount";
+import LogoCarousel from "./LogoCarousel";
 
 export default function Hero() {
-  const [text, setText] = useState("");
-  const [isInitialBlinkComplete, setIsInitialBlinkComplete] = useState(false);
-  const fullText = "The Society of PC Building";
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-
-  // Handle initial cursor blink
-  useEffect(() => {
-    // Wait for 2 full blink cycles (2 seconds) before starting the typing
-    const initialBlinkTimeout = setTimeout(() => {
-      setIsInitialBlinkComplete(true);
-    }, 400); // 2 seconds = 2 full blink cycles at 1s per cycle
-
-    return () => clearTimeout(initialBlinkTimeout);
-  }, []);
-
-  // Handle typing animation
-  useEffect(() => {
-    if (!isInitialBlinkComplete) return; // Don't start typing until initial blink is complete
-
-    if (text.length < fullText.length) {
-      const timeout = setTimeout(() => {
-        setText(fullText.slice(0, text.length + 1));
-      }, 70); // Adjust typing speed here (milliseconds)
-
-      return () => clearTimeout(timeout);
-    } else {
-      setIsTypingComplete(true);
-    }
-  }, [text, isInitialBlinkComplete, fullText]);
-
+  const [contentVisible, setContentVisible] = useState<boolean>(false);
+  const discordCount = useDiscordCount();
   return (
-    <div
-      className="relative overflow-x-hidden pt-24 font-Michroma text-[#eaeaea] md:pb-20 md:pt-52"
-      id="hero"
-    >
-      <div className="mx-auto flex h-full max-w-7xl flex-col-reverse items-center px-6 pb-6 sm:px-10 lg:mt-0 lg:flex-row">
-        <div className="flex w-full flex-col items-center text-center lg:w-3/4 lg:items-start lg:text-left">
-          <h1 className="font-Michroma text-[22px] font-semibold leading-normal sm:text-4xl lg:text-[44px] lg:leading-normal">
-            {text}
-            <span className="ml-1 inline-block animate-[blink_1s_infinite]">
-              _
-            </span>
+    <div className="relative min-h-[920px] overflow-hidden pb-16 sm:pb-24 pt-32 md:pt-44 text-white">
+      <Image
+        src="/hero/lights.png"
+        alt="Lights Background"
+        fill
+        className="absolute left-0 right-0 top-0 z-[11] opacity-70"
+      />
+      <Image
+        src="/hero/mobo.svg"
+        alt="Mobo Background"
+        fill
+        className="absolute left-0 top-0 z-[12] object-cover opacity-[0.012]"
+      />
+      <div className="hero-fade absolute bottom-0 left-0 right-0 z-[13] h-10" />
+      <div className="relative mx-auto flex flex-col lg:grid max-w-7xl px-6 sm:px-10 lg:grid-cols-5 w-full">
+        <div className="relative z-40 col-span-3">
+          <div className="min-h-9 sm:min-h-12">
+            <AnimatePresence>
+              {contentVisible && (
+                <motion.p
+                  className="text-lg sm:text-2xl text-dull text-balance pb-2 sm:pb-4"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  Welcome to the Society of PC Building!
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <h1 className="text-2xl sm:text-4xl xl:text-[40px] font-semibold md:leading-[1.42] xl:leading-[1.42]">
+            <AnimatedText
+              text={
+                "A community for students to build PCs, expand their skills, and form meaningful connections."
+              }
+              onAnimationComplete={() => setContentVisible(true)}
+            />
           </h1>
 
-          <p
-            className="max-w-[620px] px-1 pt-3 text-[17px] font-medium leading-relaxed opacity-0 transition-opacity duration-500 sm:px-0 sm:pt-3 sm:text-lg"
-            style={{ opacity: isTypingComplete ? 1 : 0 }}
-          >
-            <span className="hidden sm:inline">
-              Join the Society of PC Building at UF—where
-            </span>
-            <span className="sm:hidden">Where</span> students passionate about
-            hardware and tech connect, innovate, and build custom PCs together.
-          </p>
+          {/* Buttons */}
+          <AnimatePresence>
+            {contentVisible && (
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 pt-4 font-medium text-sm sm:text-base"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <button className="flex items-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black justify-center hero-btn transition-all duration-300">
+                  Get Involved <FaArrowRightLong />
+                </button>
+                <a
+                  href="https://discord.gg/CmqKbnBDBG"
+                  target="_blank"
+                  className="flex items-center gap-3 rounded-lg px-8 py-2.5 transition-all bg-blue hover:bg-opacity-20 justify-center bg-opacity-20 sm:bg-opacity-0"
+                >
+                  Join {discordCount} Discord Members{" "}
+                  <FaDiscord className="text-lg" />
+                </a>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          <span
-            className="hidden py-1.5 text-xs opacity-0 transition-opacity duration-500 lg:inline"
-            style={{ opacity: isTypingComplete ? 1 : 0 }}
-          >
-            <SocialStats />
-          </span>
-
-          <a
-            href="https://linktr.ee/pcbuildinguf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 rounded-md border border-[#B0B8FF] border-opacity-40 px-8 py-2 text-base font-medium text-white opacity-0 transition-transform duration-500 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
-            style={{ opacity: isTypingComplete ? 1 : 0 }}
-          >
-            Get Involved!
-          </a>
-
-          <div
-            className="mt-16 opacity-0 transition-opacity duration-500 lg:mb-12 lg:mt-28"
-            style={{ opacity: isTypingComplete ? 1 : 0 }}
-          >
-            <p className="text-xs opacity-80 sm:text-sm">
-              Led by a team of officers with experience at:
-            </p>
-            <div className="-mt-5 hidden h-[103px] items-center gap-6 md:flex">
-              <img src="/landing/logos/roblox.png" alt="" />
-              <img src="/landing/logos/nvidia.png" alt="" />
-              <img src="/landing/logos/microsoft.png" alt="" />
-              <img src="/landing/logos/samsung.png" alt="" className="mt-px" />
-              <img src="/landing/logos/ukg.png" alt="" />
-              <img src="/landing/logos/meta.png" alt="" className="pb-0.5" />
-              <p className="opacity-70">+ More!</p>
-            </div>
-            <LogoCarousel />
-          </div>
+          {/* Logos Section */}
+          <AnimatePresence>
+            {contentVisible && (
+              <motion.div
+                className="mt-16 lg:mb-12 lg:mt-48"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <p className="text-xs text-dull sm:text-base">
+                  Led by a team of officers with experience at:
+                </p>
+                <div className="-mt-5 hidden h-[103px] items-center gap-6 opacity-80 md:flex">
+                  <img src="/landing/logos/roblox.png" alt="" />
+                  <img src="/landing/logos/nvidia.png" alt="" />
+                  <img src="/landing/logos/microsoft.png" alt="" />
+                  <img
+                    src="/landing/logos/samsung.png"
+                    alt=""
+                    className="mt-px"
+                  />
+                  <img src="/landing/logos/ukg.png" alt="" />
+                  <img
+                    src="/landing/logos/meta.png"
+                    alt=""
+                    className="pb-0.5"
+                  />
+                  <p className="opacity-70">+ More!</p>
+                </div>
+                <LogoCarousel/>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-
-        <motion.div
-          className="relative -mr-6 h-[220px] w-[220px] md:h-[300px] md:w-[300px] lg:-mr-36 lg:h-[600px] lg:w-[600px]"
-          initial={{ opacity: 0, y: 60 }}
-          animate={{
-            opacity: isTypingComplete ? 1 : 0,
-            y: isTypingComplete ? 0 : 60,
-          }}
-          transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 }}
-        >
-          <Image
-            src="/landing/logo.png"
-            alt="SPCB Logo"
-            width={600}
-            height={600}
-            className="object-contain"
-            style={{
-              filter: "drop-shadow(0 0 10px rgba(255,255,255,1))",
-            }}
-            priority
-          />
-        </motion.div>
+        <HeroImages contentVisible={contentVisible} />
+        {/* Image Section */}
       </div>
     </div>
   );
 }
+
+type HeroImagesProps = {
+  contentVisible: boolean;
+};
+
+const HeroImages: React.FC<HeroImagesProps> = ({ contentVisible }) => {
+  return (
+    <>
+      <AnimatePresence>
+        {contentVisible && (
+          <motion.div
+            className="relative z-40 col-span-2 sm:hidden flex-col items-end pt-6 lg:flex"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="mb-4 flex gap-2 sm:gap-4 justify-center lg:justify-start ">
+              <motion.img
+                src="/hero/h1.png"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              />
+              <motion.img
+                src="/hero/h2.png"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              />
+            </div>
+            <div className="mb-4 flex gap-2 sm:gap-4 justify-center lg:justify-start">
+              <motion.img
+                src="/hero/h3.png"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              />
+            </div>
+            <div className="flex gap-2 sm:gap-4 justify-center lg:justify-start">
+              <motion.img
+                src="/hero/h4.png"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+              <motion.img
+                src="/hero/h5.png"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="w-full">
+        <AnimatePresence>
+          {contentVisible && (
+            <motion.div
+              className="relative z-40  w-full flex-wrap gap-4 pt-6 hidden sm:flex lg:hidden"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <motion.img
+                src="/hero/h1.png"
+                className="h-[152px]"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              />
+              <motion.img
+                src="/hero/h2.png"
+                className="h-[152px]"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              />
+              <motion.img
+                src="/hero/h3.png"
+                className="h-[152px]"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              />
+              <motion.img
+                src="/hero/h4.png"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+              <motion.img
+                src="/hero/h5.png"
+                alt=""
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </>
+  );
+};
