@@ -32,7 +32,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/90 p-4 font-['Michroma'] backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/90 p-4 backdrop-blur-sm"
       onClick={() => onClose()}
     >
       <div
