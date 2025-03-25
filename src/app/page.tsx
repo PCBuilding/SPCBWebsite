@@ -5,14 +5,13 @@ import Events from "@/components/landing/Events";
 import Faq from "@/components/landing/Faq";
 import Hero from "@/components/landing/Hero";
 
-
 const Website = () => {
   return (
     <div className="min-h-screen w-full bg-[#080d14] text-white">
       <Hero />
-      <About/>
-      <Events/>
-      <Faq/>
+      <About />
+      <Events />
+      <Faq />
       <Footer />
     </div>
   );

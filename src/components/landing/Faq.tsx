@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Monitor from "./ui/Monitor";
 
 interface FAQ {
@@ -25,23 +25,36 @@ const faqs: FAQ[] = [
 ];
 
 export default function Faq(): JSX.Element {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 620);
+    };
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
+    return () => window.removeEventListener("resize", checkIfMobile);
+  }, []);
+
   return (
-    <div className="relative mx-auto max-w-7xl pb-14 pt-16 sm:pt-28 px-6 sm:px-10">
-      <h3 className="text-center text-3xl sm:text-[40px] font-medium">
+    <div className="relative mx-auto max-w-7xl px-6 pb-14 pt-16 sm:px-10 sm:pt-28">
+      <h3 className="text-center text-3xl font-medium sm:text-[40px]">
         Frequently Asked Questions
       </h3>
 
-      <div className="grid lg:grid-cols-2 gap-16 sm:gap-24 lg:gap-12 pt-16 sm:pt-24">
+      <div className="grid gap-16 pt-16 sm:gap-24 sm:pt-24 lg:grid-cols-2 lg:gap-12">
         <div className="grid gap-12">
           {faqs.map((faq, i) => (
             <Item faq={faq} i={i} key={faq.question} />
           ))}
         </div>
-        <div className="relative z-10 flex justify-center lg:justify-end min-h-[400px] mb-12 sm:pb-0">
-          <div className="absolute sm:block">
-          <Monitor />
+        {!isMobile && (
+          <div className="relative z-10 mb-12 flex min-h-[400px] justify-center sm:pb-0 lg:justify-end">
+            <div className="absolute sm:block">
+              <Monitor />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
