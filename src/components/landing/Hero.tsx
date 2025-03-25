@@ -11,7 +11,7 @@ export default function Hero() {
   const [contentVisible, setContentVisible] = useState<boolean>(false);
   const discordCount = useDiscordCount();
   return (
-    <div className="relative min-h-[920px] overflow-hidden pb-16 sm:pb-24 pt-32 md:pt-44 text-white">
+    <div className="relative min-h-[920px] overflow-hidden pb-16 pt-32 text-white sm:pb-24 md:pt-44">
       <Image
         src="/hero/lights.png"
         alt="Lights Background"
@@ -25,13 +25,13 @@ export default function Hero() {
         className="absolute left-0 top-0 z-[12] object-cover opacity-[0.012]"
       />
       <div className="hero-fade absolute bottom-0 left-0 right-0 z-[13] h-10" />
-      <div className="relative mx-auto flex flex-col lg:grid max-w-7xl px-6 sm:px-10 lg:grid-cols-5 w-full">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 sm:px-10 lg:grid lg:grid-cols-5">
         <div className="relative z-40 col-span-3">
           <div className="min-h-9 sm:min-h-12">
             <AnimatePresence>
               {contentVisible && (
                 <motion.p
-                  className="text-lg sm:text-2xl text-dull text-balance pb-2 sm:pb-4"
+                  className="text-balance pb-2 text-lg text-dull sm:pb-4 sm:text-2xl"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -43,7 +43,7 @@ export default function Hero() {
             </AnimatePresence>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl xl:text-[40px] font-semibold md:leading-[1.42] xl:leading-[1.42]">
+          <h1 className="text-2xl font-semibold sm:text-4xl md:leading-[1.42] xl:text-[40px] xl:leading-[1.42]">
             <AnimatedText
               text={
                 "A community for students to build PCs, expand their skills, and form meaningful connections."
@@ -56,19 +56,23 @@ export default function Hero() {
           <AnimatePresence>
             {contentVisible && (
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 pt-4 font-medium text-sm sm:text-base"
+                className="flex flex-col gap-4 pt-4 text-sm font-medium sm:flex-row sm:text-base"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <a href="https://linktr.ee/pcbuildinguf" target="_blank" className="flex items-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black justify-center hero-btn transition-all duration-300">
+                <a
+                  href="https://linktr.ee/pcbuildinguf"
+                  target="_blank"
+                  className="hero-btn flex items-center justify-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black transition-all duration-300"
+                >
                   Get Involved <FaArrowRightLong />
                 </a>
                 <a
                   href="https://discord.gg/CmqKbnBDBG"
                   target="_blank"
-                  className="flex items-center gap-3 rounded-lg px-8 py-2.5 transition-all bg-blue hover:bg-opacity-20 justify-center bg-opacity-20 sm:bg-opacity-0"
+                  className="flex items-center justify-center gap-3 rounded-lg bg-blue bg-opacity-20 px-8 py-2.5 transition-all hover:bg-opacity-20 sm:bg-opacity-0"
                 >
                   Join {discordCount} Discord Members{" "}
                   <FaDiscord className="text-lg" />
@@ -107,7 +111,7 @@ export default function Hero() {
                   />
                   <p className="opacity-70">+ More!</p>
                 </div>
-                <LogoCarousel/>
+                <LogoCarousel />
               </motion.div>
             )}
           </AnimatePresence>
@@ -129,13 +133,13 @@ const HeroImages: React.FC<HeroImagesProps> = ({ contentVisible }) => {
       <AnimatePresence>
         {contentVisible && (
           <motion.div
-            className="relative z-40 col-span-2 sm:hidden flex-col items-end pt-6 lg:flex"
+            className="relative z-40 col-span-2 flex-col items-end pt-6 sm:hidden lg:flex"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="mb-4 flex gap-2 sm:gap-4 justify-center lg:justify-start ">
+            <div className="mb-4 flex justify-center gap-2 sm:gap-4 lg:justify-start">
               <motion.img
                 src="/hero/h1.png"
                 alt=""
@@ -153,7 +157,7 @@ const HeroImages: React.FC<HeroImagesProps> = ({ contentVisible }) => {
                 transition={{ duration: 0.5, delay: 0.3 }}
               />
             </div>
-            <div className="mb-4 flex gap-2 sm:gap-4 justify-center lg:justify-start">
+            <div className="mb-4 flex justify-center gap-2 sm:gap-4 lg:justify-start">
               <motion.img
                 src="/hero/h3.png"
                 alt=""
@@ -163,7 +167,7 @@ const HeroImages: React.FC<HeroImagesProps> = ({ contentVisible }) => {
                 transition={{ duration: 0.5, delay: 0.4 }}
               />
             </div>
-            <div className="flex gap-2 sm:gap-4 justify-center lg:justify-start">
+            <div className="flex justify-center gap-2 sm:gap-4 lg:justify-start">
               <motion.img
                 src="/hero/h4.png"
                 alt=""
@@ -188,7 +192,7 @@ const HeroImages: React.FC<HeroImagesProps> = ({ contentVisible }) => {
         <AnimatePresence>
           {contentVisible && (
             <motion.div
-              className="relative z-40  w-full flex-wrap gap-4 pt-6 hidden sm:flex lg:hidden"
+              className="relative z-40 hidden w-full flex-wrap gap-4 pt-6 sm:flex lg:hidden"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}

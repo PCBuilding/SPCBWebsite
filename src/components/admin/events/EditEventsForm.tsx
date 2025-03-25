@@ -10,11 +10,11 @@ import toast from "react-hot-toast";
 import { LuLoader2, LuX } from "react-icons/lu";
 import EventForm from "./EventForm";
 
-type EditEventFormProps  = {
-  month: Date
-}
+type EditEventFormProps = {
+  month: Date;
+};
 
-export default function EditEventsForm({month} : EditEventFormProps) {
+export default function EditEventsForm({ month }: EditEventFormProps) {
   const { data: events, isLoading, isError, error } = useCachedEvents(month);
   const [selectedEvent, setSelectedEvent] = useState<FirebaseEvent | null>(
     null,
@@ -85,7 +85,7 @@ export default function EditEventsForm({month} : EditEventFormProps) {
 
   if (isLoading) {
     return (
-      <div className="flex pt-20 items-center justify-center">
+      <div className="flex items-center justify-center pt-20">
         <span className="animate-spin text-5xl text-gray-800">
           <LuLoader2 />
         </span>
@@ -150,7 +150,7 @@ export default function EditEventsForm({month} : EditEventFormProps) {
       )}
       {showEditForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-3 backdrop-blur-sm">
-          <div className="max-h-[80vh] w-full max-w-2xl overflow-auto rounded-lg bg-white py-6 px-5">
+          <div className="max-h-[80vh] w-full max-w-2xl overflow-auto rounded-lg bg-white px-5 py-6">
             <div className="flex justify-between">
               <p className="text-2xl font-medium">Edit Event</p>
               <span

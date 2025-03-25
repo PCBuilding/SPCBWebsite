@@ -13,12 +13,12 @@ const BackButton: React.FC = () => {
   return (
     <button
       onClick={handleBack}
-      className="flex items-center gap-2 rounded-md bg-blue-500 px-4 py-2 text-white transition-all hover:bg-blue-600 active:bg-blue-800"
+      className="bg-blue-500 hover:bg-blue-600 active:bg-blue-800 flex items-center gap-2 rounded-md px-4 py-2 transition-all"
     >
       <span className="sm:text-lg">
         <FaLongArrowAltLeft />
       </span>
-     <span className="text-sm sm:text-base">Back</span>
+      <span className="text-sm sm:text-base">Back</span>
     </button>
   );
 };

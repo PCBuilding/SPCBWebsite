@@ -89,7 +89,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70" />
 
               {/* Title and info at the top */}
-              <div className="absolute inset-x-0 top-0 p-4">
+              <div className="absolute inset-x-0 top-0 p-6">
                 <h2 className="text-xl font-bold tracking-tight text-white drop-shadow-md md:text-2xl">
                   {project.Title}
                 </h2>
@@ -139,7 +139,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Right side - Only tabs and their content - NOW SCROLLABLE */}
           <div className="relative flex w-full flex-1 flex-col overflow-hidden md:w-3/5">
             {/* Tabs with fixed mobile layout - sticky */}
-            <div className="sticky top-0 z-10 flex overflow-x-auto border-b border-white/10 bg-[#0a101c] pb-px">
+            <div className="sticky top-0 z-10 flex overflow-x-auto border-b border-white/10 bg-[#0a101c] pb-px pt-1">
               {(["description", "specs", "builders"] as const).map((tab) => (
                 <button
                   key={tab}

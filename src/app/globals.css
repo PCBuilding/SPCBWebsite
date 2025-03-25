@@ -16,7 +16,8 @@ textarea {
 }
 
 body {
-  font-family: "Space Grotesk", serif !important;
+  /* font-family: "Space Grotesk", serif !important; */
+  font-family: "Space Mono", serif;
   background-color: #ffffff;
   overflow-x: hidden;
 }
@@ -74,12 +75,6 @@ body {
 .grad {
   background: linear-gradient(0deg, #4255f922, #080d14);
   filter: blur(20px);
-}
-
-/*  monospace font - will update later */
-
-.m {
-  font-family: "Space Mono", serif;
 }
 
 /* fade background of hero */

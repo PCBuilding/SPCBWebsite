@@ -21,7 +21,7 @@ export default function Dashboard() {
             className="flex flex-col items-center gap-4 rounded-md border border-gray-200 bg-[#fafafa] p-4 transition-all hover:bg-gray-200 sm:gap-6 sm:p-6"
           >
             <p className="text-xl sm:text-2xl">Events</p>
-            <span className="text-6xl text-blue-500 sm:text-[120px]">
+            <span className="text-blue-500 text-6xl sm:text-[120px]">
               <FaCalendarAlt />
             </span>
             <p className="text-center text-sm sm:text-base">
@@ -33,7 +33,7 @@ export default function Dashboard() {
             className="flex flex-col items-center gap-4 rounded-md border border-gray-200 bg-[#fafafa] p-4 transition-all hover:bg-gray-200 sm:gap-6 sm:p-6"
           >
             <p className="text-xl sm:text-2xl">Projects</p>
-            <span className="text-6xl text-blue-500 sm:text-[120px]">
+            <span className="text-blue-500 text-6xl sm:text-[120px]">
               <BsPcDisplay />
             </span>
             <p className="text-center text-sm sm:text-base">
@@ -45,7 +45,7 @@ export default function Dashboard() {
             className="flex flex-col items-center gap-4 rounded-md border border-gray-200 bg-[#fafafa] p-4 transition-all hover:bg-gray-200 sm:gap-6 sm:p-6"
           >
             <p className="text-xl sm:text-2xl">Inventory</p>
-            <span className="text-6xl text-blue-500 sm:text-[120px]">
+            <span className="text-blue-500 text-6xl sm:text-[120px]">
               <FaBoxOpen />
             </span>
             <p className="text-center text-sm sm:text-base">
@@ -57,7 +57,7 @@ export default function Dashboard() {
             className="flex flex-col items-center gap-4 rounded-md border border-gray-200 bg-[#fafafa] p-4 transition-all hover:bg-gray-200 sm:gap-6 sm:p-6"
           >
             <p className="text-xl sm:text-2xl">Analytics</p>
-            <span className="text-6xl text-blue-500 sm:text-[120px]">
+            <span className="text-blue-500 text-6xl sm:text-[120px]">
               <FaChartLine />
             </span>
             <p className="text-center text-sm sm:text-base">
