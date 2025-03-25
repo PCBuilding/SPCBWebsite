@@ -8,6 +8,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/react-query/queryClient";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { trackPageView } from "@/lib/firebase/analytics";
 
 export default function ClientLayout({
   children,
@@ -22,13 +23,16 @@ export default function ClientLayout({
   const isAdminRoute = pathname?.startsWith("/dashboard");
 
   useEffect(() => {
-      if(isAdminRoute) {
-        document.body.style.backgroundColor = "#fff"
-      }
-      else {
-        document.body.style.backgroundColor = "#080d14"
-      }
-  },[isAdminRoute])
+    if (isAdminRoute) {
+      document.body.style.backgroundColor = "#fff";
+    } else {
+      document.body.style.backgroundColor = "#080d14";
+    }
+  }, [isAdminRoute]);
+
+  useEffect(() => {
+    trackPageView(pathname);
+  }, [pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>

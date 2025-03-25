@@ -1,9 +1,8 @@
-// components/decorations/GlowingLine.tsx
 import React from "react";
 
 interface GlowingLineProps {
-  xPoints: string[];
-  yPoints: string[];
+  xPoints: (string | number)[];
+  yPoints: (string | number)[];
   color?: string;
   thickness?: number;
   circleSize?: number;
@@ -19,13 +18,13 @@ const GlowingLine: React.FC<GlowingLineProps> = ({
   className = "",
 }) => {
   const createLineSegments = () => {
-    const segments = [];
+    const segments: JSX.Element[] = [];
 
     for (let i = 0; i < xPoints.length - 1; i++) {
-      const x1 = parseFloat(xPoints[i]);
-      const y1 = parseFloat(yPoints[i]);
-      const x2 = parseFloat(xPoints[i + 1]);
-      const y2 = parseFloat(yPoints[i + 1]);
+      const x1 = parseFloat(xPoints[i].toString());
+      const y1 = parseFloat(yPoints[i].toString());
+      const x2 = parseFloat(xPoints[i + 1].toString());
+      const y2 = parseFloat(yPoints[i + 1].toString());
 
       // For vertical lines
       if (x1 === x2) {
@@ -37,12 +36,12 @@ const GlowingLine: React.FC<GlowingLineProps> = ({
             style={{
               width: `${thickness}px`,
               height: `${height}%`,
-              backgroundColor: color,
+              backgroundColor: `${color}dd`,
               left: `${x1}%`,
               top: `${Math.min(y1, y2)}%`,
-              boxShadow: `0 0 150px 7px ${color}`,
+              boxShadow: `0 0 60px 7px ${color}99`,
             }}
-          />,
+          />
         );
       }
       // For horizontal lines
@@ -55,19 +54,19 @@ const GlowingLine: React.FC<GlowingLineProps> = ({
             style={{
               width: `${width}%`,
               height: `${thickness}px`,
-              backgroundColor: color,
+              backgroundColor: `${color}dd`,
               left: `${Math.min(x1, x2)}%`,
               top: `${y1}%`,
-              boxShadow: `0 0 150px 7px ${color}`,
+              boxShadow: `0 0 60px 7px ${color}99`,
             }}
-          />,
+          />
         );
       }
     }
     return segments;
   };
 
-  // Calculate circle position adjustment based on thickness
+  // Calculate circle position adjustment based on thickness.
   const circleOffset = thickness / 2;
 
   return (
@@ -85,7 +84,6 @@ const GlowingLine: React.FC<GlowingLineProps> = ({
           backgroundColor: color,
           borderRadius: "50%",
           transform: "translate(-50%, -50%)",
-          boxShadow: `0 0 150px 7px ${color}`,
         }}
       />
 
@@ -100,7 +98,6 @@ const GlowingLine: React.FC<GlowingLineProps> = ({
           backgroundColor: color,
           borderRadius: "50%",
           transform: "translate(-50%, -50%)",
-          boxShadow: `0 0 150px 7px ${color}`,
         }}
       />
     </div>
