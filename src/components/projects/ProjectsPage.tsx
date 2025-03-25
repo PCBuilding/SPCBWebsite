@@ -50,6 +50,22 @@ export default function ProjectsPage() {
     fetchProjects();
   }, []);
 
+  useEffect(() => {
+    // When selectedProject changes (modal opens/closes)
+    if (selectedProject) {
+      // Prevent scrolling on the main page when modal is open
+      document.body.style.overflow = "hidden";
+    } else {
+      // Re-enable scrolling when modal is closed
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup function to ensure scrolling is re-enabled if component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
+
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden">
       {/* Applied noise background for consistency */}
@@ -123,7 +139,7 @@ export default function ProjectsPage() {
                   <img
                     src={project.Image}
                     alt={project.Title}
-                    className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform"
                   />
                 </div>
 
