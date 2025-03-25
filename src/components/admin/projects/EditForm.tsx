@@ -206,7 +206,7 @@ export default function EditForm() {
               <div className="flex gap-2">
                 <button
                   onClick={() => handleEditClick(project)}
-                  className="rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
+                  className="bg-blue-500 hover:bg-blue-600 rounded bg-gray-300 px-4 py-2 transition-colors"
                 >
                   Edit
                 </button>

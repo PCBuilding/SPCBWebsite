@@ -50,10 +50,25 @@ export default function ProjectsPage() {
     fetchProjects();
   }, []);
 
+  useEffect(() => {
+    // When selectedProject changes (modal opens/closes)
+    if (selectedProject) {
+      // Prevent scrolling on the main page when modal is open
+      document.body.style.overflow = "hidden";
+    } else {
+      // Re-enable scrolling when modal is closed
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup function to ensure scrolling is re-enabled if component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
+
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden">
       {/* Applied noise background for consistency */}
-      <div className="noise-bg" />
 
       {/* Hero Section with Title */}
       <div className="relative flex min-h-[40vh] items-center justify-center">
@@ -109,7 +124,7 @@ export default function ProjectsPage() {
       <div className="container mx-auto px-4 py-16">
         {loading ? (
           <div className="flex h-64 items-center justify-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+            <div className="border-blue-500 h-8 w-8 animate-spin rounded-full border-4 border-t-transparent"></div>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -124,7 +139,7 @@ export default function ProjectsPage() {
                   <img
                     src={project.Image}
                     alt={project.Title}
-                    className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform"
                   />
                 </div>
 

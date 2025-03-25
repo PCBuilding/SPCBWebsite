@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -16,7 +16,8 @@ textarea {
 }
 
 body {
-  font-family: "Space Grotesk", serif !important;
+  /* font-family: "Space Grotesk", serif !important; */
+  font-family: "Space Mono", serif;
   background-color: #ffffff;
   overflow-x: hidden;
 }
@@ -76,15 +77,7 @@ body {
   filter: blur(20px);
 }
 
-
-/*  monospace font - will update later */
-
-.m {
-  font-family: "Space Mono", serif; 
-}
-
 /* fade background of hero */
-
 
 .hero-btn:hover {
   /* Apply a full (all-around) shadow with #79C7FD */
@@ -92,9 +85,33 @@ body {
 }
 
 .hero-fade {
-  background: linear-gradient(180deg,#080d1400 0%, #080d14 100%);
+  background: linear-gradient(180deg, #080d1400 0%, #080d14 100%);
 }
 
 .about-fade {
-    background: linear-gradient(0deg,#080d1400 0%, #080d14 100%);
+  background: linear-gradient(0deg, #080d1400 0%, #080d14 100%);
+}
+
+/* Custom minimalist scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.2);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.2) transparent;
 }
