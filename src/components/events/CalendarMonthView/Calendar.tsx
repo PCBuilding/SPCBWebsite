@@ -39,20 +39,20 @@ export default function Calendar() {
   };
 
   return (
-    <div className="pt-8 md:pt-12 text-white">
+    <div className="pt-8 md:pt-16 text-white">
       <div className="flex items-end justify-between gap-5">
         <p className="text-lg md:text-3xl">
-         Calendar - {currentMonthName} {currentYear}
+         {currentMonthName} {currentYear}
         </p>
         <div className="flex gap-2">
           <button
-            className="rounded-full p-2 md:hover:bg-[#404040]"
+            className="rounded-full p-2 md:hover:bg-gray-700"
             onClick={handlePrevMonth}
           >
             <FaChevronLeft />
           </button>
           <button
-            className="rounded-full p-2 md:hover:bg-[#404040]"
+            className="rounded-full p-2 md:hover:bg-gray-700"
             onClick={handleNextMonth}
           >
             <FaChevronRight />
@@ -61,7 +61,7 @@ export default function Calendar() {
       </div>
 
       {/* Desktop Days of the Week */}
-      <div className="mt-4 hidden md:grid grid-cols-7 text-center font-semibold">
+      <div className="mt-4 hidden lg:grid grid-cols-7 text-center font-semibold">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
           <div
             key={day}
@@ -73,7 +73,7 @@ export default function Calendar() {
       </div>
 
       {/* Mobile Days of the Week */}
-      <div className="mt-4 md:hidden grid grid-cols-7 text-center font-semibold">
+      <div className="mt-4 lg:hidden grid grid-cols-7 text-center font-semibold">
         {["Su", "M", "T", "W", "Th", "F", "Sa"].map((day) => (
           <div
             key={day}
