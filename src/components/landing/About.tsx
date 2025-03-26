@@ -50,7 +50,8 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative mx-auto max-w-7xl px-10 pt-16 sm:pt-32">
+    // DO OVER FLOW CHANGE HERE
+    <div className="relative mx-auto max-w-7xl overflow-hidden px-10 pt-16 sm:pt-32">
       <motion.img
         src="/landing/tube.png"
         alt=""
