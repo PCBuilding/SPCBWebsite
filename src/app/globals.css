@@ -16,8 +16,8 @@ textarea {
 }
 
 body {
-  /* font-family: "Space Grotesk", serif !important; */
-  font-family: "Space Mono", serif;
+  font-family: "Space Grotesk", serif !important;
+  /* font-family: "Space Mono", serif; */
   background-color: #ffffff;
   overflow-x: hidden;
 }

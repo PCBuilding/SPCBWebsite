@@ -372,7 +372,7 @@ export default function AddForm({
                 {uploadProgress > 0 && uploadProgress < 100 && (
                   <div className="h-2.5 w-full rounded-full bg-gray-200">
                     <div
-                      className="h-2.5 rounded-full bg-blue-600"
+                      className="bg-blue-600 h-2.5 rounded-full"
                       style={{ width: `${uploadProgress}%` }}
                     ></div>
                   </div>
@@ -444,7 +444,7 @@ export default function AddForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-md bg-blue-500 p-3 text-sm text-white disabled:bg-blue-300 sm:text-base"
+          className="bg-blue-500 disabled:bg-blue-300 w-full rounded-md bg-green-500 p-3 text-sm text-white sm:text-base"
         >
           {isSubmitting
             ? "Submitting..."
