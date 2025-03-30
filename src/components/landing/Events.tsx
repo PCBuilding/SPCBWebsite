@@ -34,14 +34,14 @@ const Events: React.FC = () => {
           circleSize={8}
         />
         <GlowingLine
-          xPoints={[isDesktop ? "29" : "28", isDesktop ? "29" : "28"]}
-          yPoints={["-4", "13"]}
+          xPoints={["28", "28"]}
+          yPoints={["-6", "13"]}
           color="#FFA500"
           thickness={3}
           circleSize={8}
         />
         <GlowingLine
-          xPoints={[isDesktop ? "28" : "26", isDesktop ? "28" : "26"]}
+          xPoints={["25", "25"]}
           yPoints={["-3", "14"]}
           color="#FFA500"
           thickness={3}
