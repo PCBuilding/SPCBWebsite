@@ -1,11 +1,10 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const teamImages = Array(15).fill("/about-images/placeholderpic.jpg"); // 15 Placeholder images
+const teamImages = Array(12).fill("/about-images/placeholderpic.jpg"); // 12 Placeholder images
 
 export default function Team() {
   return (
@@ -20,61 +19,44 @@ export default function Team() {
             foster a love for PC building.
           </p>
 
-          {/* Box Structure for Carousel */}
-          <div className="mt-8 py-4 sm:py-5 px-8 rounded-md bg-gray-900 border border-gray-800">
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={15}
-              slidesPerView={1} // Shows 1 full set of 5 images per slide
-              slidesPerGroup={1} // Moves 1 full set per swipe
-              pagination={{ clickable: true }}
-              navigation
-              autoplay={{ delay: 4500 }} // 4.5-second delay before swipe
-              loop={false} // Stops after third slide
-              className="rounded-lg"
-            >
-              {/* Slide 1: First 5 images */}
-              <SwiperSlide>
-                <div className="flex justify-center gap-4">
-                  {teamImages.slice(0, 5).map((src, index) => (
-                    <img
-                      key={index}
-                      src={src}
-                      alt={`Team Member ${index + 1}`}
-                      className="w-full max-w-[180px] h-auto aspect-[4/4] object-cover rounded-lg"
-                    />
-                  ))}
-                </div>
-              </SwiperSlide>
+          {/* Responsive Box Structure for Carousel */}
+          <div className="mt-8 py-4 sm:py-5 px-4 sm:px-8 rounded-md bg-gray-900 border border-gray-800 flex flex-col items-center">
+            <div className="w-full max-w-[100%] sm:max-w-[85%] lg:max-w-[1200px]">
+              <Swiper
+                modules={[Pagination, Autoplay]}
+                spaceBetween={5} // Reduce gap between images
+                breakpoints={{
+                  320: { slidesPerView: 1 }, // Mobile
+                  640: { slidesPerView: 2 }, // Tablets
+                  1024: { slidesPerView: 4 }, // Desktops
+                }}
+                slidesPerGroup={1}
+                pagination={{
+                  clickable: true,
+                  el: ".custom-swiper-pagination",
+                }} // Pagination dots now positioned below
+                autoplay={{ delay: 4500 }}
+                grabCursor={true}
+                allowTouchMove={true}
+                loop={false}
+                className="rounded-lg"
+              >
+                {teamImages.map((src, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="flex justify-center">
+                      <img
+                        src={src}
+                        alt={`Team Member ${index + 1}`}
+                        className="w-[90%] sm:w-[95%] lg:w-[280px] h-auto aspect-[4/3] object-cover rounded-lg"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
 
-              {/* Slide 2: Next 5 images */}
-              <SwiperSlide>
-                <div className="flex justify-center gap-4">
-                  {teamImages.slice(5, 10).map((src, index) => (
-                    <img
-                      key={index}
-                      src={src}
-                      alt={`Team Member ${index + 6}`}
-                      className="w-full max-w-[180px] h-auto aspect-[4/4] object-cover rounded-lg"
-                    />
-                  ))}
-                </div>
-              </SwiperSlide>
-
-              {/* Slide 3: Last 5 images */}
-              <SwiperSlide>
-                <div className="flex justify-center gap-4">
-                  {teamImages.slice(10, 15).map((src, index) => (
-                    <img
-                      key={index}
-                      src={src}
-                      alt={`Team Member ${index + 11}`}
-                      className="w-full max-w-[180px] h-auto aspect-[4/4] object-cover rounded-lg"
-                    />
-                  ))}
-                </div>
-              </SwiperSlide>
-            </Swiper>
+            {/* Pagination Dots Positioned Below */}
+            <div className="custom-swiper-pagination mt-6 flex justify-center"></div>
           </div>
         </div>
       </div>
