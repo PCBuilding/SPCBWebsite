@@ -50,7 +50,6 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    // DO OVER FLOW CHANGE HERE
     <div className="relative mx-auto max-w-7xl overflow-hidden px-10 pt-16 sm:pt-32">
       <motion.img
         src="/landing/tube.png"
@@ -98,7 +97,7 @@ const About: React.FC = () => {
 
             {/* Main line decorators - Desktop only */}
             <GlowingLine
-              xPoints={["34", "42"]}
+              xPoints={["35", "43"]}
               yPoints={["16", "16"]}
               color="#FFA500"
               thickness={3}
@@ -106,7 +105,7 @@ const About: React.FC = () => {
             />
             <GlowingLine
               xPoints={["30", "45"]}
-              yPoints={["18", "18"]}
+              yPoints={["19", "19"]}
               color="#FFA500"
               thickness={3}
               circleSize={6}
@@ -136,45 +135,45 @@ const About: React.FC = () => {
             {/* Blue decorative lines Group1 - Desktop only */}
             <GlowingLine
               xPoints={["4", "10"]}
-              yPoints={["5", "5"]}
+              yPoints={["4", "4"]}
               color="#1E90FF"
               thickness={2}
               circleSize={6}
             />
             <GlowingLine
-              xPoints={["1", "16"]}
+              xPoints={["0", "16"]}
               yPoints={["6", "6"]}
               color="#1E90FF"
               thickness={2}
               circleSize={6}
             />
             <GlowingLine
-              xPoints={["2", "14"]}
+              xPoints={["2", "11"]}
               yPoints={["7", "7"]}
               color="#1E90FF"
               thickness={2}
               circleSize={6}
             />
 
-            {/* Blue decorative lines Group2 - Desktop only */}
+            {/* Blue decorative lines AT TOP - Desktop only */}
             <GlowingLine
-              xPoints={["72", "90"]}
-              yPoints={["35", "35"]}
+              xPoints={["28", "71"]}
+              yPoints={["-7.75", "-7.75"]}
               color="#1E90FF"
-              thickness={2}
+              thickness={3}
               circleSize={6}
             />
-            <GlowingLine
-              xPoints={["70", "87"]}
-              yPoints={["36", "36"]}
+            {/* <GlowingLine
+              xPoints={["27", "72"]}
+              yPoints={["-6.5", "-6.5"]}
               color="#1E90FF"
-              thickness={2}
+              thickness={3}
               circleSize={6}
-            />
+            /> */}
 
             {/* Blue decorative lines Group3 - Desktop only */}
             <GlowingLine
-              xPoints={["10", "20"]}
+              xPoints={["12", "20"]}
               yPoints={["67", "67"]}
               color="#1E90FF"
               thickness={2}
@@ -189,7 +188,7 @@ const About: React.FC = () => {
             />
             <GlowingLine
               xPoints={["9", "14"]}
-              yPoints={["69", "69"]}
+              yPoints={["70", "70"]}
               color="#1E90FF"
               thickness={2}
               circleSize={6}
@@ -199,22 +198,15 @@ const About: React.FC = () => {
           // Mobile Main Line - Vertical line through the middle
           <>
             <GlowingLine
-              xPoints={["30", "30"]}
-              yPoints={["3", "6"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-            <GlowingLine
               xPoints={["58", "58"]}
-              yPoints={["16", "38"]}
+              yPoints={["16", "37"]}
               color="#FFA500"
               thickness={3}
               circleSize={8}
             />
             <GlowingLine
               xPoints={["36", "36"]}
-              yPoints={["49", "71"]}
+              yPoints={["49", "70"]}
               color="#FFA500"
               thickness={3}
               circleSize={8}
@@ -266,10 +258,10 @@ const AboutItem: React.FC<AboutItemProps> = ({ info, index }) => {
       {isEven ? (
         <>
           <div className="flex flex-col items-center justify-between gap-3 text-center sm:gap-4 md:items-start md:text-left">
-            <p className="balance max-w-[320px] text-3xl leading-[1.2] sm:max-w-[410px] sm:text-4xl lg:text-4xl xl:leading-[1.2]">
+            <p className="balance max-w-[320px] text-center text-3xl leading-[1.2] sm:max-w-[410px] sm:text-4xl lg:text-4xl xl:leading-[1.2]">
               {info.title}
             </p>
-            <p className="max-w-[445px] text-balance text-lg text-dull lg:text-xl">
+            <p className="max-w-[445px] text-balance text-center text-lg text-dull lg:text-xl">
               {info.desc}
             </p>
           </div>
@@ -289,10 +281,10 @@ const AboutItem: React.FC<AboutItemProps> = ({ info, index }) => {
           </div>
 
           <div className="order-first flex flex-col items-center justify-between gap-3 text-center sm:gap-4 md:order-last md:items-end md:text-right">
-            <p className="balance max-w-[320px] text-3xl leading-[1.2] sm:max-w-[410px] sm:text-4xl lg:text-4xl xl:leading-[1.2]">
+            <p className="balance max-w-[320px] text-center text-3xl leading-[1.2] sm:max-w-[410px] sm:text-4xl lg:text-4xl xl:leading-[1.2]">
               {info.title}
             </p>
-            <p className="max-w-[445px] text-balance text-lg text-dull lg:text-xl">
+            <p className="max-w-[445px] text-balance text-center text-lg text-dull lg:text-xl">
               {info.desc}
             </p>
           </div>
