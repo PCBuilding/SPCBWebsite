@@ -28,19 +28,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.noise-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.02;
-  background:
-    repeating-radial-gradient(#fff 0 0.0001%, #000 0 0.0002%) 50% 0/2500px
-      2500px,
-    repeating-conic-gradient(#fff 0 0.0001%, #000 0 0.0002%) 50% 50%/2500px
-      2500px;
-  background-blend-mode: difference;
-}
+
 
 .monthly-event {
   background: radial-gradient(
@@ -80,7 +68,7 @@ body {
 
 .hero-btn:hover {
   /* Apply a full (all-around) shadow with #79C7FD */
-  box-shadow: 0 0 20px 5px rgba(121, 199, 253, 0.7);
+  box-shadow: 0 0 16px 4px rgba(121, 199, 253, 0.7);
 }
 
 .hero-fade {
@@ -91,26 +79,3 @@ body {
   background: linear-gradient(0deg, #080d1400 0%, #080d14 100%);
 }
 
-/* Custom minimalist scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.2);
-  border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.5);
-}
-
-/* Firefox */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(59, 130, 246, 0.2) transparent;
-}

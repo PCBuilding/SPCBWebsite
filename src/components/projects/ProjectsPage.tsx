@@ -1,35 +1,46 @@
+"use client";
+
+
 import GlowingLine from "@/components/decorations/GlowingLine";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase/firebase";
 import { Project } from "@/types/project";
 import ProjectModal from "./ProjectModal";
+import dynamic from "next/dynamic";
+import { ArrowUpRight } from "lucide-react";
+
+
+
 
 const sortProjects = (projects: Project[]) => {
   const termOrder = { Fall: 3, Summer: 2, Spring: 1 };
 
+
   return [...projects].sort((a, b) => {
-    // First compare years
     if (a.semester.year !== b.semester.year) {
-      return b.semester.year - a.semester.year; // Descending order
+      return b.semester.year - a.semester.year;
     }
 
-    // If years are equal, compare terms
+
     const termComparison =
       termOrder[b.semester.term] - termOrder[a.semester.term];
     if (termComparison !== 0) {
       return termComparison;
     }
 
-    // If terms are equal, compare dates
+
     return b.buildDate.toMillis() - a.buildDate.toMillis();
   });
 };
+
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [imageLoaded, setImageLoaded] = useState<Record<string, boolean>>({});
+
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -47,32 +58,29 @@ export default function ProjectsPage() {
       }
     };
 
+
     fetchProjects();
   }, []);
 
+
   useEffect(() => {
-    // When selectedProject changes (modal opens/closes)
     if (selectedProject) {
-      // Prevent scrolling on the main page when modal is open
       document.body.style.overflow = "hidden";
     } else {
-      // Re-enable scrolling when modal is closed
       document.body.style.overflow = "";
     }
 
-    // Cleanup function to ensure scrolling is re-enabled if component unmounts
+
     return () => {
       document.body.style.overflow = "";
     };
   }, [selectedProject]);
 
+
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden">
-      {/* Applied noise background for consistency */}
-
-      {/* Hero Section with Title */}
+      {/* Hero */}
       <div className="relative flex min-h-[40vh] items-center justify-center">
-        {/* Decorative Lines */}
         <GlowingLine
           xPoints={["-1", "20"]}
           yPoints={["40", "40"]}
@@ -109,10 +117,10 @@ export default function ProjectsPage() {
           circleSize={6}
         />
 
-        {/* Title Content */}
+
         <div className="z-10 text-center">
-          <h1 className="my-4 mt-32 text-5xl font-bold text-white">
-            Our Projects
+          <h1 className="my-4 mt-32 text-4xl font-bold text-white">
+            Latest Projects
           </h1>
           <p className="text-lg text-gray-300">
             Discover our latest custom PC builds
@@ -120,11 +128,32 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      {/* Projects Grid */}
-      <div className="container mx-auto px-4 py-16">
+
+      {/* Projects */}
+      <div className="container mx-auto px-4 py-10">
         {loading ? (
-          <div className="flex h-64 items-center justify-center">
-            <div className="border-blue-500 h-8 w-8 animate-spin rounded-full border-4 border-t-transparent"></div>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <div key={index} className="animate-pulse rounded-sm p-4">
+                {/* Image Skeleton */}
+                <div className="aspect-video w-full rounded-sm bg-gray-900" />
+
+
+                {/* Title Skeleton */}
+                <div className="mt-4 h-6 w-3/4 rounded bg-gray-800" />
+
+
+                {/* Date Skeleton */}
+                <div className="mt-2 h-4 w-1/2 rounded bg-gray-800" />
+
+
+                {/* Description Skeleton */}
+                <div className="mt-3 space-y-2">
+                  <div className="h-4 w-full rounded bg-gray-800" />
+                  <div className="h-4 w-5/6 rounded bg-gray-800" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -132,25 +161,40 @@ export default function ProjectsPage() {
               <div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className="group relative cursor-pointer overflow-hidden rounded-lg bg-gray-950 p-4 shadow-white-glow transition-transform hover:scale-105"
+                className="group relative cursor-pointer overflow-hidden rounded-sm p-4"
               >
                 {/* Project Image */}
-                <div className="aspect-video overflow-hidden rounded-lg">
+                <div className="relative aspect-video overflow-hidden rounded-sm bg-gray-900">
+                  {!imageLoaded[project.id] && (
+                    <div className="absolute inset-0 z-10 animate-pulse bg-gray-900" />
+                  )}
                   <img
                     src={project.Image}
                     alt={project.Title}
-                    className="h-full w-full object-cover transition-transform"
+                    onLoad={() =>
+                      setImageLoaded((prev) => ({
+                        ...prev,
+                        [project.id]: true,
+                      }))
+                    }
+                    className={`h-full w-full object-cover transition-transform group-hover:scale-105 ${
+                      !imageLoaded[project.id] ? "opacity-0" : "opacity-100"
+                    } transition-opacity`}
                   />
                 </div>
 
+
                 {/* Project Info */}
                 <div className="mt-4">
-                  <h3 className="text-xl font-bold text-white">
-                    {project.Title}
+                  <h3 className="flex items-center gap-1 text-xl font-bold text-white group-hover:underline">
+                    {project.Title} <ArrowUpRight className="w-5" />
                   </h3>
-                  <p className="mt-2 line-clamp-2 text-gray-300">
+                  <p className="mt-2 text-gray-400">
                     {project.semester.term + " " + project.semester.year}
                   </p>
+                  <TruncatedText className="pt-2">
+                    {project.Description}
+                  </TruncatedText>
                 </div>
               </div>
             ))}
@@ -158,7 +202,8 @@ export default function ProjectsPage() {
         )}
       </div>
 
-      {/* Project Modal */}
+
+      {/* Modal */}
       {selectedProject && (
         <ProjectModal
           project={selectedProject}
@@ -168,3 +213,41 @@ export default function ProjectsPage() {
     </div>
   );
 }
+
+
+type Props = {
+  children: string;
+  lines?: number;
+  className?: string;
+};
+
+
+const TruncatedText: React.FC<Props> = ({
+  children,
+  lines = 2,
+  className = "",
+}) => {
+  const clampClass =
+    {
+      1: "line-clamp-1",
+      2: "line-clamp-2",
+      3: "line-clamp-3",
+      4: "line-clamp-4",
+      5: "line-clamp-5",
+      6: "line-clamp-6",
+    }[lines] || "line-clamp-2";
+
+
+  return (
+    <p
+      className={`overflow-hidden text-ellipsis break-words text-gray-300 ${clampClass} ${className}`}
+    >
+      {children}
+    </p>
+  );
+};
+
+
+
+
+
