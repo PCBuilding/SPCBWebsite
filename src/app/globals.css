@@ -29,20 +29,6 @@ body {
   background-repeat: no-repeat;
 }
 
-.noise-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.02;
-  background:
-    repeating-radial-gradient(#fff 0 0.0001%, #000 0 0.0002%) 50% 0/2500px
-      2500px,
-    repeating-conic-gradient(#fff 0 0.0001%, #000 0 0.0002%) 50% 50%/2500px
-      2500px;
-  background-blend-mode: difference;
-}
-
 .monthly-event {
   background: radial-gradient(
       138.71% 110.11% at 93.15% -36.58%,
@@ -81,7 +67,7 @@ body {
 
 .hero-btn:hover {
   /* Apply a full (all-around) shadow with #79C7FD */
-  box-shadow: 0 0 20px 5px rgba(121, 199, 253, 0.7);
+  box-shadow: 0 0 16px 4px rgba(121, 199, 253, 0.7);
 }
 
 .hero-fade {
@@ -92,26 +78,26 @@ body {
   background: linear-gradient(0deg, #080d1400 0%, #080d14 100%);
 }
 
-/* Custom minimalist scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+
+/* infinite carousel */
+
+.scroller-list {
+  list-style: none;
+  flex-shrink: 0;
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  animation: scroll 20s linear infinite;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+.scroller-container:hover .scroller-list{
+  animation-play-state: paused;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.2);
-  border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.5);
-}
-
-/* Firefox */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(59, 130, 246, 0.2) transparent;
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-100% - 16px));
+  }
 }
