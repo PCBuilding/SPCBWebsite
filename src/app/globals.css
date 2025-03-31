@@ -28,8 +28,6 @@ body {
   background-repeat: no-repeat;
 }
 
-
-
 .monthly-event {
   background: radial-gradient(
       138.71% 110.11% at 93.15% -36.58%,
@@ -79,3 +77,26 @@ body {
   background: linear-gradient(0deg, #080d1400 0%, #080d14 100%);
 }
 
+
+/* infinite carousel */
+
+.scroller-list {
+  list-style: none;
+  flex-shrink: 0;
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  animation: scroll 20s linear infinite;
+}
+
+.scroller-container:hover .scroller-list{
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-100% - 16px));
+  }
+}
