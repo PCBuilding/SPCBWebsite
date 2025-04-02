@@ -138,7 +138,7 @@ export default function Hero() {
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <p className="text-center  text-dull pb-5">
+                <p className="text-center text-sm sm:text-base text-dull pb-5">
                   Led by a team of officers with experience at:
                 </p>
                 <div className="hidden items-center gap-6 opacity-70 md:flex">
