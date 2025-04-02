@@ -10,7 +10,7 @@ const Website = () => {
   return (
     <div className="min-h-screen w-full bg-[#080d14] text-white">
       <Hero />
-      {/* <About /> */}
+      <About />
       <DiscordPC/>
       <Events />
       <Faq />

@@ -1,119 +1,94 @@
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 mt-28 flex justify-end">
-      <div className="grid min-h-[420px] w-full max-w-[1600px] grid-cols-1 items-center lg:grid-cols-3">
-        <div className="flex flex-col gap-6 pl-10 text-white">
-          <figure>
-            <Image
-              src={"/navbar/logo.png"}
-              width={160}
-              height={160}
-              alt=""
-              className="h-32 w-32 sm:h-48 sm:w-48"
-            />
-          </figure>
-          <p className="text-2xl font-semibold sm:text-4xl">
-            Proudly Building PCs.
-          </p>
-          <div className="flex gap-3 md:gap-4">
-            <Link
-              href="https://www.linkedin.com/company/the-society-of-pc-building"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform hover:scale-110"
-            >
-              <Image
-                src="/landing/linkedin.png"
-                alt="LinkedIn"
-                width={30}
-                height={30}
-                className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-              />
-            </Link>
-            <Link
-              href="https://www.instagram.com/pcbuildinguf/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform hover:scale-110"
-            >
-              <Image
-                src="/landing/instagram.png"
-                alt="Instagram"
-                width={30}
-                height={30}
-                className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-              />
-            </Link>
-            <Link
-              href="https://discord.com/invite/jfq9phWqTF"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform hover:scale-110"
-            >
-              <Image
-                src="/landing/discord.png"
-                alt="Discord"
-                width={30}
-                height={30}
-                className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-              />
-            </Link>
-            <Link
-              href="https://linktr.ee/pcbuildinguf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform hover:scale-110"
-            >
-              <Image
-                src="/landing/linktree.png"
-                alt="Linktree"
-                width={30}
-                height={30}
-                className="h-[30px] w-[30px] md:h-[40px] md:w-[40px]"
-              />
-            </Link>
+    <footer className="relative mt-48 min-h-96 border-t border-gray-900 text-white">
+      <Image
+        src="/hero/hero-background.png"
+        alt="Lights Background"
+        fill
+        priority
+        sizes="100vw"
+        quality={100} // Increase image quality (0-100)
+        className="absolute left-0 right-0 top-0 z-0 object-cover"
+      />
+      <div className="absolute inset-0 z-10 bg-[#080d14ec] backdrop-blur-md" />
+      <div className="relative z-20 mx-auto flex max-w-6xl px-6 pb-12 pt-16 sm:px-10">
+        <div className="max-w-[250px]">
+          <div>
+            <Image src={"/navbar/logo.png"} width={100} height={100} alt="" />
+            <p className="pt-4 text-2xl font-medium">Proudly Building PCs.</p>
+            <p className="border-b border-gray-800 py-2 text-sm text-dull">
+              © 2025 The Society of PC Building. <br />
+              All rights reserved.
+            </p>
           </div>
-          <p className="text-sm opacity-80">
-            &copy; {new Date().getFullYear()} The Society of PC Building. All
-            rights reserved.
-          </p>
+          <div className="mt-4">
+            <p className="text-sm">
+              Made in Collaboration with Gator User Design.{" "}
+              <a
+                href="https://www.instagram.com/gatoruserdesign/"
+                target="_blank"
+                className="hover:underline"
+              >
+                Check us out <ArrowUpRight size={16} className="inline" />
+              </a>
+            </p>
+            <div className="w-14">
+              <a
+                href="https://www.instagram.com/gatoruserdesign/"
+                target="_blank"
+              >
+                <Image
+                  src={"/iconography/gud-color.png"}
+                  width={56}
+                  height={56}
+                  alt=""
+                  className="mt-4 rounded-full border border-gray-700"
+                />
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="footer-clip-path flex h-full min-h-80 flex-col items-center justify-center bg-white text-black px-16 sm:px-20 pt-20 lg:col-span-2">
-          <p className="max-w-[417px] text-2xl font-bold sm:text-4xl flex flex-col-reverse sm:flex-row items-center gap-2">
-            Gator User Design{" "}
-            <Image
-              src={"/iconography/gud-color.png"}
-              width={80}
-              height={80}
-              alt=""
-              className="h-14 w-14 sm:h-20 sm:w-20"
-            />{" "}
-          </p>
-          <div className="flex w-full max-w-[416px] items-start justify-center sm:justify-start">
-            <Link
+        <div className="grid grid-cols-3 items-start gap-12 pl-32 pt-[116px]">
+          <div className="grid gap-4">
+            <p className="text-dull">Socials</p>
+            <a target="_blank" href="https://discord.com/invite/jfq9phWqTF">
+              Discord
+            </a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/company/the-society-of-pc-building"
+            >
+              LinkedIn
+            </a>
+            <a target="_blank" href="https://www.instagram.com/pcbuildinguf/">
+              Instagram
+            </a>
+            <a target="_blank" href="https://linktr.ee/pcbuildinguf">
+              LinkTree
+            </a>
+          </div>
+          <div className="grid gap-4">
+            <p className="text-dull">Pages</p>
+            <Link href="/">Home</Link>
+            <Link href="/about">About</Link>
+            <Link href="/events">Events</Link>
+            <Link href="/projects">Projects</Link>
+          </div>
+          <div className="grid gap-4">
+            <p className="text-dull">Other</p>
+            <a href="https://github.com/PCBuilding/SPCBWebsite" target="_blank">
+              Source Code
+            </a>
+            <a
               href="https://www.instagram.com/gatoruserdesign/"
               target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-xl text-black hover:underline sm:text-2xl"
             >
-              Check us out
-              <svg
-                className="ml-2 h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </Link>
+              Gator User Design
+            </a>
           </div>
         </div>
       </div>

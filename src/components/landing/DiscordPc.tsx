@@ -8,9 +8,9 @@ export default function DiscordPC() {
           Stay Connected with SPCB on Discord!
         </h3>
         <p className="text-balance pt-4 text-center text-dull">
-          FaciliGator is a smart content aggregator that analyzes video lectures{" "}
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, alias?
           <br className="hidden sm:inline" />
-          and course content to prepare personalized learning materials.{" "}
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum!
         </p>
         <div className="pt-20 sm:pt-28">
           <Mac />
@@ -91,9 +91,7 @@ const Taskbar: React.FC = () => {
 const ScreenMain: React.FC = () => {
   return (
     <div className="flex h-full w-full items-center rounded-sm pl-10 backdrop-blur-sm md:justify-center md:pl-0">
-      
         <img src="/landing/discord-app.png" alt="" className="pb-4"/>
-      
     </div>
   );
 };
