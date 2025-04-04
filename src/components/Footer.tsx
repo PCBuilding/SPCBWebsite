@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-48 min-h-96 border-t border-gray-900 text-white">
+    <footer className="relative mt-24 sm:mt-40 border-t border-gray-900 text-white">
       <Image
         src="/hero/hero-background.png"
         alt="Lights Background"
@@ -15,7 +15,7 @@ export default function Footer() {
         className="absolute left-0 right-0 top-0 z-0 object-cover"
       />
       <div className="absolute inset-0 z-10 bg-[#080d14ec] backdrop-blur-md" />
-      <div className="relative z-20 mx-auto flex max-w-6xl px-6 pb-12 pt-16 sm:px-10">
+      <div className="relative z-20 mx-auto flex flex-col lg:flex-row max-w-6xl px-6 pb-16 pt-16 sm:pt-20 sm:px-10">
         <div className="max-w-[250px]">
           <div>
             <Image src={"/navbar/logo.png"} width={100} height={100} alt="" />
@@ -52,7 +52,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3 items-start gap-12 pl-32 pt-[116px]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 items-start gap-12 lg:pl-32 pt-16 lg:pt-[116px]">
           <div className="grid gap-4">
             <p className="text-dull">Socials</p>
             <a target="_blank" href="https://discord.com/invite/jfq9phWqTF">

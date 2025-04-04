@@ -90,7 +90,7 @@ export default function Hero() {
                   <a
                     href="https://linktr.ee/pcbuildinguf"
                     target="_blank"
-                    className="hero-btn flex items-center justify-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black transition-all duration-300"
+                    className="cta-btn flex items-center justify-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black transition-all duration-300"
                   >
                     Get Involved <FaArrowRightLong />
                   </a>

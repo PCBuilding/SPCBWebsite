@@ -57,7 +57,7 @@ body {
 
 /* Landing Page */
 
-.hero-btn:hover {
+.cta-btn:hover {
   /* Apply a full (all-around) shadow with #79C7FD */
   box-shadow: 0 0 16px 4px rgba(121, 199, 253, 0.7);
 }
