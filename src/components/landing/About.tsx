@@ -47,7 +47,7 @@ const cards: Card[] = [
     border: ["9E3A50", "640D20"],
     icon: "/landing/card-icons/officer.png",
     title: "Become an officer for valuable experience",
-    desc: "We use these fund to fully cater our GBM's and regulary get the latest tech.",
+    desc: "We offer numerous positions that expose officers to leadership and relevent technology.",
   },
 ];
 
