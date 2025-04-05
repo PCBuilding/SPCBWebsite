@@ -3,12 +3,12 @@ import { FaDiscord } from "react-icons/fa";
 
 export default function DiscordPC() {
   return (
-    <div className="overflow-hidden py-32">
+    <div className="overflow-hidden py-28">
       <div className="mx-auto max-w-6xl px-6 sm:px-8">
         <h3 className="text-balance text-center text-3xl font-medium tracking-tight sm:text-[40px]">
           Stay Connected with SPCB on Discord!
         </h3>
-        <p className="text-balance pt-5 text-center text-dull">
+        <p className="text-balance pt-4 text-center text-dull">
           Discord is how we communicate with each other and discuss everything
           related to PC building.
           <br className="hidden sm:inline" />
@@ -17,7 +17,7 @@ export default function DiscordPC() {
         </p>
         <div className="pt-20 sm:pt-24">
           <Mac />
-          <div className="group flex justify-center pt-24">
+          <div className="group flex justify-center mt-24">
             <div className="relative w-[850px] overflow-hidden rounded-md border border-gray-800">
               <img
                 src="/hero/hero-background.png"
@@ -71,6 +71,7 @@ const Screen: React.FC = () => {
           <Image
             height={440}
             width={800}
+            quality={100}
             unoptimized
             src="/landing/discord-pc-bg.png"
             alt=""

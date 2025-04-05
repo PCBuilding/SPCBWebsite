@@ -46,16 +46,16 @@ export default function Hero() {
         priority
         sizes="100vw"
         quality={100} // Increase image quality (0-100)
-        className="absolute left-0 right-0 top-0 z-[11] object-cover opacity-[0.175]"
+        className="absolute left-0 right-0 top-0 z-[11] object-cover opacity-[0.15] sm:opacity-[0.175]"
       />
 
       <div className="relative z-40 flex flex-col items-center px-6 sm:px-10">
         <div className="mx-auto max-w-7xl flex-col items-center">
-          <div className="min-h-9 sm:min-h-14">
+          <div className="min-h-8 sm:min-h-14">
             <AnimatePresence>
               {contentVisible && (
                 <motion.p
-                  className="text-balance pb-2 text-lg text-dull sm:pb-6 sm:text-center sm:text-2xl"
+                  className="text-balance pb-2 text-base text-dull sm:pb-6 sm:text-center sm:text-2xl"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
