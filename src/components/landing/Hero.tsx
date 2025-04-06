@@ -46,16 +46,16 @@ export default function Hero() {
         priority
         sizes="100vw"
         quality={100} // Increase image quality (0-100)
-        className="absolute left-0 right-0 top-0 z-[11] object-cover opacity-[0.175]"
+        className="absolute left-0 right-0 top-0 z-[11] object-cover opacity-[0.15] sm:opacity-[0.175]"
       />
 
       <div className="relative z-40 flex flex-col items-center px-6 sm:px-10">
         <div className="mx-auto max-w-7xl flex-col items-center">
-          <div className="min-h-9 sm:min-h-14">
+          <div className="min-h-8 sm:min-h-14">
             <AnimatePresence>
               {contentVisible && (
                 <motion.p
-                  className="text-balance pb-2 text-lg text-dull sm:pb-6 sm:text-center sm:text-2xl"
+                  className="text-balance pb-2 text-base text-dull sm:pb-6 sm:text-center sm:text-2xl"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -90,7 +90,7 @@ export default function Hero() {
                   <a
                     href="https://linktr.ee/pcbuildinguf"
                     target="_blank"
-                    className="hero-btn flex items-center justify-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black transition-all duration-300"
+                    className="cta-btn flex items-center justify-center gap-2 rounded-lg bg-blue px-8 py-2.5 text-black transition-all duration-300"
                   >
                     Get Involved <FaArrowRightLong />
                   </a>
@@ -138,7 +138,7 @@ export default function Hero() {
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <p className="text-center  text-dull pb-5">
+                <p className="text-center text-sm sm:text-base text-dull pb-5">
                   Led by a team of officers with experience at:
                 </p>
                 <div className="hidden items-center gap-6 opacity-70 md:flex">

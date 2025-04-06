@@ -1,297 +1,207 @@
-import React, { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import EvervaultCard from "./ui/evervault-card";
-import Terminal from "./ui/Connect";
-import AnimatedCountUp from "./ui/Counter";
-import GlowingLine from "@/components/decorations/GlowingLine";
+import React, { useState, useRef, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// Define an interface for the list items.
-interface ListItem {
+const TOTAL_CARDS = 5;
+
+type Card = {
+  bg: string;
+  border: [string, string];
+  icon: string;
   title: string;
   desc: string;
-  children: React.ReactNode;
-}
+};
 
-// Create the list of items using the ListItem interface.
-const listItems: ListItem[] = [
+const cards: Card[] = [
   {
-    title: "Hands-on experience with the latest tech.",
-    desc: "Build PCs, demo the latest technology, and learn new skills, all for free.",
-    children: <EvervaultCard />,
-  },
-  {
+    bg: "/landing/cards/blue.png",
+    border: ["353F57", "191A23"],
+    icon: "/landing/card-icons/social.png",
     title: "Connect with hundreds of tech enthusiasts.",
     desc: "Meet like-minded individuals with industry experience in Computer Science & Engineering.",
-    children: <Terminal />,
   },
   {
+    bg: "/landing/cards/orange.png",
+    border: ["4D402B", "1E1A19"],
+    icon: "/landing/card-icons/pc-parts.png",
+    title: "Hands-on experience with the latest tech.",
+    desc: "Build PCs, demo the latest technology, and learn new skills, all for free.",
+  },
+  {
+    bg: "/landing/cards/green.png",
+    border: ["35533D", "415D48"],
+    icon: "/landing/card-icons/money.png",
     title: "Highest funded student org at UF.",
-    desc: "We fully cater our GBM's and regulary get the latest tech.",
-    children: <AnimatedCountUp />,
+    desc: "We use these fund to fully cater our GBM's and regulary get the latest tech.",
+  },
+  {
+    bg: "/landing/cards/purple.png",
+    border: ["363048", "18171E"],
+    icon: "/landing/card-icons/events.png",
+    title: "Experience engaging and unique events",
+    desc: "Build PCs, demo the latest technology, and learn new skills, all for free.",
+  },
+  {
+    bg: "/landing/cards/red.png",
+    border: ["9E3A50", "640D20"],
+    icon: "/landing/card-icons/officer.png",
+    title: "Become an officer for valuable experience",
+    desc: "We offer numerous positions that expose officers to leadership and relevent technology.",
   },
 ];
 
 const About: React.FC = () => {
-  const [isDesktop, setIsDesktop] = useState<boolean>(false);
-
-  // Type the ref for the heading element.
-  const h3Ref = useRef<HTMLHeadingElement>(null);
-  const isInView = useInView(h3Ref, { once: true });
-
-  // Check if desktop for responsive lines
+  const [sliderIndex, setSliderIndex] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const controls = useAnimation();
+  
   useEffect(() => {
-    const checkIfDesktop = () => {
-      setIsDesktop(window.innerWidth >= 768);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 640);
     };
 
-    checkIfDesktop();
-    window.addEventListener("resize", checkIfDesktop);
-    return () => window.removeEventListener("resize", checkIfDesktop);
+    checkMobile();
+
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Calculate drag constraints based on container width
+  const calculateConstraints = () => {
+    const maxDrag = (TOTAL_CARDS - 1) * (isMobile ? 324 : 424);
+    return {
+      right: 0,
+      left: -maxDrag,
+    };
+  };
+
+  const handleDragEnd = (
+    event: any,
+    info: { offset: { x: number }; velocity: { x: number } },
+  ) => {
+    const offsetX = info.offset.x;
+    const velocity = info.velocity.x;
+
+    // Determine direction based on drag distance and velocity
+    if ((offsetX < -50 || velocity < -500) && sliderIndex < TOTAL_CARDS - 1) {
+      const newIndex = sliderIndex + 1;
+      setSliderIndex(newIndex);
+      controls.start({ x: -(isMobile ? 324 : 424) * newIndex });
+    } else if ((offsetX > 50 || velocity > 500) && sliderIndex > 0) {
+      const newIndex = sliderIndex - 1;
+      setSliderIndex(newIndex);
+      controls.start({ x: -(isMobile ? 324 : 424) * newIndex });
+    } else {
+      // Reset to current position if drag wasn't decisive
+      controls.start({ x: -(isMobile ? 324 : 424) * sliderIndex });
+    }
+  };
+
+  // Handle button navigation
+  const navigateSlider = (direction: "prev" | "next") => {
+    let newIndex = sliderIndex;
+
+    if (direction === "prev" && sliderIndex > 0) {
+      newIndex = sliderIndex - 1;
+    } else if (direction === "next" && sliderIndex < TOTAL_CARDS - 1) {
+      newIndex = sliderIndex + 1;
+    }
+
+    setSliderIndex(newIndex);
+    controls.start({ x: -(isMobile ? 324 : 424) * newIndex });
+  };
+
   return (
-    <div className="relative mx-auto max-w-7xl overflow-hidden px-10 pt-16 sm:pt-32">
-      <motion.img
-        src="/landing/tube.png"
-        alt=""
-        className={`absolute -top-64 left-1/2 z-0 hidden -translate-x-1/2 overflow-hidden transition-all sm:block ${
-          isInView ? "scale-x-100" : "scale-x-[0.25]"
-        } duration-1000`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isInView ? 0.2 : 0 }}
-        transition={{ duration: 1 }}
-      />
+    <div className="overflow-x-hidden">
+      <div className="relative mx-auto max-w-6xl px-6 pt-16 text-center sm:px-10 sm:py-28">
+        <h2 className="text-[40px] font-semibold">Why SPCB?</h2>
+        <p className="pt-4 text-dull">
+          Discover some of the many reasons to join the Society of PC Building
+        </p>
 
-      <div className="relative z-10">
-        <h3
-          ref={h3Ref}
-          className="pb-6 text-center text-[40px] font-medium sm:pb-10"
-        >
-          Why SPCB?
-        </h3>
+        {/* Slider */}
+        <div className="mt-14" ref={containerRef}>
+          <motion.div
+            className="flex cursor-grab flex-nowrap gap-4 sm:gap-16 active:cursor-grabbing"
+            drag="x"
+            // Removed the dragControls prop
+            dragConstraints={calculateConstraints()}
+            dragElastic={0.1}
+            dragMomentum={true}
+            onDragEnd={handleDragEnd}
+            animate={controls}
+            initial={{ x: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            {cards.map((card) => (
+              <CardComponent card={card} key={card.bg} />
+            ))}
+          </motion.div>
+        </div>
 
-        {/* Desktop Main Lines - Only show on desktop */}
-        {isDesktop ? (
-          <>
-            <GlowingLine
-              xPoints={["50", "50", "16", "16"]}
-              yPoints={["5", "17", "17", "29"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-            <GlowingLine
-              xPoints={["14", "14", "82", "82"]}
-              yPoints={["35", "50", "50", "58"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-            <GlowingLine
-              xPoints={["86", "86", "12", "12"]}
-              yPoints={["67", "81", "81", "90"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-
-            {/* Main line decorators - Desktop only */}
-            <GlowingLine
-              xPoints={["35", "43"]}
-              yPoints={["16", "16"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={6}
-            />
-            <GlowingLine
-              xPoints={["30", "45"]}
-              yPoints={["19", "19"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={6}
-            />
-            <GlowingLine
-              xPoints={["83", "83"]}
-              yPoints={["52", "55"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={6}
-            />
-            <GlowingLine
-              xPoints={["30", "45"]}
-              yPoints={["80", "80"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={6}
-            />
-            <GlowingLine
-              xPoints={["34", "46"]}
-              yPoints={["82", "82"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={6}
-            />
-
-            {/* Blue decorative lines Group1 - Desktop only */}
-            <GlowingLine
-              xPoints={["4", "10"]}
-              yPoints={["4", "4"]}
-              color="#1E90FF"
-              thickness={2}
-              circleSize={6}
-            />
-            <GlowingLine
-              xPoints={["0", "16"]}
-              yPoints={["6", "6"]}
-              color="#1E90FF"
-              thickness={2}
-              circleSize={6}
-            />
-            <GlowingLine
-              xPoints={["2", "11"]}
-              yPoints={["7", "7"]}
-              color="#1E90FF"
-              thickness={2}
-              circleSize={6}
-            />
-
-            {/* Blue decorative lines AT TOP - Desktop only */}
-            <GlowingLine
-              xPoints={["28", "71"]}
-              yPoints={["-7.75", "-7.75"]}
-              color="#1E90FF"
-              thickness={3}
-              circleSize={6}
-            />
-            {/* <GlowingLine
-              xPoints={["27", "72"]}
-              yPoints={["-6.5", "-6.5"]}
-              color="#1E90FF"
-              thickness={3}
-              circleSize={6}
-            /> */}
-
-            {/* Blue decorative lines Group3 - Desktop only */}
-            <GlowingLine
-              xPoints={["12", "20"]}
-              yPoints={["67", "67"]}
-              color="#1E90FF"
-              thickness={2}
-              circleSize={6}
-            />
-            <GlowingLine
-              xPoints={["8", "22"]}
-              yPoints={["68", "68"]}
-              color="#1E90FF"
-              thickness={2}
-              circleSize={6}
-            />
-            <GlowingLine
-              xPoints={["9", "14"]}
-              yPoints={["70", "70"]}
-              color="#1E90FF"
-              thickness={2}
-              circleSize={6}
-            />
-          </>
-        ) : (
-          // Mobile Main Line - Vertical line through the middle
-          <>
-            <GlowingLine
-              xPoints={["58", "58"]}
-              yPoints={["16", "37"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-            <GlowingLine
-              xPoints={["36", "36"]}
-              yPoints={["49", "70"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-            <GlowingLine
-              xPoints={["70", "70"]}
-              yPoints={["79.5", "99"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-            {/* Mobile Main Line decorations */}
-            <GlowingLine
-              xPoints={["55", "55"]}
-              yPoints={["25", "36"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-            <GlowingLine
-              xPoints={["39", "39"]}
-              yPoints={["60", "69"]}
-              color="#FFA500"
-              thickness={3}
-              circleSize={8}
-            />
-          </>
-        )}
-
-        <ul className="relative z-10">
-          {listItems.map((info, index) => (
-            <AboutItem key={info.title} info={info} index={index} />
-          ))}
-        </ul>
+        <div className="flex gap-4 pt-12 pb-2">
+          <button
+            onClick={() => navigateSlider("prev")}
+            disabled={sliderIndex === 0}
+            className="rounded-full bg-gray-800 p-3 text-white disabled:opacity-50 hover:shadow-white-glow transition-all duration-200 disabled:shadow-none"
+          >
+            <ChevronLeft className="mr-px"/>
+          </button>
+          <button
+            onClick={() => navigateSlider("next")}
+            disabled={sliderIndex === TOTAL_CARDS - 1}
+            className="rounded-full bg-gray-800 p-3 text-white disabled:opacity-50 hover:shadow-white-glow transition-all duration-200 disabled:shadow-none"
+          >
+            <ChevronRight className="ml-px"/>
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
-interface AboutItemProps {
-  info: ListItem;
-  index: number;
-}
+export default About;
 
-const AboutItem: React.FC<AboutItemProps> = ({ info, index }) => {
-  const isEven = index % 2 === 0;
-  return (
-    <li className="grid gap-8 py-12 sm:py-16 md:grid-cols-2">
-      {isEven ? (
-        <>
-          <div className="flex flex-col items-center justify-between gap-3 text-center sm:gap-4 md:items-start md:text-left">
-            <p className="balance max-w-[320px] text-center text-3xl leading-[1.2] sm:max-w-[410px] sm:text-4xl lg:text-4xl xl:leading-[1.2]">
-              {info.title}
-            </p>
-            <p className="max-w-[445px] text-balance text-center text-lg text-dull lg:text-xl">
-              {info.desc}
-            </p>
-          </div>
+type CardProps = {
+  card: Card;
 
-          <div className="flex justify-center md:justify-end">
-            <div className="aspect-square w-full max-w-96 overflow-hidden rounded-xl border border-[#1a2a3d] bg-[#090f1a]">
-              {info.children}
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="order-last flex justify-center md:order-first md:justify-start">
-            <div className="aspect-square w-full max-w-96 overflow-hidden rounded-xl border border-[#1a2a3d] bg-[#090f1a]">
-              {info.children}
-            </div>
-          </div>
-
-          <div className="order-first flex flex-col items-center justify-between gap-3 text-center sm:gap-4 md:order-last md:items-end md:text-right">
-            <p className="balance max-w-[320px] text-center text-3xl leading-[1.2] sm:max-w-[410px] sm:text-4xl lg:text-4xl xl:leading-[1.2]">
-              {info.title}
-            </p>
-            <p className="max-w-[445px] text-balance text-center text-lg text-dull lg:text-xl">
-              {info.desc}
-            </p>
-          </div>
-        </>
-      )}
-    </li>
-  );
 };
 
-export default About;
+const CardComponent: React.FC<CardProps> = ({ card }) => {
+  return (
+    <div
+      className="rounded-[18px] p-px"
+      style={{
+        background: `linear-gradient(45deg, #${card.border[0]}, #${card.border[1]})`,
+      }}
+    >
+      <div className="relative h-[431px] sm:h-[500px] min-w-[310px] max-w-[320px] sm:max-w-[360px] overflow-hidden rounded-[18px] p-px sm:min-w-[360px]">
+        <img
+          src={card.bg}
+          alt=""
+          className="absolute top-0 left-0 bottom-0 right-0 z-0 select-none object-cover"
+          draggable="false"
+        />
+        <div className="relative z-10 w-full px-6 sm:px-8 py-8 sm:py-10">
+          <div className="border-b border-[#ffffff17] pb-1.5 sm:pb-[18px]">
+            <p className="text-balance text-xl sm:text-2xl font-medium">{card.title}</p>
+            <p className="text-balance pt-3 text-dull">{card.desc}</p>
+          </div>
+          <div className="flex justify-center pt-8 sm:pt-12">
+            <Image
+              src={card.icon}
+              alt=""
+              height={210}
+              width={210}
+              quality={100}
+              className="select-none w-48 sm:w-[210px] h-48 sm:h-[210px]"
+              draggable="false"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -41,7 +41,7 @@ const Events: React.FC = () => {
           circleSize={8}
         />
         <GlowingLine
-          xPoints={["25", "25"]}
+          xPoints={["26.5", "26.5"]}
           yPoints={["-3", "14"]}
           color="#FFA500"
           thickness={3}
