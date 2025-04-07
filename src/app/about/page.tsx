@@ -1,3 +1,4 @@
+//src > app > about > page.tsx
 import Contact from "@/components/about/Contact";
 import Team from "@/components/about/Team";
 import GlowingLine from "@/components/decorations/GlowingLine";
