@@ -19,12 +19,14 @@ export default function AboutPage() {
           />
 
           <GlowingLine
-            xPoints={["-2", "30"]}
-            yPoints={["70", "70"]}
-            color="#1E90FF"
-            thickness={2}
-            circleSize={6}
+          xPoints={["-2", "30"]}
+          yPoints={["70", "70"]}
+          color="#1E90FF"
+          thickness={2}
+          circleSize={6}
+          className="hidden sm:block"
           />
+
           <GlowingLine
             xPoints={["40", "56"]}
             yPoints={["25", "25"]}
@@ -33,6 +35,41 @@ export default function AboutPage() {
             circleSize={6}
             className="hidden md:block"
           />
+          {/* Mobile version - only visible on screens smaller than sm */}
+          <GlowingLine
+          xPoints={["-1", "55"]}  // Adjusted coordinates for mobile
+          yPoints={["89", "89"]}
+          color="#1E90FF"
+          thickness={2}
+          circleSize={6}
+          className="sm:hidden z-10" // Add z-index to ensure visibility
+          />
+           <GlowingLine
+          xPoints={["-1", "35"]}  // Adjusted coordinates for mobile
+          yPoints={["92", "92"]}
+          color="#1E90FF"
+          thickness={2}
+          circleSize={6}
+          className="sm:hidden z-10" // Add z-index to ensure visibility
+          />
+
+          <GlowingLine
+          xPoints={["45", "150"]}  // Adjusted coordinates for mobile
+          yPoints={["220", "220"]}
+          color="#1E90FF"
+          thickness={2}
+          circleSize={6}
+          className="sm:hidden z-10" // Add z-index to ensure visibility
+          />
+           <GlowingLine
+          xPoints={["60", "150"]}  // Adjusted coordinates for mobile
+          yPoints={["223", "223"]}
+          color="#1E90FF"
+          thickness={2}
+          circleSize={6}
+          className="sm:hidden z-10" // Add z-index to ensure visibility
+          />
+
         </div>
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-20 px-6 md:grid-cols-2">
           <div className="space-y-4 text-left">
@@ -46,8 +83,8 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="about-bg relative flex justify-center rounded-md bg-black">
-            <div className="-translate-x-6 -translate-y-6 overflow-hidden rounded-lg shadow-[0_0_15px_6px_rgba(255,255,255,0.3)] sm:-translate-x-10 sm:-translate-y-10">
+          <div className="about-bg relative flex justify-center rounded-md bg-black translate-x-4 sm:translate-x-0">
+            <div className="-translate-x-7 -translate-y-6 overflow-hidden rounded-lg shadow-[0_0_15px_6px_rgba(255,255,255,0.3)] sm:-translate-x-10 sm:-translate-y-10">
               <Image
                 src="/about-images/ethan.jpg"
                 alt="Ethan holding the graphics card"
