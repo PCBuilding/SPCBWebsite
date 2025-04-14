@@ -4,84 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db, storage } from "@/lib/firebase/firebase";
+import "./Team.css";
 
-// Team members data with board types
-const teamMembers = [
-  { 
-    name: "Team Member 1", 
-    role: "President", 
-    boardType: "Executive Board",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 2", 
-    role: "Vice President", 
-    boardType: "Executive Board",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 3", 
-    role: "Treasurer", 
-    boardType: "Executive Board",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 4", 
-    role: "Secretary", 
-    boardType: "Executive Board",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 5", 
-    role: "Event Coordinator", 
-    boardType: "General Board",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 6", 
-    role: "Build Director", 
-    boardType: "General Board",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 7", 
-    role: "Marketing Lead", 
-    boardType: "General Board",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 8", 
-    role: "Outreach Coordinator", 
-    boardType: "General Board",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 9", 
-    role: "Technical Mentor", 
-    boardType: "BLUE Leaders",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 10", 
-    role: "Workshop Lead", 
-    boardType: "BLUE Leaders",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 11", 
-    role: "Community Manager", 
-    boardType: "BLUE Leaders",
-    image: "/about-images/placeholderpic.jpg" 
-  },
-  { 
-    name: "Team Member 12", 
-    role: "Education Lead", 
-    boardType: "BLUE Leaders",
-    image: "/about-images/placeholderpic.jpg" 
-  }
-];
-
-// All board types
+// We'll keep these as constants since they're unlikely to change
 const allBoardTypes = [
   "Executive Board", 
   "General Board", 
@@ -102,81 +29,8 @@ const getGlowColor = (boardType: string) => {
   }
 };
 
-// Define CSS for the glow styles and pagination
-const CustomStyles = () => (
-  <style jsx global>{`
-    .swiper {
-      overflow: hidden !important;
-      padding: 0 8px;
-    }
-    
-    .swiper-slide {
-      padding: 20px 15px 20px;
-      height: auto;
-      margin-top: -15px;
-    }
-    
-    .glow-wrapper {
-      position: relative;
-      margin: 10px 10px 25px;
-      transform: scale(1);
-      transform-origin: center;
-      padding-top: 6px;
-    }
-    
-    .executive-glow {
-      box-shadow: 0 0 15px 6px rgba(255, 165, 0, 0.5);
-    }
-    
-    .general-glow {
-      box-shadow: 0 0 15px 6px rgba(255, 255, 255, 0.5);
-    }
-    
-    .blue-leaders-glow {
-      box-shadow: 0 0 15px 6px rgba(30, 144, 255, 0.5);
-    }
-    
-    .pagination-container {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 24px;
-      background-color: rgba(50, 50, 50, 0.5);
-      border-radius: 20px;
-      backdrop-filter: blur(3px);
-      margin-top: 20px;
-    }
-    
-    .custom-swiper-pagination .swiper-pagination-bullet {
-      width: 10px;
-      height: 10px;
-      margin: 0 5px;
-      background-color: rgba(255, 255, 255, 0.5);
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-    
-    .custom-swiper-pagination .swiper-pagination-bullet-active {
-      background-color: #FFFFFF;
-      opacity: 1;
-      transform: scale(1.2);
-    }
-    
-    .member-info {
-      margin-top: 5px !important;
-      text-align: center;
-      width: 100%;
-    }
-    
-    .team-carousel-container {
-      width: 100%;
-      max-width: 106%;
-      overflow: hidden;
-      padding: 0 15px;
-      margin-left: -3%;
-    }
-  `}</style>
-);
+// CSS styles are now imported from Team.css
+
 // Helper function to get CSS class based on board type
 const getGlowClass = (boardType: string) => {
   switch(boardType) {
@@ -191,17 +45,57 @@ const getGlowClass = (boardType: string) => {
   }
 };
 
+// TypeScript interface for team members
+interface TeamMember {
+  name: string;
+  role: string;
+  boardType: string;
+  imageUrl: string;
+  order: number;
+}
+
 export default function Team() {
+  // State for team members loaded from Firebase
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  // State for loading status
+  const [loading, setLoading] = useState(true);
   // State for selected board types (initially all types are selected)
   const [selectedBoardTypes, setSelectedBoardTypes] = useState<string[]>(allBoardTypes);
   // Filtered team members based on selected board types
-  const [filteredMembers, setFilteredMembers] = useState(teamMembers);
+  const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>([]);
   // Dropdown open/closed state
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   // Reference to the dropdown element
   const dropdownRef = useRef<HTMLDivElement>(null);
   // Reference to the Swiper instance
   const swiperRef = useRef<any>(null);
+  
+  // Fetch team members from Firebase
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        setLoading(true);
+        const teamMembersRef = collection(db, "BoardMembers");
+        // Query with orderBy to sort by the order field
+        const q = query(teamMembersRef, orderBy("order", "asc"));
+        const querySnapshot = await getDocs(q);
+        
+        const members: TeamMember[] = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data() as TeamMember;
+          members.push(data);
+        });
+        
+        setTeamMembers(members);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching team members:", error);
+        setLoading(false);
+      }
+    };
+    
+    fetchTeamMembers();
+  }, []);
   
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -221,7 +115,7 @@ export default function Team() {
     };
   }, [isDropdownOpen]);
   
-  // Filter members when selected board types change
+  // Filter members when selected board types change or when teamMembers changes
   useEffect(() => {
     if (selectedBoardTypes.length === 0) {
       // If no board types selected, show all members
@@ -232,7 +126,7 @@ export default function Team() {
         teamMembers.filter(member => selectedBoardTypes.includes(member.boardType))
       );
     }
-  }, [selectedBoardTypes]);
+  }, [selectedBoardTypes, teamMembers]);
 
   // Add event listeners for mouse interactions
   useEffect(() => {
@@ -290,7 +184,6 @@ export default function Team() {
 
   return (
     <div className="sm:pt-6">
-      <CustomStyles />
       <div className="grad h-32" />
       <div className="px-6 sm:px-10 py-20">
         <div className="mx-auto max-w-7xl text-white">
@@ -384,7 +277,12 @@ export default function Team() {
 
           {/* Responsive Box Structure for Carousel */}
           <div className="mt-4 py-4 sm:py-5 flex flex-col items-center">
-            {filteredMembers.length > 0 ? (
+            {loading ? (
+              // Loading state
+              <div className="py-12 text-center text-gray-400">
+                <p>Loading team members...</p>
+              </div>
+            ) : filteredMembers.length > 0 ? (
               <div className="team-carousel-container">
                 <Swiper
                   ref={swiperRef}
@@ -430,7 +328,7 @@ export default function Team() {
                         <div className="glow-wrapper">
                           <div className={`rounded-lg overflow-hidden ${getGlowClass(member.boardType)}`}>
                             <img
-                              src={member.image}
+                              src={member.imageUrl} // Changed from member.image to member.imageUrl
                               alt={member.name}
                               className="w-full h-auto aspect-[4/5] object-cover"
                             />
@@ -461,7 +359,7 @@ export default function Team() {
             )}
 
             {/* Cuban bread-shaped pagination container */}
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center">
               <div className="pagination-container">
                 <div className="custom-swiper-pagination"></div>
               </div>

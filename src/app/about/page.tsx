@@ -38,7 +38,7 @@ export default function AboutPage() {
           {/* Mobile version - only visible on screens smaller than sm */}
           <GlowingLine
           xPoints={["-1", "55"]}  // Adjusted coordinates for mobile
-          yPoints={["89", "89"]}
+          yPoints={["91", "91"]}
           color="#1E90FF"
           thickness={2}
           circleSize={6}
@@ -46,7 +46,7 @@ export default function AboutPage() {
           />
            <GlowingLine
           xPoints={["-1", "35"]}  // Adjusted coordinates for mobile
-          yPoints={["92", "92"]}
+          yPoints={["94", "94"]}
           color="#1E90FF"
           thickness={2}
           circleSize={6}
@@ -55,16 +55,16 @@ export default function AboutPage() {
 
           <GlowingLine
           xPoints={["45", "150"]}  // Adjusted coordinates for mobile
-          yPoints={["220", "220"]}
-          color="#1E90FF"
+          yPoints={["226", "226"]}
+          color="#FFA500"
           thickness={2}
           circleSize={6}
           className="sm:hidden z-10" // Add z-index to ensure visibility
           />
            <GlowingLine
           xPoints={["60", "150"]}  // Adjusted coordinates for mobile
-          yPoints={["223", "223"]}
-          color="#1E90FF"
+          yPoints={["229", "229"]}
+          color="#FFA500"
           thickness={2}
           circleSize={6}
           className="sm:hidden z-10" // Add z-index to ensure visibility
