@@ -27,13 +27,13 @@ const CalendarDay: React.FC<CalendarDayProps> = ({
       <>
         {/* Desktop Calendar Day not in current month */}
         <div
-          className={`hidden border-l border-t border-gray-800 bg-[#0F1319] p-2 text-[#808080] md:block ${daysInMonth % 7 === 0 ? "border-r" : ""} ${daysInMonth - index <= 7 ? "border-b" : ""}`}
+          className={`hidden border-l border-t border-gray-800 bg-[#0F1319] p-2 text-[#808080] lg:block ${daysInMonth % 7 === 0 ? "border-r" : ""} ${daysInMonth - index <= 7 ? "border-b" : ""}`}
         >
           <p className="flex justify-end">{format(day, "dd")}</p>
         </div>
 
         {/* Mobile Calendar Day not in current month */}
-        <div className="flex justify-center p-2 md:hidden">
+        <div className="flex justify-center p-2 lg:hidden">
           <div className="p-2 text-[#808080]">{format(day, "dd")}</div>
         </div>
       </>
@@ -43,7 +43,7 @@ const CalendarDay: React.FC<CalendarDayProps> = ({
     <>
       {/* Desktop Calendar day in current month */}
       <div
-        className={`hidden h-32 border-l border-t border-gray-800 bg-[#0F1319] p-2 md:block  ${daysInMonth % 7 === 0 ? "border-r" : ""} ${daysInMonth - index <= 7 ? "border-b" : ""}`}
+        className={`hidden h-32 border-l border-t border-gray-800 bg-[#0F1319] p-2 lg:block  ${daysInMonth % 7 === 0 ? "border-r" : ""} ${daysInMonth - index <= 7 ? "border-b" : ""}`}
       >
         <div className={`flex justify-end `}><span className={`${today ? "bg-light-blue text-black rounded-full px-2" : ""}`}>{format(day, "dd")}</span></div>
         {dayEvents && (
@@ -57,7 +57,7 @@ const CalendarDay: React.FC<CalendarDayProps> = ({
 
       {/* Mobile Calendar day in current month */}
 
-      <div className="flex justify-center pt-2 md:hidden">
+      <div className="flex justify-center pt-2 lg:hidden">
         {dayEvents && dayEvents.length > 0 ? (
          <MobileCalendarEvent day={day} dayEvents={dayEvents}/>
         ) : (

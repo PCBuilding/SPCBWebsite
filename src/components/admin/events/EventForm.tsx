@@ -28,11 +28,7 @@ interface EventFormProps {
   id?: string;
 }
 
-export default function EventForm({
-  initialData,
-  mode,
-  id,
-}: EventFormProps) {
+export default function EventForm({ initialData, mode, id }: EventFormProps) {
   const [formData, setFormData] = useState<EventFormData>(
     initialData || emptyFormState,
   );
@@ -113,7 +109,7 @@ export default function EventForm({
       await updateDoc(eventRef, eventData);
 
       toast.dismiss(loadingToast);
-     
+
       toast.success("Event updated successfully!", {
         duration: 3000,
         icon: "🎉",
@@ -187,7 +183,10 @@ export default function EventForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6 sm:mt-8 flex w-full flex-col gap-4">
+    <form
+      onSubmit={handleSubmit}
+      className="mt-6 flex w-full flex-col gap-4 sm:mt-8"
+    >
       <div>
         <label htmlFor="" className="text-sm font-medium">
           Title
@@ -233,7 +232,7 @@ export default function EventForm({
           <input
             type="date"
             name="date"
-            className="mt-2 block w-full cursor-pointer rounded-md border p-2 min-h-11"
+            className="mt-2 block min-h-11 w-full cursor-pointer rounded-md border p-2"
             onFocus={handleFocus}
             onChange={handleChange}
             value={formData.date}
@@ -246,7 +245,7 @@ export default function EventForm({
           <input
             type="time"
             name="time"
-            className="mt-2 block w-full cursor-pointer rounded-md border p-2 "
+            className="mt-2 block w-full cursor-pointer rounded-md border p-2"
             onFocus={handleFocus}
             onChange={handleChange}
             value={formData.time}
@@ -282,7 +281,7 @@ export default function EventForm({
       </div>
       <button
         type="submit"
-        className="mt-2 rounded-md bg-blue-500 p-2 text-white"
+        className="mt-2 rounded-md bg-green-500 p-2 text-white"
       >
         {mode === "create" ? "Create" : "Edit"} Event
       </button>

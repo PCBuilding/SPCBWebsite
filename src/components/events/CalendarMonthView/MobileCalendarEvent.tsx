@@ -2,7 +2,7 @@ import { FirebaseEvent } from "@/types/events";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { FaXmark } from "react-icons/fa6";
-import MonthlyEvent from "./MonthlyEvent";
+import MonthlyEvent from "../CalendarListView/MonthlyEvent";
 
 type MobileCalendarEventProps = {
   day: Date;

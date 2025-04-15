@@ -10,6 +10,7 @@ import {
   ChevronLeft,
   Calendar,
   PackageOpen,
+  ChartLine,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -30,8 +31,9 @@ const Sidebar: React.FC<SidebarProps> = ({
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Events", href: "/dashboard/events", icon: Calendar },
     { name: "Projects", href: "/dashboard/projects", icon: FileText },
-    { name: "Inventory", href: "/dashboard/inventory", icon: PackageOpen },
-    { name: "Settings", href: "/dashboard/settings", icon: Settings },
+    // { name: "Inventory", href: "/dashboard/inventory", icon: PackageOpen },
+    // { name: "Settings", href: "/dashboard/settings", icon: Settings },
+    { name: "Analytics", href: "/dashboard/analytics", icon: ChartLine },
   ];
 
   const isLinkActive = (href: string) => pathname === href;
@@ -42,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       {!isMobileMenuOpen && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="fixed -left-1 top-2.5 z-50 rounded-md bg-gray-700 p-2 text-white hover:bg-gray-600 lg:hidden text-sm"
+          className="fixed -left-1 top-2.5 z-50 rounded-md bg-gray-700 p-2 text-sm text-white hover:bg-gray-600 lg:hidden"
         >
           <span>Admin</span>
         </button>

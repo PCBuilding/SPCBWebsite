@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -21,27 +21,11 @@ body {
   overflow-x: hidden;
 }
 
-#hero {
-  background-image: url("/landing/bg.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.footer-clip-path {
+  clip-path: polygon(15% 34%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-.noise-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.02;
-  background:
-    repeating-radial-gradient(#fff 0 0.0001%, #000 0 0.0002%) 50% 0/2500px
-      2500px,
-    repeating-conic-gradient(#fff 0 0.0001%, #000 0 0.0002%) 50% 50%/2500px
-      2500px;
-  background-blend-mode: difference;
-}
-
+/* Events Page */
 .monthly-event {
   background: radial-gradient(
       138.71% 110.11% at 93.15% -36.58%,
@@ -54,6 +38,7 @@ body {
   border: 1px solid #4255f911;
 }
 
+/* About Page */
 .about-bg {
   background: radial-gradient(
       138.71% 110.11% at 93.15% -36.58%,
@@ -67,34 +52,64 @@ body {
   border: 1px solid #242424;
 }
 
-.footer-clip-path {
-  clip-path: polygon(15% 34%, 100% 0%, 100% 100%, 0% 100%);
-}
-
-.grad {
-  background: linear-gradient(0deg, #4255f922, #080d14);
-  filter: blur(20px);
-}
 
 
-/*  monospace font - will update later */
 
-.m {
-  font-family: "Space Mono", serif; 
-}
+/* Landing Page */
 
-/* fade background of hero */
-
-
-.hero-btn:hover {
+.cta-btn:hover {
   /* Apply a full (all-around) shadow with #79C7FD */
-  box-shadow: 0 0 20px 5px rgba(121, 199, 253, 0.7);
+  box-shadow: 0 0 16px 4px rgba(121, 199, 253, 0.7);
 }
 
-.hero-fade {
-  background: linear-gradient(180deg,#080d1400 0%, #080d14 100%);
+/* infinite carousel */
+
+.scroller-list {
+  list-style: none;
+  flex-shrink: 0;
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  /* Remove animation from here so it only applies when all images are loaded */
 }
 
-.about-fade {
-    background: linear-gradient(0deg,#080d1400 0%, #080d14 100%);
+.scroller-list.animate-scroll {
+  animation: scroll 24s linear infinite;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-100% - 16px));
+  }
+}
+
+/* Discord PC */
+
+.pc-stand {
+  background: linear-gradient(
+    180deg,
+    rgba(64, 64, 64, 0.1) 0%,
+    rgba(64, 64, 64, 0.2) 13.27%,
+    rgba(64, 64, 64, 0.25) 27.21%,
+    rgba(64, 64, 64, 0.48) 60.58%,
+    rgba(64, 64, 64, 0.54) 76.36%,
+    rgba(64, 64, 64, 0.45) 92.14%
+  );
+}
+
+.pc-base {
+  background: linear-gradient(
+    90deg,
+    rgba(64, 64, 64, 0.6) 0%,
+    rgba(64, 64, 64, 0.3) 6.5%,
+    rgba(64, 64, 64, 0.6) 19.18%,
+    rgba(64, 64, 64, 0.3) 32.93%,
+    rgba(64, 64, 64, 0.3) 66.46%,
+    rgba(64, 64, 64, 0.6) 81%,
+    rgba(64, 64, 64, 0.3) 94%,
+    rgba(64, 64, 64, 0.6) 100%
+  );
+  box-shadow: 0px -7px 2px 0px rgba(0, 0, 0, 0.18);
 }

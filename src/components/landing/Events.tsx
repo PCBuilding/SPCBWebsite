@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import GlowingLine from "../decorations/GlowingLine";
 
-
 const Events: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
 
@@ -17,10 +16,12 @@ const Events: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative pt-16 sm:pt-28 overflow-x-hidden overflow-y-hidden pb-40">
+    <div className="relative overflow-x-hidden overflow-y-hidden pb-40 pt-16 sm:pt-28">
       {/* Background Gradients */}
 
-      <h3 className="text-center text-[40px] font-medium mb-36">Popular Events</h3>
+      <h3 className="mb-36 text-center text-[40px] font-medium">
+        Popular Events
+      </h3>
 
       {/* Activities Section */}
       <div className="relative min-h-screen w-full">
@@ -33,14 +34,14 @@ const Events: React.FC = () => {
           circleSize={8}
         />
         <GlowingLine
-          xPoints={[isDesktop ? "29" : "28", isDesktop ? "29" : "28"]}
-          yPoints={["-4", "13"]}
+          xPoints={["28", "28"]}
+          yPoints={["-6", "13"]}
           color="#FFA500"
           thickness={3}
           circleSize={8}
         />
         <GlowingLine
-          xPoints={[isDesktop ? "28" : "26", isDesktop ? "28" : "26"]}
+          xPoints={["26.5", "26.5"]}
           yPoints={["-3", "14"]}
           color="#FFA500"
           thickness={3}
@@ -90,7 +91,7 @@ const Events: React.FC = () => {
         />
 
         {/* Content Cards */}
-        <div className="relative mx-auto max-w-7xl px-4 overflow-hidden">
+        <div className="relative mx-auto max-w-7xl overflow-hidden px-4">
           {/* Socials Card */}
           <motion.div
             className="relative left-[10%] mb-32 mt-32 w-2/3 sm:w-[35%]"
@@ -99,7 +100,7 @@ const Events: React.FC = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
           >
-            <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black border border-[#1a2a3d] to-blue-900/50">
+            <div className="to-blue-900/50 overflow-hidden rounded-lg border border-[#1a2a3d] bg-gradient-to-b from-black">
               <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
                 <img
                   src="/landing/images/socials.jpg"
@@ -118,14 +119,14 @@ const Events: React.FC = () => {
 
           {/* GBMs Card */}
           <motion.div
-            className="relative left-[40%] mt-44 sm:mt-32 sm:left-[55%] mb-32 w-2/3 sm:w-[35%]"
+            className="relative left-[35%] mb-32 mt-44 w-2/3 sm:left-[55%] sm:mt-32 sm:w-[35%]"
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
           >
             <a href="/events">
-              <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black border border-[#1a2a3d] to-blue-900/50 transition-transform duration-200 hover:scale-105">
+              <div className="to-blue-900/50 overflow-hidden rounded-lg border border-[#1a2a3d] bg-gradient-to-b from-black transition-transform duration-200 hover:scale-105">
                 <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
                   <img
                     src="/landing/images/gbms.jpg"
@@ -152,7 +153,7 @@ const Events: React.FC = () => {
             viewport={{ once: true, amount: 0.2 }}
           >
             <a href="/projects">
-              <div className="overflow-hidden rounded-lg bg-gradient-to-b from-black border border-[#1a2a3d] to-blue-900/50 transition-transform duration-200 hover:scale-105">
+              <div className="to-blue-900/50 overflow-hidden rounded-lg border border-[#1a2a3d] bg-gradient-to-b from-black transition-transform duration-200 hover:scale-105">
                 <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
                   <img
                     src="/landing/images/pc-builds.jpg"
