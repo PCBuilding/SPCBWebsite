@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import GlowingLine from "../decorations/GlowingLine";
+import Link from "next/link";
 
 const Events: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
@@ -19,9 +20,12 @@ const Events: React.FC = () => {
     <div className="relative overflow-x-hidden overflow-y-hidden pb-40 pt-16 sm:pt-28">
       {/* Background Gradients */}
 
-      <h3 className="mb-36 text-center text-[40px] font-medium">
+      <h3 className="text-center text-3xl font-medium sm:text-[40px]">
         Popular Events
       </h3>
+      <p className="pt-4 text-dull text-center mb-36 text-lg">
+          We hope to see you at one soon!
+        </p>
 
       {/* Activities Section */}
       <div className="relative min-h-screen w-full">
@@ -33,13 +37,15 @@ const Events: React.FC = () => {
           thickness={3}
           circleSize={8}
         />
-        <GlowingLine
-          xPoints={["28", "28"]}
-          yPoints={["-6", "13"]}
-          color="#FFA500"
-          thickness={3}
-          circleSize={8}
-        />
+        {isDesktop && (
+          <GlowingLine
+            xPoints={["28", "28"]}
+            yPoints={["-6", "13"]}
+            color="#FFA500"
+            thickness={3}
+            circleSize={8}
+          />
+        )}
         <GlowingLine
           xPoints={["26.5", "26.5"]}
           yPoints={["-3", "14"]}
@@ -61,13 +67,15 @@ const Events: React.FC = () => {
           thickness={2}
           circleSize={6}
         />
-        <GlowingLine
-          xPoints={["85", "94"]}
-          yPoints={["13", "13"]}
-          color="#1E90FF"
-          thickness={2}
-          circleSize={6}
-        />
+        {isDesktop && (
+          <GlowingLine
+            xPoints={["85", "94"]}
+            yPoints={["13", "13"]}
+            color="#1E90FF"
+            thickness={2}
+            circleSize={6}
+          />
+        )}
         <GlowingLine
           xPoints={["1", "9"]}
           yPoints={["59", "59"]}
@@ -82,13 +90,15 @@ const Events: React.FC = () => {
           thickness={2}
           circleSize={6}
         />
-        <GlowingLine
-          xPoints={["0", "7"]}
-          yPoints={["61", "61"]}
-          color="#1E90FF"
-          thickness={2}
-          circleSize={6}
-        />
+        {isDesktop && (
+          <GlowingLine
+            xPoints={["0", "7"]}
+            yPoints={["61", "61"]}
+            color="#1E90FF"
+            thickness={2}
+            circleSize={6}
+          />
+        )}
 
         {/* Content Cards */}
         <div className="relative mx-auto max-w-7xl overflow-hidden px-4">
@@ -100,21 +110,23 @@ const Events: React.FC = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
           >
-            <div className="to-blue-900/50 overflow-hidden rounded-lg border border-[#1a2a3d] bg-gradient-to-b from-black">
-              <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
-                <img
-                  src="/landing/images/socials.jpg"
-                  alt="Socials"
-                  className="object-cover"
-                  loading="lazy"
-                />
+            <Link href={"/events"}>
+              <div className="to-blue-900/50 overflow-hidden rounded-lg border border-[#1a2a3d] bg-gradient-to-b from-black transition-transform duration-200 hover:scale-105">
+                <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
+                  <img
+                    src="/landing/images/socials.jpg"
+                    alt="Socials"
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="bg-[#080d14] p-4">
+                  <h3 className="text-lg font-bold text-white sm:text-2xl">
+                    Socials
+                  </h3>
+                </div>
               </div>
-              <div className="bg-[#080d14] p-4">
-                <h3 className="text-lg font-bold text-white sm:text-2xl">
-                  Socials
-                </h3>
-              </div>
-            </div>
+            </Link>
           </motion.div>
 
           {/* GBMs Card */}

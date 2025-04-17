@@ -94,7 +94,7 @@ export default function Login() {
           <input
             type="submit"
             value="Login"
-            className="cursor-pointer rounded-md bg-blue-500 py-1.5 sm:py-2 text-sm text-white"
+            className="cursor-pointer rounded-md bg-blue py-1.5 sm:py-2 text-sm text-black font-medium"
           />
         </form>
         <Link href="/" className="mt-6 text-sm underline">
