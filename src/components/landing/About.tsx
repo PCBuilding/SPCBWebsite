@@ -16,14 +16,14 @@ type Card = {
 const cards: Card[] = [
   {
     bg: "/landing/cards/blue.png",
-    border: ["353F57", "191A23"],
+    border: ["233B66", "2E3042"],
     icon: "/landing/card-icons/social.png",
     title: "Connect with hundreds of tech enthusiasts.",
     desc: "Meet like-minded individuals with industry experience in Computer Science & Engineering.",
   },
   {
     bg: "/landing/cards/orange.png",
-    border: ["4D402B", "1E1A19"],
+    border: ["5D4C30", "483B23"],
     icon: "/landing/card-icons/pc-parts.png",
     title: "Hands-on experience with the latest tech.",
     desc: "Build PCs, demo the latest technology, and learn new skills, all for free.",
@@ -37,7 +37,7 @@ const cards: Card[] = [
   },
   {
     bg: "/landing/cards/purple.png",
-    border: ["363048", "18171E"],
+    border: ["3E4265", "292737"],
     icon: "/landing/card-icons/events.png",
     title: "Experience engaging and unique events",
     desc: "Build PCs, demo the latest technology, and learn new skills, all for free.",
@@ -116,13 +116,13 @@ const About: React.FC = () => {
   return (
     <div className="overflow-x-hidden">
       <div className="relative mx-auto max-w-6xl px-6 pt-16 text-center sm:px-10 sm:py-28">
-        <h2 className="text-[40px] font-semibold">Why SPCB?</h2>
-        <p className="pt-4 text-dull">
+        <h2 className="text-3xl sm:text-[40px] font-semibold">Why SPCB?</h2>
+        <p className="pt-4 text-dull text-lg">
           Discover some of the many reasons to join the Society of PC Building
         </p>
 
         {/* Slider */}
-        <div className="mt-14" ref={containerRef}>
+        <div className="mt-16" ref={containerRef}>
           <motion.div
             className="flex cursor-grab flex-nowrap gap-4 sm:gap-16 active:cursor-grabbing"
             drag="x"

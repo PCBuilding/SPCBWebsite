@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Monitor from "./ui/Monitor";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaChevronDown } from "react-icons/fa6";
 
-interface FAQ {
-  question: string;
-  answer: string;
-}
-
-const faqs: FAQ[] = [
+const faqs = [
   {
     question: "Who can become a member?",
     answer:
@@ -15,63 +11,82 @@ const faqs: FAQ[] = [
   {
     question: "What kind of events does SPCB hold?",
     answer:
-      "SPCB holds many events such as GBMs, PC builds, socials, gaming events, industry speakers and more. Follow us on Instagram and view the event calendar to stay updated. ",
+      "SPCB holds many events such as GBMs, PC builds, socials, gaming events, industry speakers and more. Follow us on Instagram and view the event calendar to stay updated.",
   },
   {
     question: "How can I get involved?",
     answer:
       "Join our Discord, attend our events, and apply for officer roles each year. It's a simple way to connect and make a difference.",
   },
+  {
+    question: "What should I bring to the build events?",
+    answer:
+      "We supply all the parts needed to build the pcs. You just need to show up!.",
+  },
+  {
+    question: "Why should I join?",
+    answer:
+      "The Society of PC Building has a variety of hands-on workshops, industry speakers, and socials. SPCB is a great place to expand your network, learn new skills, and have fun!",
+  },
 ];
 
-export default function Faq(): JSX.Element {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 620);
-    };
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-    return () => window.removeEventListener("resize", checkIfMobile);
-  }, []);
-
+export default function FAQ() {
   return (
-    <div className="relative mx-auto max-w-7xl px-6 pb-14 pt-16 sm:px-10 sm:pt-28">
-      <h3 className="text-center text-3xl font-medium sm:text-[40px]">
+    <div className="px-4 pt-16 sm:pt-20" id="faq">
+      <h3 className="text-center text-3xl sm:text-[40px] font-medium">
         Frequently Asked Questions
       </h3>
-
-      <div className="grid gap-16 pt-16 sm:gap-24 sm:pt-24 lg:grid-cols-2 lg:gap-12">
-        <div className="grid gap-12">
-          {faqs.map((faq, i) => (
-            <Item faq={faq} i={i} key={faq.question} />
-          ))}
-        </div>
-        {!isMobile && (
-          <div className="relative z-10 mb-12 flex min-h-[400px] justify-center sm:pb-0 lg:justify-end">
-            <div className="absolute sm:block">
-              <Monitor />
-            </div>
-          </div>
-        )}
+      <p className="pt-4 text-center text-dull text-lg">
+        For any questions you may still have.
+      </p>
+      <div className="mx-auto  max-w-4xl mt-12 sm:mt-16">
+        {faqs.map((faq, index) => (
+          <FaqTab key={index} question={faq.question} answer={faq.answer} />
+        ))}
       </div>
     </div>
   );
 }
 
-interface ItemProps {
-  faq: FAQ;
-  i: number;
-}
+type FaqTabProps = {
+  question: string;
+  answer: string;
+};
 
-const Item: React.FC<ItemProps> = ({ faq, i }) => {
+const FaqTab: React.FC<FaqTabProps> = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div>
-      <p className="text-2xl sm:text-3xl">
-        <span className="m">0{i + 1}.</span> {faq.question}
-      </p>
-      <p className="pt-3 text-lg text-dull">{faq.answer}</p>
+    <div
+      className="my-5 w-full cursor-pointer border-b border-gray-800 pb-3 tracking-wide sm:pb-4"
+      onClick={() => setIsOpen((prev) => !prev)}
+    >
+      <div className="flex items-center justify-between">
+        <p className="pr-3 text-base sm:text-lg">{question}</p>
+        <span
+          className={`text-dull transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        >
+          <FaChevronDown />
+        </span>
+      </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="answer"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="mt-4 text-sm leading-relaxed text-dull sm:text-base">
+              {answer}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

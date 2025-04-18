@@ -20,7 +20,7 @@ export const Scroller: React.FC<ScrollerProps> = ({ items, maxHeight }) => {
   const animationClass = loadedCount === totalImages ? "animate-scroll" : "";
 
   return (
-    <div className="w-full overflow-hidden flex gap-4 scroller-container" style={{ height: `${maxHeight}px` }}>
+    <div className="w-full overflow-hidden flex gap-3 scroller-container" style={{ height: `${maxHeight}px` }}>
       <ul className={`scroller-list ${animationClass}`} style={{ height: `${maxHeight}px` }}>
         {items.map((src, index) => (
           <Item key={index} src={src} onLoad={handleImageLoad} />
@@ -47,7 +47,7 @@ const Item: React.FC<ItemProps> = ({ src, onLoad }) => {
       alt=""
       onLoad={onLoad}
       style={{ height: "100%", width: "auto" }}
-      className="scroller-item"
+      className="scroller-item rounded-md"
     />
   );
 };

@@ -23,6 +23,8 @@ export default function Nav() {
               src={"/iconography/spcb-color.png"}
               height={40}
               width={40}
+              unoptimized
+              quality={100}
               alt=""
               className="hidden lg:block"
             />
