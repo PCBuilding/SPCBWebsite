@@ -11,6 +11,7 @@ import {
   Calendar,
   PackageOpen,
   ChartLine,
+  Users
 } from "lucide-react";
 
 interface SidebarProps {
@@ -34,6 +35,8 @@ const Sidebar: React.FC<SidebarProps> = ({
     // { name: "Inventory", href: "/dashboard/inventory", icon: PackageOpen },
     // { name: "Settings", href: "/dashboard/settings", icon: Settings },
     { name: "Analytics", href: "/dashboard/analytics", icon: ChartLine },
+    { name: "About", href: "/dashboard/about", icon: Users },
+
   ];
 
   const isLinkActive = (href: string) => pathname === href;
