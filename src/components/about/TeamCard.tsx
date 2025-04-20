@@ -60,7 +60,7 @@ export const TeamCard: React.FC<TeamMemberProps> = ({
           }`}
           aria-label={`View ${name}'s LinkedIn profile`}
         >
-          <FaLinkedin className="text-5xl text-blue" />
+          <FaLinkedin className="text-4xl text-blue" />
         </a>
       )}
     </div>
