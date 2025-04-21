@@ -25,7 +25,7 @@ const teamData: TeamData = {
     {
       name: "Nathan Kim",
       role: "Secretary",
-      imageSrc: "/about-images/people/matthew-li.jpg",
+      imageSrc: "/about-images/people/nathan.png",
     },
     {
       name: "Angela Ung",
