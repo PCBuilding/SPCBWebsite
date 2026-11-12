@@ -55,7 +55,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-3 items-start gap-12 lg:pl-32 pt-16 lg:pt-[116px]">
           <div className="grid gap-4">
             <p className="text-dull">Socials</p>
-            <a target="_blank" href="https://discord.com/invite/jfq9phWqTF">
+            <a target="_blank" href="https://discord.gg/56VYQBqmUY">
               Discord
             </a>
             <a

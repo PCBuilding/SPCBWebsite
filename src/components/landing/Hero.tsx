@@ -95,7 +95,7 @@ export default function Hero() {
                     Get Involved <FaArrowRightLong />
                   </a>
                   <a
-                    href="https://discord.gg/CmqKbnBDBG"
+                    href="https://discord.gg/56VYQBqmUY"
                     target="_blank"
                     className="flex items-center justify-center gap-3 rounded-lg bg-blue bg-opacity-10 px-8 py-2.5 transition-all hover:bg-opacity-20 sm:bg-opacity-0"
                   >
