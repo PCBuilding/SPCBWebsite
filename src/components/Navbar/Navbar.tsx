@@ -121,7 +121,7 @@ export default function Nav() {
               </Link>
             </div>
             <a
-              href="https://discord.gg/CmqKbnBDBG"
+              href="https://discord.gg/56VYQBqmUY"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-blue px-6 py-2 text-black text-sm"
@@ -180,7 +180,7 @@ export default function Nav() {
               </Link>
 
               <a
-                href="https://discord.gg/CmqKbnBDBG"
+                href="https://discord.gg/56VYQBqmUY"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowMobileNav(false)}

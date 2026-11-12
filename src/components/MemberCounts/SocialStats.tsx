@@ -149,7 +149,7 @@ const SocialStats: React.FC = () => {
         error={discordError}
         bgColor="bg-[#5865F2]"
         glowColor="rgba(88, 101, 242, 0.5)"
-        href="https://discord.com/invite/jfq9phWqTF"
+        href="https://discord.gg/56VYQBqmUY"
       />
 
       {/* Instagram stats are currently not working */}

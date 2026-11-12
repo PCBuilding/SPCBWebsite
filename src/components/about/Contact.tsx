@@ -42,7 +42,7 @@ export default function Contact() {
             The Society of PC Building's main form of communication is through
             our{" "}
             <a
-              href="https://discord.com/invite/jfq9phWqTF"
+              href="https://discord.gg/56VYQBqmUY"
               className="underline"
               target="_blank"
             >
