@@ -23,9 +23,19 @@ const config = {
           "0%, 49%": { opacity: "1" },
           "50%, 100%": { opacity: "0" },
         },
+        marquee: {
+          "0%":{transfrom:"translateX(0)"},
+          "100%":{transform: "translateX(-50%)"},
+        },
+        pop: {
+  "0%": { opacity: "0", transform: "scale(0.9)" },
+  "100%": { opacity: "1", transform: "scale(1)" },
+},
       },
       animation: {
         blink: "blink 1s infinite",
+        marquee: "marquee 15s linear infinite",
+        pop: "pop 0.3s ease-out",
       },
       colors: {
         white: "#f1f1f1",
