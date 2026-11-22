@@ -18,36 +18,36 @@ const cards: Card[] = [
     bg: "/landing/cards/blue.png",
     border: ["233B66", "2E3042"],
     icon: "/landing/card-icons/social.png",
-    title: "Connect with hundreds of tech enthusiasts.",
+    title: "Connect with Hundreds of Tech Enthusiasts",
     desc: "Meet like-minded individuals with industry experience in Computer Science & Engineering.",
   },
   {
     bg: "/landing/cards/orange.png",
     border: ["5D4C30", "483B23"],
     icon: "/landing/card-icons/pc-parts.png",
-    title: "Hands-on experience with the latest tech.",
+    title: "Hands-on Experience with the Latest Tech",
     desc: "Build PCs, demo the latest technology, and learn new skills, all for free.",
   },
   {
     bg: "/landing/cards/green.png",
     border: ["35533D", "415D48"],
     icon: "/landing/card-icons/money.png",
-    title: "Highest funded student org at UF.",
-    desc: "We use these fund to fully cater our GBM's and regulary get the latest tech.",
+    title: "Highest Funded Student Org at UF",
+    desc: "We use these funds to fully cater our GBM's and regularly get the latest tech.",
   },
   {
     bg: "/landing/cards/purple.png",
     border: ["3E4265", "292737"],
     icon: "/landing/card-icons/events.png",
-    title: "Experience engaging and unique events",
-    desc: "Build PCs, demo the latest technology, and learn new skills, all for free.",
+    title: "Experience Engaging and Unique Events",
+    desc: "Hang out with our community at events and grow your network.",
   },
   {
     bg: "/landing/cards/red.png",
     border: ["9E3A50", "640D20"],
     icon: "/landing/card-icons/officer.png",
-    title: "Become an officer for valuable experience",
-    desc: "We offer numerous positions that expose officers to leadership and relevent technology.",
+    title: "Become an Officer for Valuable Experience",
+    desc: "We offer numerous positions that expose officers to leadership and relevant technology.",
   },
 ];
 
@@ -141,7 +141,7 @@ const About: React.FC = () => {
           </motion.div>
         </div>
 
-        <div className="flex gap-4 pt-12 pb-2">
+        <div className="flex justify-center gap-4 pt-12 pb-2">
           <button
             onClick={() => navigateSlider("prev")}
             disabled={sliderIndex === 0}

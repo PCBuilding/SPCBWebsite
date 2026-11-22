@@ -3,11 +3,12 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const response = await fetch(
-      `https://discord.com/api/${process.env.DISCORD_API_VERSION || "v10"}/guilds/${process.env.DISCORD_SERVER_ID}?with_counts=true`,
+      `https://discord.com/api/v10/invites/2rErHfDArx?with_counts=true`,
       {
-        headers: {
-          Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
-        },
+        next: { revalidate: 300 },
+        // headers: {
+        //   Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
+        // },
       },
     );
 
@@ -26,3 +27,4 @@ export async function GET() {
     );
   }
 }
+

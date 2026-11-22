@@ -85,3 +85,39 @@ body {
   }
 }
 
+
+/* custom scrollbar colors*/ 
+/* Scrollbar styling for FireFox */
+
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: auto;
+    scrollbar-color: #003c8d #002861;
+  }
+}
+
+/* Webkit scrollbar styling for Chromium Browsers */
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #080d14;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background: linear-gradient(to bottom, #003c8d, #080055);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 30px rgba(42, 14, 107, 0.3);
+}
+

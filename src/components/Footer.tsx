@@ -54,8 +54,8 @@ export default function Footer() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 items-start gap-12 lg:pl-32 pt-16 lg:pt-[116px]">
           <div className="grid gap-4">
-            <p className="text-dull">Socials</p>
-            <a target="_blank" href="https://discord.com/invite/jfq9phWqTF">
+            <p className="text-dull"><a className="underline">Socials</a></p>
+            <a target="_blank" href="https://discord.gg/2rErHfDArx">
               Discord
             </a>
             <a
@@ -72,14 +72,14 @@ export default function Footer() {
             </a>
           </div>
           <div className="grid gap-4">
-            <p className="text-dull">Pages</p>
+            <p className="text-dull"><a className="underline">Pages</a></p>
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
             <Link href="/events">Events</Link>
             <Link href="/projects">Projects</Link>
           </div>
           <div className="grid gap-4">
-            <p className="text-dull">Other</p>
+            <p className="text-dull"><a className="underline">Other</a></p>
             <a href="https://github.com/PCBuilding/SPCBWebsite" target="_blank">
               Source Code
             </a>
