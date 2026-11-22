@@ -42,14 +42,14 @@ export default function Contact() {
             The Society of PC Building's main form of communication is through
             our{" "}
             <a
-              href="https://discord.com/invite/jfq9phWqTF"
+              href="https://discord.gg/2rErHfDArx"
               className="underline"
               target="_blank"
             >
-              discord
+              Discord
             </a>
             . If you'd prefer, feel free to reach out through our contact
-            form—we'd be happy to hear from you. For more ways to connect, check
+            form — we'd be happy to hear from you. For more ways to connect, check
             out the links below!
           </p>
           <form

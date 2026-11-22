@@ -21,7 +21,7 @@ const faqs = [
   {
     question: "What should I bring to the build events?",
     answer:
-      "We supply all the parts needed to build the pcs. You just need to show up!.",
+      "We supply all the parts needed to build the PCs. You just need to show up!",
   },
   {
     question: "Why should I join?",

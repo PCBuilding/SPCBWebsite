@@ -29,7 +29,7 @@ export default function DiscordPC() {
                 PC Building Discord!
               </p>
               <a
-                href="https://discord.gg/CmqKbnBDBG"
+                href="https://discord.gg/2rErHfDArx"
                 target="_blank"
                 className="cta-btn flex items-center gap-2 rounded-md bg-blue px-12 py-2.5 font-medium text-black transition-all duration-300 md:text-lg"
               >
